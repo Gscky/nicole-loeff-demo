@@ -2,6 +2,7 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './sections/Hero';
 import { About } from './sections/About';
 import { Specialties } from './sections/Specialties';
+import { Gallery } from './sections/Gallery';
 import { Technology } from './sections/Technology';
 import { Testimonials } from './sections/Testimonials';
 import { Location } from './sections/Location';
@@ -16,10 +17,11 @@ export default function App() {
       <Hero />
       <About />
       <Specialties />
+      <Gallery />
       <Technology />
       <Testimonials />
-      <Location />
       <CTA />
+      <Location />
       <Footer />
       <WhatsAppButton />
     </>

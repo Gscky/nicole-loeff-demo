@@ -4,6 +4,7 @@ export const CLINIC = {
   tagline: 'Odontología de excelencia con la más alta calidad',
   description: 'Tecnología de última generación y materiales premium para una sonrisa que refleja lo mejor de usted.',
   phone: '+56 9 4420 5077',
+  phoneLandline: '(2) 3224 3732',
   phoneRaw: '56944205077',
   email: 'contacto@nicoleloeff.cl',
   address: 'Calle Estoril 200, Oficina 929-930',
@@ -78,33 +79,45 @@ export const SPECIALTIES = [
 
 export const REVIEWS = [
   {
-    name: 'Carolina M.',
+    name: 'María G.',
     stars: 5,
-    text: 'Excelente profesional. Me realizó un tratamiento de carillas y quedé impresionada con los resultados. El trato es personalizado y la clínica es hermosa.',
+    text: 'Excelente atención. La Dra. Nicole me hizo una rehabilitación oral completa y quedé encantada con los resultados. Se nota la calidad de los materiales.',
   },
   {
-    name: 'Francisco R.',
+    name: 'Carlos R.',
     stars: 5,
-    text: 'La mejor dentista que he visitado. Tecnología de primer nivel y materiales de alta calidad. Se nota la diferencia.',
+    text: 'Muy profesional. Me trataron un problema de bruxismo que llevaba años sin resolver. La tecnología que tienen es de otro nivel.',
   },
   {
-    name: 'Valentina S.',
+    name: 'Valentina M.',
     stars: 5,
-    text: 'Llevé a mis hijos y la experiencia fue increíble. La Dra. Nicole tiene una paciencia y dedicación únicas. 100% recomendada.',
+    text: 'Llevé a mi hijo de 5 años y lo trataron con mucha paciencia. La clínica es moderna y acogedora, se siente la confianza desde que entras.',
   },
   {
-    name: 'Rodrigo L.',
+    name: 'Andrés P.',
     stars: 5,
-    text: 'Me hice implantes y el resultado es perfecto. Muy profesional, explica todo el proceso con detalle. La clínica es moderna y acogedora.',
+    text: 'Me puse implantes con la Dra. Loeff. El procedimiento fue impecable y la recuperación muy rápida. Resultados naturales y perfectos.',
   },
   {
-    name: 'Andrea P.',
+    name: 'Sofía L.',
     stars: 5,
-    text: 'Después de años buscando una dentista de confianza, encontré a la Dra. Loeff. Equipos de última generación y un trato humano excepcional.',
+    text: 'El blanqueamiento dental superó mis expectativas. Sonrío con mucha más confianza ahora. Recomendada al 100%.',
   },
   {
-    name: 'Martín G.',
+    name: 'Fernando T.',
     stars: 5,
-    text: 'El blanqueamiento quedó espectacular. El ambiente de la clínica transmite tranquilidad y profesionalismo desde que entras.',
+    text: 'Clínica de primer nivel en Las Condes. Equipos de última generación y un trato muy humano. Sin duda la mejor experiencia dental que he tenido.',
+  },
+  {
+    name: 'Camila S.',
+    stars: 5,
+    text: 'La ortodoncia que me hizo la Dra. Nicole cambió mi sonrisa por completo. Profesionalismo y calidez en cada visita.',
+  },
+  {
+    name: 'Roberto D.',
+    stars: 5,
+    text: 'Tuve una endodoncia y no sentí absolutamente nada. Muy buena mano y excelente tecnología. Altamente recomendable.',
   },
 ] as const;
+
+export const GOOGLE_RATING = 4.8;

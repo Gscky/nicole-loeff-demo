@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ScrollReveal } from '../components/ScrollReveal';
-import { REVIEWS } from '../lib/constants';
+import { REVIEWS, GOOGLE_RATING } from '../lib/constants';
 import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 
 export function Testimonials() {
@@ -124,7 +124,7 @@ export function Testimonials() {
               ))}
             </div>
             <span className="font-body text-sm text-warm-600">
-              <strong className="text-forest-800">5.0</strong> en Google Reviews
+              <strong className="text-forest-800">{GOOGLE_RATING}</strong> en Google Reviews
             </span>
           </div>
         </ScrollReveal>
