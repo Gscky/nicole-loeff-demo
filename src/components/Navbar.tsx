@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { CLINIC } from '../lib/constants';
 
 const NAV_LINKS = [
   { href: '#inicio', label: 'Inicio' },
-  { href: '#especialidades', label: 'Especialidades' },
-  { href: '#clinica', label: 'La Clínica' },
+  { href: '#servicios', label: 'Servicios' },
+  { href: '#resultados', label: 'Resultados' },
   { href: '#testimonios', label: 'Testimonios' },
-  { href: '#ubicacion', label: 'Ubicación' },
+  { href: '#equipo', label: 'Equipo' },
+  { href: '#tecnologia', label: 'Tecnología' },
+  { href: '#contacto', label: 'Contacto' },
 ];
 
 export function Navbar() {
@@ -29,7 +31,7 @@ export function Navbar() {
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-[0_1px_20px_rgba(0,0,0,0.06)]'
+            ? 'bg-white/95 backdrop-blur-md shadow-[0_1px_20px_rgba(0,0,0,0.08)]'
             : 'bg-transparent'
         }`}
       >
@@ -39,17 +41,17 @@ export function Navbar() {
             <a href="#inicio" className="flex items-center gap-3 group">
               <img
                 src="/images/brand/logo.png"
-                alt={CLINIC.name}
+                alt={CLINIC.fullName}
                 className="h-12 w-auto transition-transform duration-300 group-hover:scale-105"
               />
               <div className="hidden sm:block">
                 <p className={`font-display text-lg font-semibold tracking-wide transition-colors duration-500 ${
-                  scrolled ? 'text-forest-800' : 'text-white'
+                  scrolled ? 'text-gray-dark' : 'text-white'
                 }`}>
                   {CLINIC.name}
                 </p>
-                <p className={`font-display text-xs tracking-[0.2em] uppercase transition-colors duration-500 ${
-                  scrolled ? 'text-gold-600' : 'text-gold-300'
+                <p className={`font-body text-xs tracking-[0.15em] uppercase transition-colors duration-500 ${
+                  scrolled ? 'text-emerald-500' : 'text-emerald-200'
                 }`}>
                   {CLINIC.subtitle}
                 </p>
@@ -57,13 +59,13 @@ export function Navbar() {
             </a>
 
             {/* Desktop Links */}
-            <div className="hidden lg:flex items-center gap-8">
+            <div className="hidden lg:flex items-center gap-7">
               {NAV_LINKS.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className={`font-body text-sm tracking-wide transition-colors duration-300 hover:text-gold-500 ${
-                    scrolled ? 'text-warm-700' : 'text-white/90'
+                  className={`font-body text-sm font-medium transition-colors duration-300 hover:text-copper-400 ${
+                    scrolled ? 'text-gray-dark' : 'text-white/90'
                   }`}
                 >
                   {link.label}
@@ -73,10 +75,9 @@ export function Navbar() {
                 href={CLINIC.whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 rounded-full bg-forest-700 px-5 py-2.5 font-body text-sm font-medium text-white transition-all duration-300 hover:bg-forest-600 hover:shadow-lg hover:shadow-forest-700/20"
+                className="rounded-full bg-copper-400 px-6 py-2.5 font-body text-sm font-semibold text-white transition-all duration-300 hover:bg-copper-500 hover:shadow-lg hover:shadow-copper-400/25"
               >
-                <Phone size={14} />
-                Agendar Hora
+                Agenda tu hora
               </a>
             </div>
 
@@ -84,8 +85,9 @@ export function Navbar() {
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className={`lg:hidden p-2 transition-colors ${
-                scrolled ? 'text-forest-800' : 'text-white'
+                scrolled ? 'text-gray-dark' : 'text-white'
               }`}
+              aria-label="Menú de navegación"
             >
               {mobileOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -103,26 +105,25 @@ export function Navbar() {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-40 bg-white pt-24 px-6 lg:hidden"
           >
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-5">
               {NAV_LINKS.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="font-display text-2xl text-forest-800 hover:text-gold-600 transition-colors"
+                  className="font-display text-2xl text-gray-dark hover:text-copper-400 transition-colors"
                 >
                   {link.label}
                 </a>
               ))}
-              <div className="mt-4 pt-6 border-t border-warm-200">
+              <div className="mt-4 pt-6 border-t border-gray-100">
                 <a
                   href={CLINIC.whatsappLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 rounded-full bg-forest-700 px-6 py-3.5 font-body text-base font-medium text-white"
+                  className="flex items-center justify-center gap-2 rounded-full bg-copper-400 px-6 py-3.5 font-body text-base font-semibold text-white"
                 >
-                  <Phone size={16} />
-                  Agendar Hora por WhatsApp
+                  Agenda tu hora
                 </a>
               </div>
             </div>

@@ -1,115 +1,115 @@
 import { ScrollReveal } from '../components/ScrollReveal';
-import { Cpu, Gem, ShieldCheck, Microscope } from 'lucide-react';
+import { Cpu, UserCheck, Building2, Gem } from 'lucide-react';
+import { CLINIC_IMAGES } from '../lib/constants';
 
-const FEATURES = [
+const HIGHLIGHTS = [
   {
     icon: Cpu,
-    title: 'Equipos de Última Generación',
-    description: 'Tecnología digital avanzada para diagnósticos precisos y tratamientos eficientes con la mínima molestia.',
+    title: 'Tecnología de punta',
+    description: 'Equipos de última generación para diagnósticos precisos y tratamientos eficientes.',
+  },
+  {
+    icon: UserCheck,
+    title: 'Atención personalizada',
+    description: 'Cada paciente recibe un plan de tratamiento único y a medida.',
+  },
+  {
+    icon: Building2,
+    title: 'Ambiente exclusivo',
+    description: 'Espacios diseñados para tu comodidad y tranquilidad.',
   },
   {
     icon: Gem,
-    title: 'Materiales Premium',
-    description: 'Utilizamos exclusivamente materiales de las mejores marcas mundiales, garantizando durabilidad y resultados estéticos superiores.',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Protocolos de Bioseguridad',
-    description: 'Esterilización con autoclave de última generación y protocolos que superan los estándares internacionales.',
-  },
-  {
-    icon: Microscope,
-    title: 'Precisión Milimétrica',
-    description: 'Procedimientos realizados con lupas de magnificación y tecnología que asegura resultados de nivel mundial.',
+    title: 'Materiales premium',
+    description: 'Materiales importados de las mejores marcas mundiales.',
   },
 ];
 
 export function Technology() {
   return (
-    <section className="relative py-28 lg:py-36 bg-warm-50 overflow-hidden">
+    <section id="tecnologia" className="py-24 lg:py-32 bg-gray-light">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <ScrollReveal>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-dark mb-4">
+              Tecnología de vanguardia, atención boutique
+            </h2>
+            <div className="mx-auto accent-divider" />
+          </ScrollReveal>
+        </div>
+
+        {/* Two column layout */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20">
           {/* Text side */}
-          <div>
-            <ScrollReveal>
-              <p className="font-body text-sm tracking-[0.25em] uppercase text-gold-600 mb-4">
-                Tecnología & Calidad
+          <ScrollReveal>
+            <div>
+              <p className="font-body text-base text-gray-600 leading-relaxed mb-6">
+                Ubicada en un lugar de fácil acceso en Las Condes, nuestra clínica cuenta con la
+                más moderna tecnología y un ambiente grato, para hacer de su atención algo distinto.
               </p>
-              <h2 className="font-display text-4xl sm:text-5xl font-light text-forest-900 leading-tight mb-6">
-                Lo mejor para
-                <span className="block font-normal italic text-gold-600">su sonrisa</span>
-              </h2>
-              <div className="gold-divider mb-8" />
-              <p className="font-body text-base text-warm-600 leading-relaxed mb-12">
-                Hemos implementado una clínica con lo último en equipos y tecnología para entregar 
-                un servicio de nivel mundial y sin molestias para nuestros pacientes. Cada detalle 
-                está pensado para su comodidad y los mejores resultados.
+              <p className="font-body text-base text-gray-600 leading-relaxed mb-6">
+                Hemos implementado equipos de última generación para entregar un servicio de nivel
+                mundial. Cada detalle está pensado para su comodidad: desde protocolos de bioseguridad
+                con autoclave de última generación hasta procedimientos realizados con lupas de
+                magnificación y tecnología de precisión milimétrica.
               </p>
-            </ScrollReveal>
-
-            <div className="space-y-8">
-              {FEATURES.map((feature, i) => (
-                <ScrollReveal key={feature.title} delay={0.1 + i * 0.1}>
-                  <div className="flex gap-5 group">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-forest-800 flex items-center justify-center transition-all duration-300 group-hover:bg-gold-500 group-hover:shadow-lg group-hover:shadow-gold-400/20">
-                      <feature.icon size={20} className="text-gold-400 group-hover:text-white transition-colors" />
-                    </div>
-                    <div>
-                      <h3 className="font-display text-lg font-semibold text-forest-800 mb-1">
-                        {feature.title}
-                      </h3>
-                      <p className="font-body text-sm text-warm-500 leading-relaxed">
-                        {feature.description}
-                      </p>
-                    </div>
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-
-          {/* Image side */}
-          <ScrollReveal direction="right">
-            <div className="relative">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-4">
-                  <div className="overflow-hidden rounded-2xl">
-                    <img
-                      src="/images/banners/banner-2.jpg"
-                      alt="Equipamiento dental moderno"
-                      className="w-full h-56 object-cover hover:scale-105 transition-transform duration-700"
-                    />
-                  </div>
-                  <div className="overflow-hidden rounded-2xl">
-                    <img
-                      src="/images/banners/banner-5.jpg"
-                      alt="Esterilización"
-                      className="w-full h-40 object-cover hover:scale-105 transition-transform duration-700"
-                    />
-                  </div>
-                </div>
-                <div className="space-y-4 pt-8">
-                  <div className="overflow-hidden rounded-2xl">
-                    <img
-                      src="/images/banners/banner-4.jpg"
-                      alt="Sala de tratamiento"
-                      className="w-full h-40 object-cover hover:scale-105 transition-transform duration-700"
-                    />
-                  </div>
-                  <div className="overflow-hidden rounded-2xl">
-                    <img
-                      src="/images/banners/banner-3.jpg"
-                      alt="Atención personalizada"
-                      className="w-full h-56 object-cover hover:scale-105 transition-transform duration-700"
-                    />
-                  </div>
-                </div>
-              </div>
-              {/* Decorative */}
-              <div className="absolute -z-10 -bottom-6 -left-6 w-32 h-32 rounded-full bg-gold-200/40 blur-2xl" />
-              <div className="absolute -z-10 -top-6 -right-6 w-32 h-32 rounded-full bg-forest-200/40 blur-2xl" />
+              <p className="font-body text-base text-gray-600 leading-relaxed">
+                Utilizamos exclusivamente materiales de las mejores marcas mundiales, garantizando
+                durabilidad y resultados estéticos superiores. Nuestro objetivo es que cada paciente
+                reciba un tratamiento de nivel mundial en un ambiente acogedor y profesional.
+              </p>
             </div>
           </ScrollReveal>
+
+          {/* Image grid */}
+          <ScrollReveal direction="right">
+            <div className="grid grid-cols-2 gap-3">
+              {CLINIC_IMAGES.slice(0, 4).map((img, i) => (
+                <div key={i} className="overflow-hidden rounded-2xl">
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    className="w-full h-40 sm:h-48 object-cover hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
+        </div>
+
+        {/* More clinic images */}
+        <ScrollReveal>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-16">
+            {CLINIC_IMAGES.slice(4).map((img, i) => (
+              <div key={i} className="overflow-hidden rounded-2xl">
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  className="w-full h-40 object-cover hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+            ))}
+          </div>
+        </ScrollReveal>
+
+        {/* Highlights Grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {HIGHLIGHTS.map((item, i) => (
+            <ScrollReveal key={item.title} delay={i * 0.1}>
+              <div className="bg-white rounded-2xl p-6 text-center border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                <div className="w-14 h-14 rounded-full bg-emerald-50 flex items-center justify-center mx-auto mb-4">
+                  <item.icon size={24} className="text-emerald-500" />
+                </div>
+                <h3 className="font-display text-lg font-semibold text-gray-dark mb-2">
+                  {item.title}
+                </h3>
+                <p className="font-body text-sm text-gray-500 leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
+            </ScrollReveal>
+          ))}
         </div>
       </div>
     </section>
