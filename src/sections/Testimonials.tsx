@@ -15,7 +15,7 @@ export function Testimonials() {
             <div className="mx-auto accent-divider mb-8" />
 
             {/* Google Rating Badge */}
-            <div className="inline-flex items-center gap-4 bg-white rounded-2xl px-8 py-5 shadow-sm border border-gray-100">
+            <div className="inline-flex items-center gap-3 sm:gap-4 bg-white rounded-2xl px-5 sm:px-8 py-4 sm:py-5 shadow-sm border border-gray-100">
               {/* Google Logo */}
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>

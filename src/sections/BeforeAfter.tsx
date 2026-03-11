@@ -32,11 +32,12 @@ function ComparisonSlider({ beforeImage, afterImage, title }: {
   return (
     <div
       ref={containerRef}
-      className="relative w-full aspect-[3/2] rounded-2xl overflow-hidden cursor-col-resize select-none"
+      className="relative w-full aspect-[4/3] sm:aspect-[3/2] rounded-2xl overflow-hidden cursor-col-resize select-none touch-none"
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
       onMouseMove={handleMouseMove}
+      onTouchStart={(e) => updatePosition(e.touches[0].clientX)}
       onTouchMove={handleTouchMove}
     >
       {/* After image (full width background) */}

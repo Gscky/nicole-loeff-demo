@@ -103,9 +103,9 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-white pt-24 px-6 lg:hidden"
+            className="fixed inset-0 z-40 bg-white pt-24 px-6 lg:hidden overflow-y-auto"
           >
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-5 pb-10">
               {NAV_LINKS.map((link) => (
                 <a
                   key={link.href}

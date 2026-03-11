@@ -27,7 +27,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6"
+          className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight mb-6"
         >
           {CLINIC.tagline}
         </motion.h1>
@@ -37,7 +37,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mx-auto max-w-2xl font-body text-lg sm:text-xl text-white/80 leading-relaxed mb-10"
+          className="mx-auto max-w-2xl font-body text-base sm:text-lg md:text-xl text-white/80 leading-relaxed mb-8 sm:mb-10 px-2"
         >
           {CLINIC.description}
         </motion.p>
@@ -52,7 +52,7 @@ export function Hero() {
             href={CLINIC.whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 rounded-full bg-copper-400 px-10 py-4 font-body text-base font-semibold text-white transition-all duration-300 hover:bg-copper-500 hover:shadow-xl hover:shadow-copper-400/30 hover:scale-[1.02]"
+            className="inline-flex items-center gap-3 rounded-full bg-copper-400 px-8 sm:px-10 py-3.5 sm:py-4 font-body text-sm sm:text-base font-semibold text-white transition-all duration-300 hover:bg-copper-500 hover:shadow-xl hover:shadow-copper-400/30 hover:scale-[1.02]"
           >
             Agenda tu hora
           </a>

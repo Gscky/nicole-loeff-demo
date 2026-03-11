@@ -24,7 +24,7 @@ export function Team() {
             <ScrollReveal key={member.name} delay={i * 0.12}>
               <div className="text-center group">
                 {/* Photo */}
-                <div className="relative w-44 h-44 mx-auto mb-6">
+                <div className="relative w-32 h-32 sm:w-40 sm:h-40 lg:w-44 lg:h-44 mx-auto mb-6">
                   <img
                     src={member.image}
                     alt={member.name}

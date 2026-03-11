@@ -19,7 +19,7 @@ export function Location() {
         <div className="grid lg:grid-cols-5 gap-10">
           {/* Map */}
           <ScrollReveal className="lg:col-span-3">
-            <div className="relative overflow-hidden rounded-2xl bg-gray-100 h-[400px] shadow-md">
+            <div className="relative overflow-hidden rounded-2xl bg-gray-100 h-[280px] sm:h-[350px] lg:h-[400px] shadow-md">
               <iframe
                 src={CLINIC.googleMapsEmbed}
                 width="100%"

@@ -70,7 +70,7 @@ export function Technology() {
                   <img
                     src={img.src}
                     alt={img.alt}
-                    className="w-full h-40 sm:h-48 object-cover hover:scale-105 transition-transform duration-700"
+                    className="w-full h-32 sm:h-40 md:h-48 object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
               ))}
@@ -86,7 +86,7 @@ export function Technology() {
                 <img
                   src={img.src}
                   alt={img.alt}
-                  className="w-full h-40 object-cover hover:scale-105 transition-transform duration-700"
+                  className="w-full h-32 sm:h-40 object-cover hover:scale-105 transition-transform duration-700"
                 />
               </div>
             ))}
