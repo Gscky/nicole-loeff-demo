@@ -44,7 +44,7 @@ export function EquipoPage() {
                           <img
                             src={member.image}
                             alt={member.name}
-                            className="w-full h-[280px] sm:h-[350px] lg:h-[500px] object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                            className="w-full h-[280px] sm:h-[350px] lg:h-[500px] object-cover object-center transition-transform duration-700 group-hover:scale-105"
                           />
                         </div>
                         {/* Overlay on hover */}
@@ -109,7 +109,7 @@ export function EquipoPage() {
               { src: '/images/clinic/salon-naranja.png', alt: 'Sala de tratamientos' },
               { src: '/images/clinic/recepcion.png', alt: 'Recepcion' },
               { src: '/images/clinic/esterilizacion.png', alt: 'Area de esterilizacion' },
-              { src: '/images/clinic/dra-paciente.png', alt: 'Atencion profesional' },
+              { src: '/images/gallery/clinica-interior.jpg', alt: 'Interior de la clinica' },
               { src: '/images/cases/dentista-trabajando.jpg', alt: 'Procedimiento dental' },
             ].map((img, i) => (
               <ScrollReveal key={i} delay={i * 0.08}>

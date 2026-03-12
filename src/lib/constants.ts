@@ -168,7 +168,7 @@ export const BEFORE_AFTER_CASES = [
     id: 2,
     title: 'Carillas Estéticas',
     description: 'Corrección de fracturas y desgaste dental mediante carillas de resina compuesta de alta estética.',
-    image: '/images/cases/caso-2.jpg',
+    image: '/images/cases/caso-nuevo-1.jpg',
   },
   {
     id: 3,
@@ -186,7 +186,7 @@ export const BEFORE_AFTER_CASES = [
     id: 5,
     title: 'Blanqueamiento y Carillas',
     description: 'Combinación de blanqueamiento profesional y carillas para una sonrisa radiante.',
-    image: '/images/cases/caso-5.jpg',
+    image: '/images/cases/caso-nuevo-2.jpg',
   },
   {
     id: 6,
