@@ -1,7 +1,15 @@
 import { ScrollReveal } from '../components/ScrollReveal';
 import { TEAM } from '../lib/constants';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 
-export function Team() {
+interface TeamProps {
+  showAll?: boolean;
+}
+
+export function Team({ showAll = false }: TeamProps) {
+  const members = showAll ? TEAM : TEAM.slice(0, 4);
+
   return (
     <section id="equipo" className="py-24 lg:py-32 bg-white">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -20,19 +28,16 @@ export function Team() {
 
         {/* Team Cards */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {TEAM.map((member, i) => (
+          {members.map((member, i) => (
             <ScrollReveal key={member.name} delay={i * 0.12}>
               <div className="text-center group">
-                {/* Photo */}
-                <div className="relative w-32 h-32 sm:w-40 sm:h-40 lg:w-44 lg:h-44 mx-auto mb-6">
+                <div className="relative w-32 h-32 sm:w-40 sm:h-40 lg:w-44 lg:h-44 mx-auto mb-6 overflow-hidden rounded-full">
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full rounded-full object-cover object-top border-4 border-emerald-50 transition-all duration-300 group-hover:border-emerald-500 group-hover:shadow-lg group-hover:shadow-emerald-500/20"
+                    className="w-full h-full object-cover object-top border-4 border-emerald-50 rounded-full transition-all duration-500 group-hover:scale-110 group-hover:border-emerald-500 group-hover:shadow-lg group-hover:shadow-emerald-500/20"
                   />
                 </div>
-
-                {/* Info */}
                 <h3 className="font-display text-lg font-semibold text-gray-dark mb-1">
                   {member.name}
                 </h3>
@@ -49,6 +54,21 @@ export function Team() {
             </ScrollReveal>
           ))}
         </div>
+
+        {/* CTA */}
+        {!showAll && (
+          <ScrollReveal>
+            <div className="text-center mt-12">
+              <Link
+                to="/equipo"
+                className="inline-flex items-center gap-2 font-body text-sm font-semibold text-copper-400 hover:text-copper-500 transition-colors group"
+              >
+                Conocer al equipo
+                <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </ScrollReveal>
+        )}
       </div>
     </section>
   );

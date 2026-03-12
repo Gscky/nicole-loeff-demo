@@ -1,27 +1,33 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 import { CLINIC } from '../lib/constants';
 
 const NAV_LINKS = [
-  { href: '#inicio', label: 'Inicio' },
-  { href: '#servicios', label: 'Servicios' },
-  { href: '#resultados', label: 'Resultados' },
-  { href: '#testimonios', label: 'Testimonios' },
-  { href: '#equipo', label: 'Equipo' },
-  { href: '#tecnologia', label: 'Tecnología' },
-  { href: '#contacto', label: 'Contacto' },
+  { href: '/', label: 'Inicio' },
+  { href: '/servicios', label: 'Servicios' },
+  { href: '/equipo', label: 'Equipo' },
+  { href: '/casos', label: 'Casos de Exito' },
 ];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location]);
+
+  const showTransparent = isHome && !scrolled;
 
   return (
     <>
@@ -30,15 +36,15 @@ export function Navbar() {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-[0_1px_20px_rgba(0,0,0,0.08)]'
-            : 'bg-transparent'
+          showTransparent
+            ? 'bg-transparent'
+            : 'bg-white/95 backdrop-blur-md shadow-[0_1px_20px_rgba(0,0,0,0.08)]'
         }`}
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="flex h-20 items-center justify-between">
             {/* Logo */}
-            <a href="#inicio" className="flex items-center gap-3 group">
+            <Link to="/" className="flex items-center gap-3 group">
               <img
                 src="/images/brand/logo.png"
                 alt={CLINIC.fullName}
@@ -46,38 +52,38 @@ export function Navbar() {
               />
               <div className="hidden sm:block">
                 <p className={`font-display text-lg font-semibold tracking-wide transition-colors duration-500 ${
-                  scrolled ? 'text-gray-dark' : 'text-white'
+                  showTransparent ? 'text-white' : 'text-gray-dark'
                 }`}>
                   {CLINIC.name}
                 </p>
                 <p className={`font-body text-xs tracking-[0.15em] uppercase transition-colors duration-500 ${
-                  scrolled ? 'text-emerald-500' : 'text-emerald-200'
+                  showTransparent ? 'text-emerald-200' : 'text-emerald-500'
                 }`}>
                   {CLINIC.subtitle}
                 </p>
               </div>
-            </a>
+            </Link>
 
             {/* Desktop Links */}
             <div className="hidden lg:flex items-center gap-7">
               {NAV_LINKS.map((link) => (
-                <a
+                <Link
                   key={link.href}
-                  href={link.href}
+                  to={link.href}
                   className={`font-body text-sm font-medium transition-colors duration-300 hover:text-copper-400 ${
-                    scrolled ? 'text-gray-dark' : 'text-white/90'
+                    location.pathname === link.href
+                      ? 'text-copper-400'
+                      : showTransparent ? 'text-white/90' : 'text-gray-dark'
                   }`}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
               <a
-                href={CLINIC.whatsappLink}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#contacto"
                 className="rounded-full bg-copper-400 px-6 py-2.5 font-body text-sm font-semibold text-white transition-all duration-300 hover:bg-copper-500 hover:shadow-lg hover:shadow-copper-400/25"
               >
-                Agenda tu hora
+                Contacto
               </a>
             </div>
 
@@ -85,9 +91,9 @@ export function Navbar() {
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className={`lg:hidden p-2 transition-colors ${
-                scrolled ? 'text-gray-dark' : 'text-white'
+                showTransparent ? 'text-white' : 'text-gray-dark'
               }`}
-              aria-label="Menú de navegación"
+              aria-label="Menu de navegacion"
             >
               {mobileOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -107,14 +113,17 @@ export function Navbar() {
           >
             <div className="flex flex-col gap-5 pb-10">
               {NAV_LINKS.map((link) => (
-                <a
+                <Link
                   key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="font-display text-2xl text-gray-dark hover:text-copper-400 transition-colors"
+                  to={link.href}
+                  className={`font-display text-2xl transition-colors ${
+                    location.pathname === link.href
+                      ? 'text-copper-400'
+                      : 'text-gray-dark hover:text-copper-400'
+                  }`}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
               <div className="mt-4 pt-6 border-t border-gray-100">
                 <a

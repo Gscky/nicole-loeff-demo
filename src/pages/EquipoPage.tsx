@@ -1,0 +1,130 @@
+import { ScrollReveal } from '../components/ScrollReveal';
+import { TEAM, CLINIC } from '../lib/constants';
+
+export function EquipoPage() {
+  return (
+    <>
+      {/* Hero */}
+      <section className="relative pt-32 pb-20 bg-emerald-900 overflow-hidden">
+        <div className="absolute inset-0 opacity-15">
+          <img
+            src="/images/clinic/dra-paciente.png"
+            alt=""
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/80 to-emerald-900/95" />
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center">
+          <ScrollReveal>
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
+              Nuestro Equipo
+            </h1>
+            <div className="mx-auto accent-divider mb-6" />
+            <p className="mx-auto max-w-2xl font-body text-lg text-white/70 leading-relaxed">
+              Profesionales de excelencia comprometidos con tu bienestar.
+              Cada miembro aporta anos de experiencia y especializacion.
+            </p>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Team Members */}
+      <section className="py-24 bg-white">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="space-y-24">
+            {TEAM.map((member, i) => {
+              const isEven = i % 2 === 0;
+              return (
+                <ScrollReveal key={member.name}>
+                  <div className={`grid lg:grid-cols-5 gap-12 items-center`}>
+                    {/* Photo */}
+                    <div className={`lg:col-span-2 ${isEven ? '' : 'lg:order-2'}`}>
+                      <div className="relative group">
+                        <div className="overflow-hidden rounded-2xl shadow-xl">
+                          <img
+                            src={member.image}
+                            alt={member.name}
+                            className="w-full h-[400px] lg:h-[500px] object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                          />
+                        </div>
+                        {/* Overlay on hover */}
+                        <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-emerald-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                          <p className="font-display text-xl font-semibold text-white">
+                            {member.specialty}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Info */}
+                    <div className={`lg:col-span-3 ${isEven ? '' : 'lg:order-1'}`}>
+                      <p className="font-body text-sm font-medium text-copper-400 uppercase tracking-wider mb-2">
+                        {member.role}
+                      </p>
+                      <h2 className="font-display text-3xl sm:text-4xl font-bold text-gray-dark mb-2">
+                        {member.name}
+                      </h2>
+                      <p className="font-body text-sm text-emerald-500 uppercase tracking-wider mb-6">
+                        {member.specialty}
+                      </p>
+                      <div className="accent-divider mb-6" />
+                      <p className="font-body text-base text-gray-600 leading-relaxed mb-8">
+                        {member.bio}
+                      </p>
+                      <a
+                        href={CLINIC.whatsappLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full bg-copper-400 px-8 py-3 font-body text-sm font-semibold text-white transition-all duration-300 hover:bg-copper-500 hover:shadow-lg"
+                      >
+                        Agendar con {member.name.split(' ')[0]} {member.name.split(' ')[1]}
+                      </a>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Clinic Photos */}
+      <section className="py-24 bg-gray-light">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <ScrollReveal>
+              <h2 className="font-display text-3xl sm:text-4xl font-bold text-gray-dark mb-4">
+                Nuestra Clinica
+              </h2>
+              <div className="mx-auto accent-divider mb-6" />
+              <p className="mx-auto max-w-2xl font-body text-base text-gray-500 leading-relaxed">
+                Espacios disenados para tu comodidad, equipados con tecnologia de punta.
+              </p>
+            </ScrollReveal>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { src: '/images/clinic/salon-verde.png', alt: 'Box de atencion dental' },
+              { src: '/images/clinic/salon-naranja.png', alt: 'Sala de tratamientos' },
+              { src: '/images/clinic/recepcion.png', alt: 'Recepcion' },
+              { src: '/images/clinic/esterilizacion.png', alt: 'Area de esterilizacion' },
+              { src: '/images/clinic/dra-paciente.png', alt: 'Atencion profesional' },
+              { src: '/images/cases/dentista-trabajando.jpg', alt: 'Procedimiento dental' },
+            ].map((img, i) => (
+              <ScrollReveal key={i} delay={i * 0.08}>
+                <div className="overflow-hidden rounded-2xl shadow-md group">
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    className="w-full h-48 lg:h-56 object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

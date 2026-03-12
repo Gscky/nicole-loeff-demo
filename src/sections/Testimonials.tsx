@@ -1,4 +1,5 @@
 import { ScrollReveal } from '../components/ScrollReveal';
+import { Carousel } from '../components/Carousel';
 import { REVIEWS, GOOGLE_RATING } from '../lib/constants';
 import { Star, User } from 'lucide-react';
 
@@ -16,7 +17,6 @@ export function Testimonials() {
 
             {/* Google Rating Badge */}
             <div className="inline-flex items-center gap-3 sm:gap-4 bg-white rounded-2xl px-5 sm:px-8 py-4 sm:py-5 shadow-sm border border-gray-100">
-              {/* Google Logo */}
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
                 <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
@@ -38,37 +38,42 @@ export function Testimonials() {
           </ScrollReveal>
         </div>
 
-        {/* Reviews Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {REVIEWS.map((review, i) => (
-            <ScrollReveal key={review.name} delay={i * 0.08}>
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 h-full flex flex-col">
-                {/* Header */}
-                <div className="flex items-center gap-3 mb-4">
-                  {/* Avatar */}
-                  <div className="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0">
-                    <User size={20} className="text-emerald-500" />
-                  </div>
-                  <div>
-                    <p className="font-body text-sm font-semibold text-gray-dark">
-                      {review.name}
-                    </p>
-                    <div className="flex items-center gap-0.5 mt-0.5">
-                      {Array.from({ length: review.stars }).map((_, j) => (
-                        <Star key={j} size={12} className="fill-copper-400 text-copper-400" />
-                      ))}
+        {/* Reviews Carousel */}
+        <ScrollReveal>
+          <div className="px-6 lg:px-8">
+            <Carousel
+              itemsPerView={{ mobile: 1, tablet: 2, desktop: 3 }}
+              autoplay
+              autoplayInterval={5000}
+            >
+              {REVIEWS.map((review) => (
+                <div
+                  key={review.name}
+                  className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 h-full flex flex-col"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0">
+                      <User size={20} className="text-emerald-500" />
+                    </div>
+                    <div>
+                      <p className="font-body text-sm font-semibold text-gray-dark">
+                        {review.name}
+                      </p>
+                      <div className="flex items-center gap-0.5 mt-0.5">
+                        {Array.from({ length: review.stars }).map((_, j) => (
+                          <Star key={j} size={12} className="fill-copper-400 text-copper-400" />
+                        ))}
+                      </div>
                     </div>
                   </div>
+                  <p className="font-body text-sm text-gray-600 leading-relaxed flex-1">
+                    "{review.text}"
+                  </p>
                 </div>
-
-                {/* Text */}
-                <p className="font-body text-sm text-gray-600 leading-relaxed flex-1">
-                  "{review.text}"
-                </p>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
+              ))}
+            </Carousel>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

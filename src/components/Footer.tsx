@@ -1,48 +1,50 @@
 import { CLINIC } from '../lib/constants';
 import { Instagram, Facebook, Linkedin, Phone, Mail, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const NAV_LINKS = [
-  { href: '#inicio', label: 'Inicio' },
-  { href: '#servicios', label: 'Especialidades' },
-  { href: '#resultados', label: 'Resultados' },
-  { href: '#testimonios', label: 'Testimonios' },
-  { href: '#equipo', label: 'Equipo' },
-  { href: '#tecnologia', label: 'La Clínica' },
-  { href: '#contacto', label: 'Contacto' },
+  { href: '/', label: 'Inicio' },
+  { href: '/servicios', label: 'Servicios' },
+  { href: '/equipo', label: 'Equipo' },
+  { href: '/casos', label: 'Casos de Exito' },
 ];
 
 export function Footer() {
   return (
-    <footer className="bg-emerald-900 py-16">
+    <footer id="contacto" className="bg-emerald-900 py-16">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-          {/* Brand */}
+          {/* Brand — same logo as header */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <img
-              src="/images/brand/logo.png"
-              alt={CLINIC.fullName}
-              className="h-12 w-auto mb-4 brightness-200"
-            />
-            <p className="font-display text-lg text-white mb-1">{CLINIC.name}</p>
-            <p className="font-body text-xs tracking-[0.15em] uppercase text-emerald-300">
-              {CLINIC.subtitle}
-            </p>
+            <Link to="/" className="inline-flex items-center gap-3 group">
+              <img
+                src="/images/brand/logo.png"
+                alt={CLINIC.fullName}
+                className="h-12 w-auto transition-transform duration-300 group-hover:scale-105"
+              />
+              <div>
+                <p className="font-display text-lg font-semibold text-white">{CLINIC.name}</p>
+                <p className="font-body text-xs tracking-[0.15em] uppercase text-emerald-300">
+                  {CLINIC.subtitle}
+                </p>
+              </div>
+            </Link>
           </div>
 
           {/* Navigation */}
           <div>
             <h4 className="font-display text-sm font-semibold text-white mb-4 tracking-wide">
-              Navegación
+              Navegacion
             </h4>
             <div className="space-y-2">
               {NAV_LINKS.map((link) => (
-                <a
+                <Link
                   key={link.href}
-                  href={link.href}
+                  to={link.href}
                   className="block font-body text-sm text-white/50 hover:text-copper-400 transition-colors"
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -87,7 +89,7 @@ export function Footer() {
           {/* Social */}
           <div>
             <h4 className="font-display text-sm font-semibold text-white mb-4 tracking-wide">
-              Síguenos
+              Siguenos
             </h4>
             <div className="flex items-center gap-3">
               <a
@@ -127,7 +129,7 @@ export function Footer() {
             &copy; 2026 {CLINIC.fullName}. Todos los derechos reservados.
           </p>
           <p className="font-body text-xs text-white/20">
-            Diseñado con &hearts; por Evolution.AI
+            Desarrollado por Evolution.AI
           </p>
         </div>
       </div>

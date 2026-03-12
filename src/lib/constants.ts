@@ -160,26 +160,48 @@ export const CLINIC_IMAGES = [
 export const BEFORE_AFTER_CASES = [
   {
     id: 1,
-    title: 'Diseño de Sonrisa',
-    beforeImage: 'https://placehold.co/600x400/d4d4d0/3D3D3D?text=Antes',
-    afterImage: 'https://placehold.co/600x400/4A7C59/ffffff?text=Despu%C3%A9s',
+    title: 'Rehabilitación Oral',
+    description: 'Restauración completa de piezas dentales con carillas de porcelana para una sonrisa natural y armónica.',
+    image: '/images/cases/caso-1.jpg',
   },
   {
     id: 2,
     title: 'Carillas Estéticas',
-    beforeImage: 'https://placehold.co/600x400/d4d4d0/3D3D3D?text=Antes',
-    afterImage: 'https://placehold.co/600x400/4A7C59/ffffff?text=Despu%C3%A9s',
+    description: 'Corrección de fracturas y desgaste dental mediante carillas de resina compuesta de alta estética.',
+    image: '/images/cases/caso-2.jpg',
   },
   {
     id: 3,
-    title: 'Blanqueamiento Dental',
-    beforeImage: 'https://placehold.co/600x400/d4d4d0/3D3D3D?text=Antes',
-    afterImage: 'https://placehold.co/600x400/4A7C59/ffffff?text=Despu%C3%A9s',
+    title: 'Diseño de Sonrisa',
+    description: 'Transformación completa del perfil de sonrisa con carillas y cierre de diastemas.',
+    image: '/images/cases/caso-3.jpg',
   },
   {
     id: 4,
-    title: 'Rehabilitación Oral',
-    beforeImage: 'https://placehold.co/600x400/d4d4d0/3D3D3D?text=Antes',
-    afterImage: 'https://placehold.co/600x400/4A7C59/ffffff?text=Despu%C3%A9s',
+    title: 'Coronas Dentales',
+    description: 'Restauración funcional y estética con coronas de porcelana sobre dientes desgastados.',
+    image: '/images/cases/caso-4.jpg',
   },
+  {
+    id: 5,
+    title: 'Blanqueamiento y Carillas',
+    description: 'Combinación de blanqueamiento profesional y carillas para una sonrisa radiante.',
+    image: '/images/cases/caso-5.jpg',
+  },
+  {
+    id: 6,
+    title: 'Rehabilitación Completa',
+    description: 'Reconstrucción integral de la sonrisa con carillas de porcelana y blanqueamiento dental.',
+    image: '/images/cases/caso-6.jpg',
+  },
+] as const;
+
+export const CLINIC_PHOTOS = [
+  { src: '/images/clinic/salon-verde.png', alt: 'Box de atención dental equipado' },
+  { src: '/images/clinic/recepcion.png', alt: 'Recepción de la clínica' },
+  { src: '/images/clinic/esterilizacion.png', alt: 'Área de esterilización' },
+  { src: '/images/clinic/dra-nicole-casos.png', alt: 'Dra. Nicole Loeff con casos de éxito' },
+  { src: '/images/clinic/salon-naranja.png', alt: 'Sala de tratamientos moderna' },
+  { src: '/images/clinic/dra-paciente.png', alt: 'Atención dental profesional' },
+  { src: '/images/cases/dentista-trabajando.jpg', alt: 'Procedimiento de blanqueamiento dental' },
 ] as const;
