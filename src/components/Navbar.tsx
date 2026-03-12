@@ -79,12 +79,17 @@ export function Navbar() {
                   {link.label}
                 </Link>
               ))}
-              <a
-                href="#contacto"
+              <Link
+                to="/#contacto"
+                onClick={() => {
+                  if (isHome) {
+                    document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
                 className="rounded-full bg-copper-400 px-6 py-2.5 font-body text-sm font-semibold text-white transition-all duration-300 hover:bg-copper-500 hover:shadow-lg hover:shadow-copper-400/25"
               >
                 Contacto
-              </a>
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
