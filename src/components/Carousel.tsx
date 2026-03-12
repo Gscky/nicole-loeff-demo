@@ -111,18 +111,20 @@ export function Carousel({
           <button
             onClick={prev}
             disabled={currentIndex === 0}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-6 w-10 h-10 rounded-full bg-white shadow-lg border border-gray-100 flex items-center justify-center text-gray-dark hover:bg-copper-400 hover:text-white hover:border-copper-400 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-gray-dark disabled:hover:border-gray-100"
+            className="absolute left-1 sm:left-0 top-1/2 -translate-y-1/2 sm:-translate-x-4 lg:-translate-x-6 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/90 sm:bg-white shadow-lg border border-gray-100 flex items-center justify-center text-gray-dark hover:bg-copper-400 hover:text-white hover:border-copper-400 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-gray-dark disabled:hover:border-gray-100 z-10"
             aria-label="Anterior"
           >
-            <ChevronLeft size={18} />
+            <ChevronLeft size={16} className="sm:hidden" />
+            <ChevronLeft size={18} className="hidden sm:block" />
           </button>
           <button
             onClick={next}
             disabled={currentIndex >= maxIndex}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-6 w-10 h-10 rounded-full bg-white shadow-lg border border-gray-100 flex items-center justify-center text-gray-dark hover:bg-copper-400 hover:text-white hover:border-copper-400 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-gray-dark disabled:hover:border-gray-100"
+            className="absolute right-1 sm:right-0 top-1/2 -translate-y-1/2 sm:translate-x-4 lg:translate-x-6 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/90 sm:bg-white shadow-lg border border-gray-100 flex items-center justify-center text-gray-dark hover:bg-copper-400 hover:text-white hover:border-copper-400 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-gray-dark disabled:hover:border-gray-100 z-10"
             aria-label="Siguiente"
           >
-            <ChevronRight size={18} />
+            <ChevronRight size={16} className="sm:hidden" />
+            <ChevronRight size={18} className="hidden sm:block" />
           </button>
         </>
       )}

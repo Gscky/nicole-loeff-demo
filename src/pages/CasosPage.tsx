@@ -16,11 +16,11 @@ export function CasosPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/80 to-emerald-900/95" />
         <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center">
           <ScrollReveal>
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
+            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
               Casos de Exito
             </h1>
             <div className="mx-auto accent-divider mb-6" />
-            <p className="mx-auto max-w-2xl font-body text-lg text-white/70 leading-relaxed">
+            <p className="mx-auto max-w-2xl font-body text-base sm:text-lg text-white/70 leading-relaxed">
               Resultados reales que demuestran nuestro compromiso con la excelencia.
               Cada sonrisa transformada es nuestra mayor satisfaccion.
             </p>
@@ -31,7 +31,7 @@ export function CasosPage() {
       {/* All Cases */}
       <section className="py-24 bg-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-10">
+          <div className="grid sm:grid-cols-2 gap-6 sm:gap-10">
             {BEFORE_AFTER_CASES.map((item, i) => (
               <ScrollReveal key={item.id} delay={i * 0.1}>
                 <div className="group rounded-2xl overflow-hidden bg-white shadow-md border border-gray-100 hover:shadow-xl transition-all duration-500">
@@ -81,10 +81,10 @@ export function CasosPage() {
         </div>
         <div className="relative z-10 mx-auto max-w-4xl px-6 lg:px-8 text-center">
           <ScrollReveal>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mb-6">
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-6">
               Tu sonrisa puede ser el proximo caso de exito
             </h2>
-            <p className="font-body text-lg text-white/70 leading-relaxed mb-10 max-w-2xl mx-auto">
+            <p className="font-body text-base sm:text-lg text-white/70 leading-relaxed mb-8 sm:mb-10 max-w-2xl mx-auto">
               Agenda una evaluacion y descubre como podemos transformar tu sonrisa.
             </p>
             <a

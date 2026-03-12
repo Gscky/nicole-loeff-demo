@@ -49,11 +49,11 @@ export function ServiciosPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/80 to-emerald-900/95" />
         <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center">
           <ScrollReveal>
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
+            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
               Nuestros Servicios
             </h1>
             <div className="mx-auto accent-divider mb-6" />
-            <p className="mx-auto max-w-2xl font-body text-lg text-white/70 leading-relaxed">
+            <p className="mx-auto max-w-2xl font-body text-base sm:text-lg text-white/70 leading-relaxed">
               Un equipo multidisciplinario de especialistas para atender cada una
               de tus necesidades odontologicas con la mas alta calidad.
             </p>
@@ -72,9 +72,7 @@ export function ServiciosPage() {
 
               return (
                 <ScrollReveal key={spec.id}>
-                  <div className={`grid lg:grid-cols-2 gap-12 items-center ${
-                    isEven ? '' : 'lg:direction-rtl'
-                  }`}>
+                  <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
                     {/* Image */}
                     <div className={`overflow-hidden rounded-2xl shadow-lg ${
                       isEven ? '' : 'lg:order-2'
@@ -82,7 +80,7 @@ export function ServiciosPage() {
                       <img
                         src={image}
                         alt={spec.title}
-                        className="w-full h-72 lg:h-96 object-cover hover:scale-105 transition-transform duration-700"
+                        className="w-full h-56 sm:h-72 lg:h-96 object-cover hover:scale-105 transition-transform duration-700"
                       />
                     </div>
 
@@ -123,7 +121,7 @@ export function ServiciosPage() {
                 <img
                   src="/images/cases/dentista-trabajando.jpg"
                   alt="Dra. Nicole Loeff realizando procedimiento dental"
-                  className="w-full h-96 object-cover"
+                  className="w-full h-64 sm:h-80 lg:h-96 object-cover"
                 />
               </div>
             </ScrollReveal>

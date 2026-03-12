@@ -16,11 +16,11 @@ export function EquipoPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/80 to-emerald-900/95" />
         <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center">
           <ScrollReveal>
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
+            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
               Nuestro Equipo
             </h1>
             <div className="mx-auto accent-divider mb-6" />
-            <p className="mx-auto max-w-2xl font-body text-lg text-white/70 leading-relaxed">
+            <p className="mx-auto max-w-2xl font-body text-base sm:text-lg text-white/70 leading-relaxed">
               Profesionales de excelencia comprometidos con tu bienestar.
               Cada miembro aporta anos de experiencia y especializacion.
             </p>
@@ -29,14 +29,14 @@ export function EquipoPage() {
       </section>
 
       {/* Team Members */}
-      <section className="py-24 bg-white">
+      <section className="py-16 sm:py-24 bg-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="space-y-24">
+          <div className="space-y-16 sm:space-y-24">
             {TEAM.map((member, i) => {
               const isEven = i % 2 === 0;
               return (
                 <ScrollReveal key={member.name}>
-                  <div className={`grid lg:grid-cols-5 gap-12 items-center`}>
+                  <div className="grid lg:grid-cols-5 gap-8 sm:gap-12 items-center">
                     {/* Photo */}
                     <div className={`lg:col-span-2 ${isEven ? '' : 'lg:order-2'}`}>
                       <div className="relative group">
@@ -44,12 +44,12 @@ export function EquipoPage() {
                           <img
                             src={member.image}
                             alt={member.name}
-                            className="w-full h-[400px] lg:h-[500px] object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                            className="w-full h-[280px] sm:h-[350px] lg:h-[500px] object-cover object-top transition-transform duration-700 group-hover:scale-105"
                           />
                         </div>
                         {/* Overlay on hover */}
-                        <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-emerald-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
-                          <p className="font-display text-xl font-semibold text-white">
+                        <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-emerald-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4 sm:p-6">
+                          <p className="font-display text-lg sm:text-xl font-semibold text-white">
                             {member.specialty}
                           </p>
                         </div>
@@ -58,24 +58,24 @@ export function EquipoPage() {
 
                     {/* Info */}
                     <div className={`lg:col-span-3 ${isEven ? '' : 'lg:order-1'}`}>
-                      <p className="font-body text-sm font-medium text-copper-400 uppercase tracking-wider mb-2">
+                      <p className="font-body text-xs sm:text-sm font-medium text-copper-400 uppercase tracking-wider mb-2">
                         {member.role}
                       </p>
-                      <h2 className="font-display text-3xl sm:text-4xl font-bold text-gray-dark mb-2">
+                      <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-dark mb-2">
                         {member.name}
                       </h2>
-                      <p className="font-body text-sm text-emerald-500 uppercase tracking-wider mb-6">
+                      <p className="font-body text-xs sm:text-sm text-emerald-500 uppercase tracking-wider mb-4 sm:mb-6">
                         {member.specialty}
                       </p>
-                      <div className="accent-divider mb-6" />
-                      <p className="font-body text-base text-gray-600 leading-relaxed mb-8">
+                      <div className="accent-divider mb-4 sm:mb-6" />
+                      <p className="font-body text-sm sm:text-base text-gray-600 leading-relaxed mb-6 sm:mb-8">
                         {member.bio}
                       </p>
                       <a
                         href={CLINIC.whatsappLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-full bg-copper-400 px-8 py-3 font-body text-sm font-semibold text-white transition-all duration-300 hover:bg-copper-500 hover:shadow-lg"
+                        className="inline-flex items-center gap-2 rounded-full bg-copper-400 px-6 sm:px-8 py-2.5 sm:py-3 font-body text-sm font-semibold text-white transition-all duration-300 hover:bg-copper-500 hover:shadow-lg"
                       >
                         Agendar con {member.name.split(' ')[0]} {member.name.split(' ')[1]}
                       </a>
@@ -89,21 +89,21 @@ export function EquipoPage() {
       </section>
 
       {/* Clinic Photos */}
-      <section className="py-24 bg-gray-light">
+      <section className="py-16 sm:py-24 bg-gray-light">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12 sm:mb-16">
             <ScrollReveal>
-              <h2 className="font-display text-3xl sm:text-4xl font-bold text-gray-dark mb-4">
+              <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-dark mb-4">
                 Nuestra Clinica
               </h2>
               <div className="mx-auto accent-divider mb-6" />
-              <p className="mx-auto max-w-2xl font-body text-base text-gray-500 leading-relaxed">
+              <p className="mx-auto max-w-2xl font-body text-sm sm:text-base text-gray-500 leading-relaxed">
                 Espacios disenados para tu comodidad, equipados con tecnologia de punta.
               </p>
             </ScrollReveal>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
             {[
               { src: '/images/clinic/salon-verde.png', alt: 'Box de atencion dental' },
               { src: '/images/clinic/salon-naranja.png', alt: 'Sala de tratamientos' },
@@ -113,11 +113,11 @@ export function EquipoPage() {
               { src: '/images/cases/dentista-trabajando.jpg', alt: 'Procedimiento dental' },
             ].map((img, i) => (
               <ScrollReveal key={i} delay={i * 0.08}>
-                <div className="overflow-hidden rounded-2xl shadow-md group">
+                <div className="overflow-hidden rounded-xl sm:rounded-2xl shadow-md group">
                   <img
                     src={img.src}
                     alt={img.alt}
-                    className="w-full h-48 lg:h-56 object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-36 sm:h-48 lg:h-56 object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
               </ScrollReveal>

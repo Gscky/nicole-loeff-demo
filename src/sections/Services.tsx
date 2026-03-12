@@ -46,7 +46,7 @@ export function Services() {
 
         {/* Carousel */}
         <ScrollReveal>
-          <div className="px-6 lg:px-8">
+          <div className="sm:px-6 lg:px-8">
             <Carousel
               itemsPerView={{ mobile: 1, tablet: 2, desktop: 3 }}
             >
