@@ -202,8 +202,8 @@ export const BEFORE_AFTER_CASES = [
   },
   {
     id: 8,
-    title: 'Implante Dental',
-    description: 'Reposición de pieza dental ausente mediante implante con corona de porcelana, restituyendo la sonrisa completa de forma permanente.',
+    title: 'Corrección de Sonrisa',
+    description: 'Restauración estética del sector anterior mediante resinas compuestas, corrigiendo irregularidades y devolviendo armonía a la sonrisa.',
     image: '/images/cases/caso-nuevo-2.jpg',
   },
 ] as const;

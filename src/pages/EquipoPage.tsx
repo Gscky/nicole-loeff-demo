@@ -109,7 +109,7 @@ export function EquipoPage() {
               { src: '/images/clinic/salon-naranja.png', alt: 'Sala de tratamientos' },
               { src: '/images/clinic/recepcion.png', alt: 'Recepcion' },
               { src: '/images/clinic/esterilizacion.png', alt: 'Area de esterilizacion' },
-              { src: '/images/gallery/clinica-interior.jpg', alt: 'Interior de la clinica' },
+              { src: '/images/clinic/dra-nicole-casos.png', alt: 'Dra. Nicole Loeff' },
               { src: '/images/cases/dentista-trabajando.jpg', alt: 'Procedimiento dental' },
             ].map((img, i) => (
               <ScrollReveal key={i} delay={i * 0.08}>
