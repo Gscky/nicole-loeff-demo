@@ -22,7 +22,7 @@ export function EquipoPage() {
             <div className="mx-auto accent-divider mb-6" />
             <p className="mx-auto max-w-2xl font-body text-base sm:text-lg text-white/70 leading-relaxed">
               Profesionales de excelencia comprometidos con tu bienestar.
-              Cada miembro aporta anos de experiencia y especializacion.
+              Cada miembro aporta años de experiencia y especialización.
             </p>
           </ScrollReveal>
         </div>
@@ -94,21 +94,21 @@ export function EquipoPage() {
           <div className="text-center mb-12 sm:mb-16">
             <ScrollReveal>
               <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-dark mb-4">
-                Nuestra Clinica
+                Nuestra Clínica
               </h2>
               <div className="mx-auto accent-divider mb-6" />
               <p className="mx-auto max-w-2xl font-body text-sm sm:text-base text-gray-500 leading-relaxed">
-                Espacios disenados para tu comodidad, equipados con tecnologia de punta.
+                Espacios diseñados para tu comodidad, equipados con tecnología de punta.
               </p>
             </ScrollReveal>
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
             {[
-              { src: '/images/clinic/salon-verde.png', alt: 'Box de atencion dental' },
+              { src: '/images/clinic/salon-verde.png', alt: 'Box de atención dental' },
               { src: '/images/clinic/salon-naranja.png', alt: 'Sala de tratamientos' },
-              { src: '/images/clinic/recepcion.png', alt: 'Recepcion' },
-              { src: '/images/clinic/esterilizacion.png', alt: 'Area de esterilizacion' },
+              { src: '/images/clinic/recepcion.png', alt: 'Recepción' },
+              { src: '/images/clinic/esterilizacion.png', alt: 'Área de esterilización' },
               { src: '/images/clinic/dra-nicole-casos.png', alt: 'Dra. Nicole Loeff' },
               { src: '/images/cases/dentista-trabajando.jpg', alt: 'Procedimiento dental' },
             ].map((img, i) => (

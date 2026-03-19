@@ -6,7 +6,7 @@ const NAV_LINKS = [
   { href: '/', label: 'Inicio' },
   { href: '/servicios', label: 'Servicios' },
   { href: '/equipo', label: 'Equipo' },
-  { href: '/casos', label: 'Casos de Exito' },
+  { href: '/casos', label: 'Casos de Éxito' },
 ];
 
 export function Footer() {
@@ -34,7 +34,7 @@ export function Footer() {
           {/* Navigation */}
           <div>
             <h4 className="font-display text-sm font-semibold text-white mb-4 tracking-wide">
-              Navegacion
+              Navegación
             </h4>
             <div className="space-y-2">
               {NAV_LINKS.map((link) => (
@@ -89,7 +89,7 @@ export function Footer() {
           {/* Social */}
           <div>
             <h4 className="font-display text-sm font-semibold text-white mb-4 tracking-wide">
-              Siguenos
+              Síguenos
             </h4>
             <div className="flex items-center gap-3">
               <a

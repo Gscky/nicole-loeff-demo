@@ -14,7 +14,7 @@ function CaseCard({ item }: { item: (typeof BEFORE_AFTER_CASES)[number] }) {
       <div className="relative overflow-hidden">
         <img
           src={item.image}
-          alt={`${item.title} - Antes y Despues`}
+          alt={`${item.title} - Antes y Después`}
           className="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -24,7 +24,7 @@ function CaseCard({ item }: { item: (typeof BEFORE_AFTER_CASES)[number] }) {
             Antes
           </span>
           <span className="bg-emerald-500/80 backdrop-blur-sm text-white text-xs font-body font-medium px-3 py-1 rounded-full">
-            Despues
+            Después
           </span>
         </div>
       </div>
@@ -50,7 +50,7 @@ export function BeforeAfter({ showAll = false }: BeforeAfterProps) {
         <div className="text-center mb-16">
           <ScrollReveal>
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-dark mb-4">
-              Resultados que hablan por si solos
+              Resultados que hablan por sí solos
             </h2>
             <div className="mx-auto accent-divider mb-6" />
             <p className="mx-auto max-w-2xl font-body text-base text-gray-500 leading-relaxed">

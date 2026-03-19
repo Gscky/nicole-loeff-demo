@@ -19,7 +19,7 @@ export function CtaContact() {
             Agenda tu hora hoy
           </h2>
           <p className="font-body text-sm sm:text-base lg:text-lg text-white/70 leading-relaxed mb-8 sm:mb-10 max-w-2xl mx-auto">
-            Tu sonrisa merece la mejor atencion. Reserva tu cita y dejanos cuidar de ti
+            Tu sonrisa merece la mejor atención. Reserva tu cita y déjanos cuidar de ti
             con la excelencia y calidez que nos caracteriza.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">

@@ -55,7 +55,7 @@ export function ServiciosPage() {
             <div className="mx-auto accent-divider mb-6" />
             <p className="mx-auto max-w-2xl font-body text-base sm:text-lg text-white/70 leading-relaxed">
               Un equipo multidisciplinario de especialistas para atender cada una
-              de tus necesidades odontologicas con la mas alta calidad.
+              de tus necesidades odontológicas con la más alta calidad.
             </p>
           </ScrollReveal>
         </div>
@@ -128,17 +128,17 @@ export function ServiciosPage() {
             <ScrollReveal direction="right">
               <div>
                 <h2 className="font-display text-3xl sm:text-4xl font-bold text-gray-dark mb-6">
-                  Tecnologia de vanguardia
+                  Tecnología de vanguardia
                 </h2>
                 <div className="accent-divider mb-6" />
                 <p className="font-body text-base text-gray-600 leading-relaxed mb-4">
-                  Contamos con equipos de ultima generacion para diagnosticos precisos y
-                  tratamientos eficientes. Desde lupas de magnificacion hasta sistemas
-                  de esterilizacion de ultima generacion.
+                  Contamos con equipos de última generación para diagnósticos precisos y
+                  tratamientos eficientes. Desde lupas de magnificación hasta sistemas
+                  de esterilización de última generación.
                 </p>
                 <p className="font-body text-base text-gray-600 leading-relaxed mb-8">
                   Utilizamos exclusivamente materiales de las mejores marcas mundiales,
-                  garantizando durabilidad y resultados esteticos superiores.
+                  garantizando durabilidad y resultados estéticos superiores.
                 </p>
                 <a
                   href={CLINIC.whatsappLink}

@@ -28,7 +28,7 @@ export function AboutPreview() {
                 <div className="flex items-center justify-center gap-3 sm:gap-4">
                   <div className="text-center">
                     <p className="font-display text-xl sm:text-2xl font-bold text-copper-400">+30</p>
-                    <p className="font-body text-[10px] sm:text-xs text-gray-500">Anos</p>
+                    <p className="font-body text-[10px] sm:text-xs text-gray-500">Años</p>
                   </div>
                   <div className="w-px h-8 sm:h-10 bg-gray-200" />
                   <div className="text-center">
@@ -49,15 +49,15 @@ export function AboutPreview() {
           <ScrollReveal direction="right">
             <div className="lg:pl-4">
               <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-dark mb-6">
-                Odontologia de excelencia
+                Odontología de excelencia
               </h2>
               <div className="accent-divider mb-6" />
               <p className="font-body text-sm sm:text-base text-gray-600 leading-relaxed mb-4 sm:mb-6">
                 {CLINIC.mission}
               </p>
               <p className="font-body text-sm sm:text-base text-gray-600 leading-relaxed mb-6 sm:mb-8">
-                Ubicada en Las Condes, nuestra clinica cuenta con la mas moderna tecnologia
-                y un equipo de profesionales especializados en cada area de la odontologia.
+                Ubicada en Las Condes, nuestra clínica cuenta con la más moderna tecnología
+                y un equipo de profesionales especializados en cada área de la odontología.
               </p>
 
               {/* Highlights */}

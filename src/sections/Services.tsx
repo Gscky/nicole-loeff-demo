@@ -39,7 +39,7 @@ export function Services() {
             <div className="mx-auto accent-divider mb-6" />
             <p className="mx-auto max-w-2xl font-body text-base text-gray-500 leading-relaxed">
               Un equipo de profesionales altamente calificados y especializados,
-              atendiendo sus necesidades odontologicas en cada una de las siguientes areas.
+              atendiendo sus necesidades odontológicas en cada una de las siguientes áreas.
             </p>
           </ScrollReveal>
         </div>
