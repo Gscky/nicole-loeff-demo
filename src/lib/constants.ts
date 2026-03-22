@@ -19,7 +19,7 @@ export const CLINIC = {
   facebook: 'https://www.facebook.com/dranicoleloeff/',
   linkedin: 'https://www.linkedin.com/in/nicole-loeff-mirelmann-34361a96',
   website: 'https://nicoleloeff.cl',
-  whatsappLink: 'https://wa.me/56912345678?text=Hola%20Dra.%20Nicole%2C%20me%20gustar%C3%ADa%20agendar%20una%20hora%20en%20la%20cl%C3%ADnica%20%F0%9F%98%8A',
+  whatsappLink: 'https://wa.me/56944205077?text=Hola%20Dra.%20Nicole%2C%20me%20gustar%C3%ADa%20agendar%20una%20hora%20en%20la%20cl%C3%ADnica%20%F0%9F%98%8A',
   googleMapsEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.9!2d-70.5679!3d-33.4053!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662cf1b2ef0e9c1%3A0x4b0fb1c3b2e4f5a6!2sEstoril%20200%2C%20Las%20Condes%2C%20Regi%C3%B3n%20Metropolitana%2C%20Chile!5e0!3m2!1ses!2scl!4v1',
   googleMapsLink: 'https://www.google.com/maps/place/Estoril+200,+Las+Condes,+Regi%C3%B3n+Metropolitana,+Chile',
   hours: {
