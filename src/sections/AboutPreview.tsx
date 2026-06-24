@@ -12,32 +12,38 @@ export function AboutPreview() {
           <ScrollReveal direction="left">
             <div className="relative pb-10 lg:pb-8">
               <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                <img
-                  src="/images/clinic/dra-nicole-casos.png"
-                  alt="Dra. Nicole Loeff"
-                  className="w-full h-48 sm:h-56 lg:h-64 object-cover rounded-2xl shadow-lg"
-                />
-                <img
-                  src="/images/clinic/salon-naranja.png"
-                  alt="Clinica dental moderna"
-                  className="w-full h-48 sm:h-56 lg:h-64 object-cover rounded-2xl shadow-lg mt-6 sm:mt-8"
-                />
+                <div className="overflow-hidden rounded-2xl shadow-lg">
+                  <img
+                    src="/images/excelencia/excelencia-1.jpg"
+                    alt="Dra. Nicole Loeff atendiendo a una paciente en la clínica dental"
+                    loading="lazy"
+                    className="w-full h-48 sm:h-56 lg:h-64 object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                </div>
+                <div className="overflow-hidden rounded-2xl shadow-lg mt-6 sm:mt-8">
+                  <img
+                    src="/images/excelencia/excelencia-2.jpg"
+                    alt="Paciente feliz mostrando su sonrisa tras el tratamiento dental"
+                    loading="lazy"
+                    className="w-full h-48 sm:h-56 lg:h-64 object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                </div>
               </div>
               {/* Floating badge */}
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white rounded-xl sm:rounded-2xl shadow-xl px-4 sm:px-6 py-3 sm:py-4 border border-gray-100 w-[85%] sm:w-auto">
                 <div className="flex items-center justify-center gap-3 sm:gap-4">
                   <div className="text-center">
-                    <p className="font-display text-xl sm:text-2xl font-bold text-copper-400">+30</p>
+                    <p className="font-display text-xl sm:text-2xl font-bold text-copper-400">+15</p>
                     <p className="font-body text-[10px] sm:text-xs text-gray-500">Años</p>
                   </div>
                   <div className="w-px h-8 sm:h-10 bg-gray-200" />
                   <div className="text-center">
-                    <p className="font-display text-xl sm:text-2xl font-bold text-copper-400">4.9</p>
+                    <p className="font-display text-xl sm:text-2xl font-bold text-copper-400">5.0</p>
                     <p className="font-body text-[10px] sm:text-xs text-gray-500">Google</p>
                   </div>
                   <div className="w-px h-8 sm:h-10 bg-gray-200" />
                   <div className="text-center">
-                    <p className="font-display text-xl sm:text-2xl font-bold text-copper-400">+5k</p>
+                    <p className="font-display text-xl sm:text-2xl font-bold text-copper-400">+8k</p>
                     <p className="font-body text-[10px] sm:text-xs text-gray-500">Pacientes</p>
                   </div>
                 </div>

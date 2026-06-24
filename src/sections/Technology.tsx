@@ -70,28 +70,13 @@ export function Technology() {
                   <img
                     src={img.src}
                     alt={img.alt}
-                    className="w-full h-32 sm:h-40 md:h-48 object-cover hover:scale-105 transition-transform duration-700"
+                    className="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
               ))}
             </div>
           </ScrollReveal>
         </div>
-
-        {/* More clinic images */}
-        <ScrollReveal>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-16">
-            {CLINIC_IMAGES.slice(4).map((img, i) => (
-              <div key={i} className="overflow-hidden rounded-2xl">
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="w-full h-32 sm:h-40 object-cover hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-            ))}
-          </div>
-        </ScrollReveal>
 
         {/* Highlights Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">

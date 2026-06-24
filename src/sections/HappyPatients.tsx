@@ -1,7 +1,7 @@
 import { ScrollReveal } from '../components/ScrollReveal';
 
 const PATIENT_PHOTOS = [
-  { src: '/images/patients/paciente-1.jpeg', alt: 'Dra. Nicole realizando tratamiento dental' },
+  { src: '/images/patients/paciente-5-web.jpg', alt: 'Dra. Nicole Loeff con una paciente niña feliz tras su control' },
   { src: '/images/patients/paciente-2.jpeg', alt: 'Dra. Nicole con pacientes jóvenes sonriendo' },
   { src: '/images/patients/paciente-3.jpeg', alt: 'Dra. Nicole con paciente niño feliz' },
 ];

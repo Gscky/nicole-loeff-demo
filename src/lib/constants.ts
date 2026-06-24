@@ -113,7 +113,7 @@ export const REVIEWS = [
   },
 ] as const;
 
-export const GOOGLE_RATING = 4.9;
+export const GOOGLE_RATING = 5.0;
 
 export const TEAM = [
   {
@@ -124,37 +124,40 @@ export const TEAM = [
     image: 'https://nicoleloeff.cl/wp-content/uploads/2015/04/Z9A3778retocada-2-897x1024.jpg',
   },
   {
-    name: 'Dra. Catalina Valdivieso Lolic',
-    role: 'Endodoncista',
-    specialty: 'Endodoncia',
-    bio: 'Cirujano Dentista, Magíster en Endodoncia, Universidad de Los Andes. Jefe del Servicio Dental del Centro Médico Militar Rosa O\'Higgins y docente universitaria.',
-    image: 'https://nicoleloeff.cl/wp-content/uploads/2015/04/Catalina-Valdivieso-1-838x1024.jpg',
-  },
-  {
-    name: 'Dra. Nicole Dattas Zapata',
-    role: 'Rehabilitadora Oral',
-    specialty: 'Rehabilitación Oral',
-    bio: 'Cirujano Dentista, Universidad de Chile (1996). Magíster en Rehabilitación Oral (2004). Especialista en restauraciones de alta complejidad y prótesis dentales.',
-    image: 'https://nicoleloeff.cl/wp-content/uploads/2015/04/nicole-dattas-225x300.jpg',
-  },
-  {
     name: 'Dra. Karina Moreno Reyes',
     role: 'Ortodoncista',
     specialty: 'Ortodoncia y Ortopedia Maxilar',
     bio: 'Magíster en Ortodoncia y Ortopedia Maxilar. Especialista en FLOW JAC SYSTEM, la única ortodoncia sin brackets disponible en Santiago.',
     image: 'https://nicoleloeff.cl/wp-content/uploads/2020/07/Lizbeth-Moreno-749x1024.jpg',
   },
+  {
+    name: 'Catalina',
+    role: 'Asistente',
+    specialty: 'Asistente Dental',
+    bio: 'Descripción pendiente.',
+    image: '/images/team/cata.jpg',
+  },
+  {
+    name: 'Javi',
+    role: 'Asistente',
+    specialty: 'Asistente Dental',
+    bio: 'Descripción pendiente.',
+    image: '/images/team/javi.jpg',
+  },
+  {
+    name: 'Silvia',
+    role: 'Asistente General',
+    specialty: 'Asistente Dental',
+    bio: 'Descripción pendiente.',
+    image: '/images/team/silvia.jpg',
+  },
 ] as const;
 
 export const CLINIC_IMAGES = [
-  { src: 'https://nicoleloeff.cl/wp-content/uploads/2016/03/Z9A4014-1024x683.jpg', alt: 'Recepción de la clínica dental' },
-  { src: 'https://nicoleloeff.cl/wp-content/uploads/2016/03/Z9A4084-1024x683.jpg', alt: 'Sala de espera moderna' },
-  { src: 'https://nicoleloeff.cl/wp-content/uploads/2016/03/Z9A4300-1024x683.jpg', alt: 'Box de atención dental' },
-  { src: 'https://nicoleloeff.cl/wp-content/uploads/2016/03/Z9A4305-1024x683.jpg', alt: 'Equipamiento dental moderno' },
-  { src: 'https://nicoleloeff.cl/wp-content/uploads/2016/03/Z9A4316-1024x683.jpg', alt: 'Sala de tratamientos' },
-  { src: 'https://nicoleloeff.cl/wp-content/uploads/2016/03/Z9A4322-1024x683.jpg', alt: 'Detalle del equipamiento' },
-  { src: 'https://nicoleloeff.cl/wp-content/uploads/2016/03/sala1.jpg', alt: 'Sala de procedimientos 1' },
-  { src: 'https://nicoleloeff.cl/wp-content/uploads/2016/03/sala2.jpg', alt: 'Sala de procedimientos 2' },
+  { src: '/images/clinic/box-ventana.jpg', alt: 'Box de atención con ventanal y vista panorámica' },
+  { src: '/images/clinic/box-naranja.jpg', alt: 'Box de atención dental equipado con tecnología moderna' },
+  { src: '/images/clinic/hall-espera.jpg', alt: 'Sala de espera moderna y acogedora de la clínica' },
+  { src: '/images/clinic/recepcion-nueva.jpg', alt: 'Recepción de la Clínica Dental Dra. Nicole Loeff' },
 ] as const;
 
 export const BEFORE_AFTER_CASES = [
