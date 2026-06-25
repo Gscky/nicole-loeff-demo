@@ -57,6 +57,13 @@ export default function EsteticaClinica({
     let raf = 0;
     let targetFrame = 0;   // frame objetivo según scroll
     let currentFrame = 0;  // frame actual (suavizado)
+    let lastTime = 0;      // timestamp del rAF previo (para dt)
+    let lastDrawn = -1;    // último índice realmente dibujado (evita redibujos redundantes)
+
+    // Suavizado exponencial INDEPENDIENTE DEL FRAMERATE (consistente en 60/120Hz).
+    // TAU = constante de tiempo en s: menor = más directo, mayor = más flotante.
+    // Probé 0.08 (un pelín brusco), 0.12 (algo flotante) y 0.10 → el más natural. -> queda 0.10
+    const TAU = 0.10;
 
     const url = (i: number) =>
       `${framesPath}/frame_${String(i + 1).padStart(4, "0")}.jpg`;
@@ -93,14 +100,20 @@ export default function EsteticaClinica({
       targetFrame = p * (frameCount - 1);
     };
 
-    const tick = () => {
-      currentFrame += (targetFrame - currentFrame) * 0.2; // suavizado (lerp)
-      if (Math.abs(targetFrame - currentFrame) < 0.01) currentFrame = targetFrame;
-      draw(Math.round(currentFrame));
+    const tick = (now: number) => {
+      if (!lastTime) lastTime = now;
+      const dt = Math.min((now - lastTime) / 1000, 0.05); // dt en s; clamp anti-salto tras tab inactivo
+      lastTime = now;
+      // lerp exponencial framerate-independiente (k≈0.2 a 60fps con TAU≈0.075; acá TAU=0.10)
+      const k = 1 - Math.exp(-dt / TAU);
+      currentFrame += (targetFrame - currentFrame) * k;
+      if (Math.abs(targetFrame - currentFrame) < 0.01) currentFrame = targetFrame; // snap: corta la oscilación
+      const idx = Math.round(currentFrame);
+      if (idx !== lastDrawn) { draw(idx); lastDrawn = idx; } // solo redibuja si cambió el frame
       raf = requestAnimationFrame(tick);
     };
 
-    const onResize = () => { sizeCanvas(); computeTarget(); draw(Math.round(currentFrame)); };
+    const onResize = () => { sizeCanvas(); computeTarget(); lastDrawn = -1; draw(Math.round(currentFrame)); };
 
     // precarga de frames (arranca al acercarse a viewport)
     const startLoading = () => {
@@ -116,7 +129,7 @@ export default function EsteticaClinica({
             computeTarget();
             currentFrame = targetFrame;
             draw(Math.round(currentFrame));
-            if (!reduce) { cancelAnimationFrame(raf); raf = requestAnimationFrame(tick); }
+            if (!reduce) { cancelAnimationFrame(raf); lastTime = 0; raf = requestAnimationFrame(tick); }
           }
         };
         img.src = url(i);
