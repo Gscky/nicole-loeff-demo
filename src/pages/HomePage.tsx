@@ -1,5 +1,6 @@
 import { Hero } from '../sections/Hero';
 import { Services } from '../sections/Services';
+import EsteticaClinica from '../sections/EsteticaClinica';
 import { AboutPreview } from '../sections/AboutPreview';
 import { BeforeAfter } from '../sections/BeforeAfter';
 import { HappyPatients } from '../sections/HappyPatients';
@@ -13,6 +14,7 @@ export function HomePage() {
     <>
       <Hero />
       <Services />
+      <EsteticaClinica />
       <AboutPreview />
       <BeforeAfter />
       <HappyPatients />
