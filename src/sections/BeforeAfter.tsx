@@ -81,10 +81,10 @@ export function BeforeAfter({ showAll = false }: BeforeAfterProps) {
             <div className="text-center mt-12">
               <Link
                 to="/casos"
-                className="inline-flex items-center gap-2 font-body text-sm font-semibold text-copper-400 hover:text-copper-500 transition-colors group"
+                className="group inline-flex items-center gap-2.5 rounded-full bg-[#C97E3E] px-9 py-4 font-body text-[17px] font-semibold text-white shadow-lg shadow-[#C97E3E]/30 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#b06d33] hover:shadow-xl hover:shadow-[#C97E3E]/40"
               >
                 Ver todos los casos
-                <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
           </ScrollReveal>

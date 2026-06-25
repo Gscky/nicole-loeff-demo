@@ -1,4 +1,5 @@
 import { ScrollReveal } from '../components/ScrollReveal';
+import { CountUp } from '../components/CountUp';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Clock, Users } from 'lucide-react';
 import { CLINIC } from '../lib/constants';
@@ -7,7 +8,7 @@ export function AboutPreview() {
   return (
     <section className="py-24 lg:py-32 bg-white">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-[3fr_2fr] gap-12 lg:gap-16 items-center">
           {/* Image side */}
           <ScrollReveal direction="left">
             <div className="relative pb-10 lg:pb-8">
@@ -17,7 +18,7 @@ export function AboutPreview() {
                     src="/images/excelencia/excelencia-1.jpg"
                     alt="Dra. Nicole Loeff atendiendo a una paciente en la clínica dental"
                     loading="lazy"
-                    className="w-full h-48 sm:h-56 lg:h-64 object-cover transition-transform duration-700 hover:scale-105"
+                    className="w-full h-48 sm:h-56 lg:h-72 object-cover transition-transform duration-700 hover:scale-105"
                   />
                 </div>
                 <div className="overflow-hidden rounded-2xl shadow-lg mt-6 sm:mt-8">
@@ -25,7 +26,7 @@ export function AboutPreview() {
                     src="/images/excelencia/excelencia-2.jpg"
                     alt="Paciente feliz mostrando su sonrisa tras el tratamiento dental"
                     loading="lazy"
-                    className="w-full h-48 sm:h-56 lg:h-64 object-cover transition-transform duration-700 hover:scale-105"
+                    className="w-full h-48 sm:h-56 lg:h-72 object-cover transition-transform duration-700 hover:scale-105"
                   />
                 </div>
               </div>
@@ -33,17 +34,23 @@ export function AboutPreview() {
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white rounded-xl sm:rounded-2xl shadow-xl px-4 sm:px-6 py-3 sm:py-4 border border-gray-100 w-[85%] sm:w-auto">
                 <div className="flex items-center justify-center gap-3 sm:gap-4">
                   <div className="text-center">
-                    <p className="font-display text-xl sm:text-2xl font-bold text-copper-400">+15</p>
+                    <p className="font-display text-xl sm:text-2xl font-bold text-copper-400">
+                      <CountUp value={15} prefix="+" />
+                    </p>
                     <p className="font-body text-[10px] sm:text-xs text-gray-500">Años</p>
                   </div>
                   <div className="w-px h-8 sm:h-10 bg-gray-200" />
                   <div className="text-center">
-                    <p className="font-display text-xl sm:text-2xl font-bold text-copper-400">5.0</p>
+                    <p className="font-display text-xl sm:text-2xl font-bold text-copper-400">
+                      <CountUp value={5} decimals={1} />
+                    </p>
                     <p className="font-body text-[10px] sm:text-xs text-gray-500">Google</p>
                   </div>
                   <div className="w-px h-8 sm:h-10 bg-gray-200" />
                   <div className="text-center">
-                    <p className="font-display text-xl sm:text-2xl font-bold text-copper-400">+8k</p>
+                    <p className="font-display text-xl sm:text-2xl font-bold text-copper-400">
+                      <CountUp value={8} prefix="+" suffix="k" />
+                    </p>
                     <p className="font-body text-[10px] sm:text-xs text-gray-500">Pacientes</p>
                   </div>
                 </div>
