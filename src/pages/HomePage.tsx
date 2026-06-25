@@ -1,5 +1,5 @@
 import { Hero } from '../sections/Hero';
-import { Services } from '../sections/Services';
+import EspecialidadesCarousel from '../sections/EspecialidadesCarousel';
 import EsteticaClinica from '../sections/EsteticaClinica';
 import { AboutPreview } from '../sections/AboutPreview';
 import { BeforeAfter } from '../sections/BeforeAfter';
@@ -13,7 +13,7 @@ export function HomePage() {
   return (
     <>
       <Hero />
-      <Services />
+      <EspecialidadesCarousel />
       <EsteticaClinica />
       <AboutPreview />
       <BeforeAfter />
