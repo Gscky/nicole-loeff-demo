@@ -144,7 +144,11 @@ export default function EspecialidadesCarousel({
   const cur = services[active];
 
   return (
-    <section style={{ background: C.cream, padding: "clamp(48px,6vw,72px) 0 clamp(56px,7vw,80px)" }}>
+    <section style={{ background: C.cream, padding: "clamp(48px,6vw,72px) 0 clamp(96px,11vw,140px)",
+      // isolation: confina los z-index de las tarjetas absolutas (10-40) DENTRO de esta
+      // sección para que el carrusel no se pinte por encima de "Estética"; el padding-bottom
+      // ampliado da colchón real antes de que empiece la sección siguiente.
+      isolation: "isolate" }}>
       <div style={{ maxWidth: 1180, margin: "0 auto", padding: "0 24px", textAlign: "center" }}>
         <span style={{ fontFamily: sans, fontSize: 12, fontWeight: 700, letterSpacing: ".2em",
           textTransform: "uppercase", color: C.terra }}>{eyebrow}</span>
