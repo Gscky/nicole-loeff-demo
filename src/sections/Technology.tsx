@@ -70,6 +70,9 @@ export function Technology() {
                   <img
                     src={img.src}
                     alt={img.alt}
+                    loading="lazy"
+                    width={800}
+                    height={600}
                     className="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>

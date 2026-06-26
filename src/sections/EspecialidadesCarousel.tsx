@@ -173,6 +173,8 @@ export default function EspecialidadesCarousel({
                   display: "flex", flexDirection: "column", cursor: isCenter ? "default" : "pointer" }}>
                   {/* imagen: flex:1 + minHeight:0 para que se encoja y deje ver el pie */}
                   <img src={imgOf(s)} alt={s.name}
+                    loading={isCenter ? "eager" : "lazy"}
+                    width={1100} height={825}
                     style={{ width: "100%", flex: 1, minHeight: 0, objectFit: "cover", display: "block" }} />
                   {/* pie: flexShrink:0 para que NO se comprima (botón siempre visible) */}
                   <div style={{ flexShrink: 0, padding: "14px 16px 16px" }}>
