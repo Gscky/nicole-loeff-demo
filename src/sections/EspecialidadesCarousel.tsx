@@ -74,7 +74,7 @@ export default function EspecialidadesCarousel({
   const n = services.length;
 
   useEffect(() => {
-    const calc = () => setCompact(window.innerWidth < 700);
+    const calc = () => setCompact(window.innerWidth < 1024); // mobile+tablet: 1 tarjeta; coverflow solo en desktop (≥1024)
     calc();
     window.addEventListener("resize", calc);
     return () => window.removeEventListener("resize", calc);
@@ -119,7 +119,8 @@ export default function EspecialidadesCarousel({
     const hidden = abs > maxVisible;
     return {
       position: "absolute", top: "50%", left: "50%",
-      width: 264, height: 348,
+      // mobile: ancho responsivo para que no se salga del viewport; desktop: 264 fijo
+      width: compact ? "min(264px, 82vw)" : 264, height: 348,
       transform: `translate(-50%,-50%) translateX(${off * spread}px) scale(${off === 0 ? 1 : abs === 1 ? 0.82 : 0.66}) perspective(900px) rotateY(${off * -8}deg)`,
       opacity: hidden ? 0 : off === 0 ? 1 : abs === 1 ? 0.55 : 0.28,
       zIndex: 10 - abs,
@@ -129,11 +130,14 @@ export default function EspecialidadesCarousel({
     };
   };
 
-  const arrow = (dir: "l" | "r") => (
+  // inRow=true → flecha en flujo (fila mobile debajo de la card); false → absoluta (desktop)
+  const arrow = (dir: "l" | "r", inRow = false) => (
     <button onClick={() => go(dir === "l" ? -1 : 1)}
       aria-label={dir === "l" ? "Especialidad anterior" : "Especialidad siguiente"}
-      style={{ position: "absolute", top: "50%", transform: "translateY(-50%)",
-        [dir === "l" ? "left" : "right"]: 4, zIndex: 30,
+      style={{ ...(inRow
+        ? { position: "relative" as const }
+        : { position: "absolute" as const, top: "50%", transform: "translateY(-50%)", [dir === "l" ? "left" : "right"]: 4 }),
+        zIndex: 30,
         width: 52, height: 52, borderRadius: "50%", border: `1px solid ${C.line}`,
         background: C.white, color: C.ink, cursor: "pointer", fontSize: 22,
         display: "grid", placeItems: "center", boxShadow: "0 8px 20px -10px rgba(0,0,0,.35)" }}>
@@ -149,7 +153,7 @@ export default function EspecialidadesCarousel({
       // sección para que el carrusel no se pinte por encima de "Estética"; el padding-bottom
       // ampliado da colchón real antes de que empiece la sección siguiente.
       isolation: "isolate" }}>
-      <div style={{ maxWidth: 1180, margin: "0 auto", padding: "0 24px", textAlign: "center" }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px", textAlign: "center" }}>
         <span style={{ fontFamily: sans, fontSize: 12, fontWeight: 700, letterSpacing: ".2em",
           textTransform: "uppercase", color: C.terra }}>{eyebrow}</span>
         <h2 style={{ fontFamily: serif, fontSize: "clamp(30px,4.2vw,48px)", color: C.ink,
@@ -158,12 +162,14 @@ export default function EspecialidadesCarousel({
 
         {/* STAGE */}
         <div style={{ position: "relative", height: 430, marginTop: 36 }}>
-          {arrow("l")}
-          {arrow("r")}
+          {/* desktop: flechas absolutas a los lados; en mobile van debajo (ver fila más abajo) */}
+          {!compact && arrow("l")}
+          {!compact && arrow("r")}
 
           {services.map((s, i) => {
             const off = offsetOf(i);
             const isCenter = off === 0;
+            if (compact && !isCenter) return null; // mobile: SOLO la central (sin vecinas que desborden)
             return (
               <div key={s.name} style={cardStyle(off)}
                 onClick={() => !isCenter && (setOpen(false), setActive(i))}>
@@ -200,11 +206,13 @@ export default function EspecialidadesCarousel({
           {open && (
             <div role="dialog" aria-modal="true" aria-label={cur.name}
               onClick={(e) => { if (e.target === e.currentTarget) setOpen(false); }}
-              style={{ position: "absolute", inset: 0, zIndex: 40, display: "grid", placeItems: "center",
+              style={{ position: compact ? "fixed" : "absolute", inset: 0, zIndex: 40, display: "grid", placeItems: "center",
+                padding: compact ? 16 : 0,
                 background: "rgba(245,243,236,.72)", backdropFilter: "blur(6px)", animation: "espFade .25s ease" }}>
               <div style={{ width: "min(720px,94%)", background: C.white, borderRadius: 20,
                 boxShadow: "0 30px 70px -30px rgba(0,0,0,.5)", border: `1px solid ${C.line}`,
-                display: "grid", gridTemplateColumns: "minmax(0,.9fr) minmax(0,1.1fr)", overflow: "hidden",
+                display: "grid", gridTemplateColumns: "minmax(0,.9fr) minmax(0,1.1fr)",
+                overflow: compact ? "auto" : "hidden", maxHeight: compact ? "85vh" : undefined,
                 textAlign: "left", animation: "espPop .3s cubic-bezier(.2,0,.2,1)" }} className="esp-ov">
                 <img src={imgOf(cur)} alt={cur.name}
                   style={{ width: "100%", height: "100%", objectFit: "cover", minHeight: 240 }} />
@@ -227,6 +235,14 @@ export default function EspecialidadesCarousel({
           )}
         </div>
 
+        {/* mobile: flechas en fila debajo de la card (no la tapan) */}
+        {compact && (
+          <div style={{ display: "flex", justifyContent: "center", gap: 20, marginTop: 18 }}>
+            {arrow("l", true)}
+            {arrow("r", true)}
+          </div>
+        )}
+
         <p style={{ fontFamily: sans, fontSize: 13, color: C.muted, marginTop: 8 }}>
           {active + 1} / {n} · usa las flechas para explorar
         </p>
@@ -235,7 +251,7 @@ export default function EspecialidadesCarousel({
       <style>{`
         @keyframes espFade{from{opacity:0}to{opacity:1}}
         @keyframes espPop{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
-        @media (max-width:680px){ .esp-ov{ grid-template-columns:1fr !important; } }
+        @media (max-width:767.98px){ .esp-ov{ grid-template-columns:1fr !important; } }
         @media (prefers-reduced-motion: reduce){ .esp-ov,[role=dialog]{ animation:none !important; } }
       `}</style>
     </section>
