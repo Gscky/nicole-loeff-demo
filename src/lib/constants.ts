@@ -278,11 +278,11 @@ export const BEFORE_AFTER_CASES = [
 ] as const;
 
 export const CLINIC_PHOTOS = [
-  { src: '/images/clinic/salon-verde.png', alt: 'Box de atención dental equipado' },
-  { src: '/images/clinic/recepcion.png', alt: 'Recepción de la clínica' },
-  { src: '/images/clinic/esterilizacion.png', alt: 'Área de esterilización' },
-  { src: '/images/clinic/dra-nicole-casos.png', alt: 'Dra. Nicole Loeff con casos de éxito' },
-  { src: '/images/clinic/salon-naranja.png', alt: 'Sala de tratamientos moderna' },
-  { src: '/images/clinic/dra-paciente.png', alt: 'Atención dental profesional' },
+  { src: '/images/clinic/salon-verde.jpg', alt: 'Box de atención dental equipado' },
+  { src: '/images/clinic/recepcion.jpg', alt: 'Recepción de la clínica' },
+  { src: '/images/clinic/esterilizacion.jpg', alt: 'Área de esterilización' },
+  { src: '/images/clinic/dra-nicole-casos.jpg', alt: 'Dra. Nicole Loeff con casos de éxito' },
+  { src: '/images/clinic/salon-naranja.jpg', alt: 'Sala de tratamientos moderna' },
+  { src: '/images/clinic/dra-paciente.jpg', alt: 'Atención dental profesional' },
   { src: '/images/cases/dentista-trabajando.jpg', alt: 'Procedimiento de blanqueamiento dental' },
 ] as const;

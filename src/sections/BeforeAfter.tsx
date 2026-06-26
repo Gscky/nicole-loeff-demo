@@ -15,6 +15,9 @@ function CaseCard({ item }: { item: (typeof BEFORE_AFTER_CASES)[number] }) {
         <img
           src={item.image}
           alt={`${item.title} - Antes y Después`}
+          loading="lazy"
+          width={800}
+          height={800}
           className="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

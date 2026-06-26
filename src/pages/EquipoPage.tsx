@@ -8,7 +8,7 @@ export function EquipoPage() {
       <section className="relative pt-32 pb-20 bg-emerald-900 overflow-hidden">
         <div className="absolute inset-0 opacity-15">
           <img
-            src="/images/clinic/dra-paciente.png"
+            src="/images/clinic/dra-paciente.jpg"
             alt=""
             className="w-full h-full object-cover"
           />
@@ -105,11 +105,11 @@ export function EquipoPage() {
 
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
             {[
-              { src: '/images/clinic/salon-verde.png', alt: 'Box de atención dental' },
-              { src: '/images/clinic/salon-naranja.png', alt: 'Sala de tratamientos' },
-              { src: '/images/clinic/recepcion.png', alt: 'Recepción' },
-              { src: '/images/clinic/esterilizacion.png', alt: 'Área de esterilización' },
-              { src: '/images/clinic/dra-nicole-casos.png', alt: 'Dra. Nicole Loeff' },
+              { src: '/images/clinic/salon-verde.jpg', alt: 'Box de atención dental' },
+              { src: '/images/clinic/salon-naranja.jpg', alt: 'Sala de tratamientos' },
+              { src: '/images/clinic/recepcion.jpg', alt: 'Recepción' },
+              { src: '/images/clinic/esterilizacion.jpg', alt: 'Área de esterilización' },
+              { src: '/images/clinic/dra-nicole-casos.jpg', alt: 'Dra. Nicole Loeff' },
               { src: '/images/cases/dentista-trabajando.jpg', alt: 'Procedimiento dental' },
             ].map((img, i) => (
               <ScrollReveal key={i} delay={i * 0.08}>
