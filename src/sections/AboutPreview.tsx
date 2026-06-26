@@ -12,13 +12,13 @@ export function AboutPreview() {
           {/* Image side */}
           <ScrollReveal direction="left">
             <div className="relative pb-10 lg:pb-8">
-              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
                 <div className="overflow-hidden rounded-2xl shadow-lg">
                   <img
                     src="/images/excelencia/excelencia-1.jpg"
                     alt="Dra. Nicole Loeff atendiendo a una paciente en la clínica dental"
                     loading="lazy"
-                    className="w-full h-48 sm:h-56 lg:h-72 object-cover transition-transform duration-700 hover:scale-105"
+                    className="w-full h-64 sm:h-56 lg:h-72 object-cover transition-transform duration-700 hover:scale-105"
                   />
                 </div>
                 <div className="overflow-hidden rounded-2xl shadow-lg mt-6 sm:mt-8">
@@ -26,12 +26,12 @@ export function AboutPreview() {
                     src="/images/excelencia/excelencia-2.jpg"
                     alt="Paciente feliz mostrando su sonrisa tras el tratamiento dental"
                     loading="lazy"
-                    className="w-full h-48 sm:h-56 lg:h-72 object-cover transition-transform duration-700 hover:scale-105"
+                    className="w-full h-64 sm:h-56 lg:h-72 object-cover transition-transform duration-700 hover:scale-105"
                   />
                 </div>
               </div>
               {/* Floating badge */}
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white rounded-xl sm:rounded-2xl shadow-xl px-4 sm:px-6 py-3 sm:py-4 border border-gray-100 w-[85%] sm:w-auto">
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white rounded-xl sm:rounded-2xl shadow-xl px-4 sm:px-6 py-3 sm:py-4 border border-gray-100 w-[92%] sm:w-auto">
                 <div className="flex items-center justify-center gap-3 sm:gap-4">
                   <div className="text-center">
                     <p className="font-display text-xl sm:text-2xl font-bold text-copper-400">

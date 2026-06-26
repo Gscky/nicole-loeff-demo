@@ -38,7 +38,7 @@ export function Hero() {
   return (
     <section
       id="inicio"
-      className="relative min-h-screen w-full overflow-hidden bg-emerald-950"
+      className="relative min-h-screen min-h-svh w-full overflow-hidden bg-emerald-950"
     >
       {/* ---- Capa de fondo: VIDEO full-screen (o poster si reduce-motion) ---- */}
       {reduceMotion ? (
@@ -83,7 +83,7 @@ export function Hero() {
       />
 
       {/* ---- Contenido (encima del overlay) ---- */}
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 pb-28 pt-32 sm:pt-36 lg:px-8 lg:pb-32 lg:pt-40">
+      <div className="relative z-10 mx-auto flex min-h-screen min-h-svh max-w-7xl flex-col justify-center px-6 pb-28 pt-32 sm:pt-36 lg:px-8 lg:pb-32 lg:pt-40">
         <div className="max-w-2xl">
           {/* Eyebrow */}
           <motion.div {...fadeUp(0.15)} className="mb-5 flex items-center gap-3">
@@ -140,18 +140,18 @@ export function Hero() {
         {/* ---- Stat-cards (banda glass inferior) ---- */}
         <motion.div
           {...fadeUp(0.9)}
-          className="mt-14 grid max-w-2xl grid-cols-3 gap-3 sm:gap-4 lg:mt-16"
+          className="mt-14 grid max-w-2xl grid-cols-3 gap-2.5 sm:gap-4 lg:mt-16"
         >
           {STATS.map((s) => (
             <div
               key={s.label}
-              className="flex flex-col items-center rounded-xl border border-white/15 bg-white/10 px-3 py-3 text-center backdrop-blur-md sm:items-start sm:px-5 sm:py-4 sm:text-left"
+              className="flex flex-col items-center rounded-xl border border-white/15 bg-white/10 px-2 py-3.5 text-center backdrop-blur-md sm:items-start sm:px-5 sm:py-4 sm:text-left"
             >
               <p className={`font-display text-2xl font-bold leading-none sm:text-3xl lg:text-4xl ${s.accent}`}>
                 {s.value}
                 <span className="align-top text-lg lg:text-xl">{s.suffix}</span>
               </p>
-              <p className="mt-1.5 font-body text-[9px] font-medium uppercase leading-tight tracking-[0.2em] text-gray-100/80 lg:text-[10px]">
+              <p className="mt-1.5 font-body text-[10px] font-medium uppercase leading-tight tracking-[0.2em] text-gray-100/80 lg:text-[10px]">
                 {s.label}
               </p>
             </div>
@@ -164,7 +164,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.3, duration: 0.8 }}
-        className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2"
+        className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 sm:block"
       >
         <motion.div
           animate={reduceMotion ? undefined : { y: [0, 8, 0] }}

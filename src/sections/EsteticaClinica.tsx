@@ -163,12 +163,13 @@ export default function EsteticaClinica({
   return (
     <section
       ref={sectionRef}
+      className="estetica-section"
       style={{ background: C.white, width: "100%", height: `${scrollLength * 100}vh`,
         position: "relative" }}
     >
       <div style={{ position: "sticky", top: 0, height: "100vh", display: "flex",
         alignItems: "center", background: C.white }} className="estetica-sticky">
-        <div style={{ maxWidth: 1180, margin: "0 auto", width: "100%",
+        <div style={{ maxWidth: 1280, margin: "0 auto", width: "100%",
           display: "grid", gridTemplateColumns: "minmax(0,1fr) minmax(0,1fr)",
           gap: "clamp(32px,5vw,64px)", alignItems: "center",
           padding: "clamp(40px,6vw,72px) clamp(24px,5vw,48px)" }}
@@ -178,7 +179,11 @@ export default function EsteticaClinica({
           <div style={{ display: "flex", justifyContent: "center" }}>
             <canvas
               ref={canvasRef}
-              style={{ width: "100%", maxWidth: 460, aspectRatio: "9 / 16",
+              // El ancho se limita por el MENOR entre: ancho de columna, 460px, y el ancho
+              // derivado del alto disponible (alto≈100vh menos ~9rem de padding del grid).
+              // Así el canvas (9:16) nunca excede el viewport en alto y NO se recorta en
+              // pantallas cortas (768/864/900). En pantallas altas (≥~960px) queda en 460 (igual que hoy).
+              style={{ width: "min(100%, 460px, calc((100vh - 9rem) * 9 / 16))", aspectRatio: "9 / 16",
                 display: "block", background: `${C.white} url(${poster}) center/contain no-repeat`,
                 pointerEvents: "none" }}
             />
@@ -222,9 +227,14 @@ export default function EsteticaClinica({
       </div>
 
       <style>{`
-        @media (max-width: 860px){
+        /* Breakpoint unificado a 1024 (lg de Tailwind): MOBILE+TABLET (≤1023.98) el
+           contenido fluye (sin pin de 100vh) para que NADA se recorte; el canvas sigue
+           scrubbeando con el scroll (la lógica JS no cambia). Desktop (≥1024) mantiene
+           el sticky 100vh y el layout de 2 columnas, igual que el flip del carrusel. */
+        @media (max-width: 1023.98px){
+          .estetica-section{ height:auto !important; }
+          .estetica-sticky{ position:static !important; height:auto !important; }
           .estetica-grid{ grid-template-columns:1fr !important; }
-          .estetica-grid > div:first-child canvas{ max-width:300px !important; }
         }
       `}</style>
     </section>
