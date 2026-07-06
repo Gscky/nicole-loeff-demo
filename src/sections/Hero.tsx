@@ -7,7 +7,7 @@ const HERO_VIDEO = '/videos/hero_nicole_loeff_1080p_web.mp4';
 const HERO_POSTER = '/videos/hero-poster.jpg';
 
 const STATS = [
-  { value: '15', suffix: '+', label: 'Años de experiencia', accent: 'text-copper-300' },
+  { value: '23', suffix: '+', label: 'Años de experiencia', accent: 'text-copper-300' },
   { value: '8K', suffix: '+', label: 'Pacientes atendidos', accent: 'text-emerald-200' },
   { value: '5.0', suffix: '★', label: 'En reseñas', accent: 'text-copper-300' },
 ];

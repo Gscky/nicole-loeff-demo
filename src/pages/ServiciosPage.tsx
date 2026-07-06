@@ -23,15 +23,17 @@ const ICON_MAP: Record<string, LucideIcon> = {
   lock: Lock,
 };
 
+/* Mismas fotos que el carrusel de especialidades de la home
+   (/images/especialidades/, set nuevo) para mantener ambas vistas en línea. */
 const SPECIALTY_IMAGES: Record<string, string> = {
-  rehabilitacion: '/images/specialties/rehabilitacion-oral.jpg',
-  implantologia: '/images/specialties/implantologia.jpg',
-  ortodoncia: '/images/specialties/ortodoncia.jpg',
-  estetica: '/images/specialties/blanqueamiento.jpg',
-  endodoncia: '/images/specialties/endodoncia.jpg',
-  odontopediatria: '/images/specialties/odontopediatria.jpg',
-  periodoncia: '/images/specialties/periodoncia.jpg',
-  bruxismo: '/images/specialties/sedacion.jpg',
+  rehabilitacion: '/images/especialidades/rehabilitacion-oral.jpg',
+  implantologia: '/images/especialidades/implantologia.jpg',
+  ortodoncia: '/images/especialidades/ortodoncia.jpg',
+  estetica: '/images/especialidades/estetica-dental.jpg',
+  endodoncia: '/images/especialidades/endodoncia.jpg',
+  odontopediatria: '/images/especialidades/odontopediatria.jpg',
+  periodoncia: '/images/especialidades/periodoncia.jpg',
+  bruxismo: '/images/especialidades/bruxismo.jpg',
 };
 
 export function ServiciosPage() {

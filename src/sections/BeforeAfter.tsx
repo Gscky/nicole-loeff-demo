@@ -1,6 +1,7 @@
 import { ScrollReveal } from '../components/ScrollReveal';
 import { Carousel } from '../components/Carousel';
 import { BEFORE_AFTER_CASES } from '../lib/constants';
+import { ESTETICA_CASE_SRCS } from './EsteticaClinica';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
@@ -44,7 +45,15 @@ function CaseCard({ item }: { item: (typeof BEFORE_AFTER_CASES)[number] }) {
 }
 
 export function BeforeAfter({ showAll = false }: BeforeAfterProps) {
-  const cases = showAll ? BEFORE_AFTER_CASES : BEFORE_AFTER_CASES.slice(0, 6);
+  // En la home se muestran todos los casos MENOS los que ya aparecen en el mazo
+  // de Estética (misma página) y los reservados solo para la galería completa;
+  // en /casos (showAll) van los 19.
+  const soloEnCasos = ['/images/cases/caso-6.jpg', '/images/cases/caso-3.jpg'];
+  const cases = showAll
+    ? BEFORE_AFTER_CASES
+    : BEFORE_AFTER_CASES.filter(
+        (c) => !ESTETICA_CASE_SRCS.includes(c.image) && !soloEnCasos.includes(c.image)
+      );
 
   return (
     <section id="resultados" className="py-24 lg:py-32 bg-gray-light">
@@ -57,7 +66,7 @@ export function BeforeAfter({ showAll = false }: BeforeAfterProps) {
             </h2>
             <div className="mx-auto accent-divider mb-6" />
             <p className="mx-auto max-w-2xl font-body text-base text-gray-500 leading-relaxed">
-              Cada caso refleja nuestro compromiso con la excelencia.
+              Cada caso clínico es único y nos importa.
               Resultados reales de nuestros pacientes.
             </p>
           </ScrollReveal>

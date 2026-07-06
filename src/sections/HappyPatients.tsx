@@ -18,7 +18,7 @@ export function HappyPatients() {
             </h2>
             <div className="mx-auto accent-divider mb-6" />
             <p className="mx-auto max-w-2xl font-body text-base sm:text-lg text-gray-500 leading-relaxed">
-              Más de 20 años creando sonrisas y experiencias que marcan la diferencia
+              Más de 23 años creando sonrisas y experiencias que marcan la diferencia
             </p>
           </ScrollReveal>
         </div>
