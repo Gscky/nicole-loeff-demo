@@ -103,14 +103,12 @@ export function EquipoPage() {
             </ScrollReveal>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {[
-              { src: '/images/clinic/salon-verde.jpg', alt: 'Box de atención dental' },
-              { src: '/images/clinic/salon-naranja.jpg', alt: 'Sala de tratamientos' },
-              { src: '/images/clinic/recepcion.jpg', alt: 'Recepción' },
-              { src: '/images/clinic/esterilizacion.jpg', alt: 'Área de esterilización' },
-              { src: '/images/clinic/dra-nicole-casos.jpg', alt: 'Dra. Nicole Loeff' },
-              { src: '/images/cases/dentista-trabajando.jpg', alt: 'Procedimiento dental' },
+              { src: '/images/clinic/box-ventana.jpg', alt: 'Box de atención con ventanal y vista panorámica' },
+              { src: '/images/clinic/box-naranja.jpg', alt: 'Box de atención dental equipado con tecnología moderna' },
+              { src: '/images/clinic/hall-espera.jpg', alt: 'Sala de espera moderna y acogedora' },
+              { src: '/images/clinic/recepcion-nueva.jpg', alt: 'Recepción de la clínica' },
             ].map((img, i) => (
               <ScrollReveal key={i} delay={i * 0.08}>
                 <div className="overflow-hidden rounded-xl sm:rounded-2xl shadow-md group">

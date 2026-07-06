@@ -39,22 +39,22 @@ const imgOf = (s: Service) => s.image || ph(s.color);
   Fotos como placeholder por ahora (sin `image`) — Nicole las entregará después.
 */
 const DEFAULT_SERVICES: Service[] = [
-  { name: "Rehabilitación Oral", color: "#C97E3E", image: "/images/especialidades/rehabilitacion-oral.jpg", short: "Recuperamos función y estética con prótesis modernas.",
-    full: "Restauramos la función, estética y armonía de tu sonrisa mediante prótesis dentales fijas, removibles y sobre implantes con las técnicas más modernas." },
-  { name: "Implantología", color: "#6E8E5C", image: "/images/especialidades/implantologia.jpg", short: "Reemplazo permanente de dientes perdidos con implantes.",
-    full: "Implantes de titanio biocompatibles que reemplazan las raíces naturales de los dientes perdidos, brindando una solución permanente con resultados estéticos superiores." },
-  { name: "Ortodoncia", color: "#A6794B", image: "/images/especialidades/ortodoncia.jpg", short: "Alineación y mordida con técnicas fijas o invisibles.",
-    full: "Movimientos suaves y precisos que corrigen la posición dental, mejorando la oclusión y alineación para una sonrisa perfecta. Opciones fijas, removibles y funcionales." },
+  { name: "Periodoncia", color: "#6E8E5C", image: "/images/especialidades/periodoncia.jpg", short: "Encías sanas: la base de una boca sana.",
+    full: "Tratamiento de enfermedades de las encías que afectan el soporte de tus dientes. Prevención y control de placa dental para lograr una boca sana con una base sólida." },
   { name: "Estética Dental", color: "#B07A3E", image: "/images/especialidades/estetica-dental.jpg", short: "Blanqueamiento, carillas y diseño de sonrisa.",
     full: "Blanqueamiento profesional, carillas estéticas de resina y diseño de sonrisa. Procedimientos seguros y rápidos para una sonrisa luminosa y natural." },
-  { name: "Endodoncia", color: "#8C6A4A", image: "/images/especialidades/endodoncia.jpg", short: "Tratamiento de conducto que salva tu diente natural.",
-    full: "Tratamiento de conducto radicular que salva dientes naturales eliminando la pulpa infectada. Procedimiento con anestesia local, seguro y con 90% de éxito." },
   { name: "Odontopediatría", color: "#C9925A", image: "/images/especialidades/odontopediatria.jpg", short: "Cuidado dental cercano para niños y bebés.",
     full: "Cuidado dental especializado para niños y recién nacidos. Diagnóstico, selladores, tratamiento de caries, manejo de traumatismos y educación en higiene oral." },
-  { name: "Periodoncia", color: "#6E8E5C", image: "/images/especialidades/periodoncia.jpg", short: "Salud de encías y tejidos de soporte dental.",
-    full: "Tratamiento de enfermedades de las encías que afectan el soporte de tus dientes. Prevención y control de placa dental para mantener una base sólida y saludable." },
-  { name: "Tratamiento para Bruxismo", color: "#A6794B", image: "/images/especialidades/bruxismo.jpg", short: "Férulas y control para el rechinamiento dental.",
-    full: "Soluciones para el apretamiento y rechinamiento inconsciente de los dientes. Férulas de descarga nocturna y corrección oclusal para proteger tu estructura dental." },
+  { name: "Implantología", color: "#6E8E5C", image: "/images/especialidades/implantologia.jpg", short: "Reemplazo permanente de dientes perdidos con implantes.",
+    full: "Implantes de titanio biocompatibles que reemplazan las raíces naturales de los dientes perdidos, brindando una solución permanente con resultados estéticos superiores." },
+  { name: "Oclusión y Trastornos Temporomandibulares", color: "#A6794B", image: "/images/especialidades/bruxismo.jpg", short: "Férulas y cuidado de tu oclusión y articulación.",
+    full: "Diagnóstico y tratamiento del bruxismo y los trastornos de la articulación temporomandibular. Férulas de descarga nocturna y corrección oclusal para proteger tu estructura dental." },
+  { name: "Rehabilitación Oral", color: "#C97E3E", image: "/images/especialidades/rehabilitacion-oral.jpg", short: "Recuperamos función y estética con prótesis modernas.",
+    full: "Restauramos la función, estética y armonía de tu sonrisa mediante prótesis dentales fijas, removibles y sobre implantes con las técnicas más modernas." },
+  { name: "Endodoncia", color: "#8C6A4A", image: "/images/especialidades/endodoncia.jpg", short: "Tratamiento de conducto que salva tu diente natural.",
+    full: "Tratamiento de conducto radicular que salva dientes naturales eliminando la pulpa infectada. Procedimiento con anestesia local, seguro y con 90% de éxito." },
+  { name: "Ortodoncia", color: "#A6794B", image: "/images/especialidades/ortodoncia.jpg", short: "Alineación y mordida con técnicas fijas o invisibles.",
+    full: "Movimientos suaves y precisos que corrigen la posición dental, mejorando la oclusión y alineación para una sonrisa perfecta. Opciones fijas, removibles y funcionales." },
 ];
 
 export default function EspecialidadesCarousel({

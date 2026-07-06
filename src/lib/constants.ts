@@ -4,7 +4,7 @@ export const CLINIC = {
   fullName: 'Dra. Nicole Loeff - Clínica Dental',
   legalName: 'Servicios Odontológicos Nicole Loeff Mirelmann E.I.R.L.',
   tagline: 'Tu sonrisa en las mejores manos',
-  description: 'Odontología de excelencia con atención personalizada',
+  description: 'Tecnología de vanguardia, atención personalizada, Clínica Boutique',
   mission: 'Nuestro objetivo es prestar un servicio odontológico de la más alta calidad, lo más cómodamente posible, y con un costo razonable para usted.',
   phone: '+56 9 4420 5077',
   phoneLandline: '+56 2 3224 3732',
@@ -24,29 +24,17 @@ export const CLINIC = {
   googleMapsLink: 'https://www.google.com/maps/place/Estoril+200,+Las+Condes,+Regi%C3%B3n+Metropolitana,+Chile',
   hours: {
     weekdays: 'Lunes a Viernes: 9:00 - 19:00',
-    saturday: 'Sábados: 9:00 - 14:00',
+    saturday: 'Sábados: Cerrado',
     sunday: 'Domingos: Cerrado',
   },
 } as const;
 
 export const SPECIALTIES = [
   {
-    id: 'rehabilitacion',
-    title: 'Rehabilitación Oral',
-    description: 'Restauramos la función, estética y armonía de tu sonrisa mediante prótesis dentales fijas, removibles y sobre implantes con las técnicas más modernas.',
-    icon: 'refresh',
-  },
-  {
-    id: 'implantologia',
-    title: 'Implantología',
-    description: 'Implantes de titanio biocompatibles que reemplazan las raíces naturales de los dientes perdidos, brindando una solución permanente con resultados estéticos superiores.',
-    icon: 'implant',
-  },
-  {
-    id: 'ortodoncia',
-    title: 'Ortodoncia',
-    description: 'Movimientos suaves y precisos que corrigen la posición dental, mejorando la oclusión y alineación para una sonrisa perfecta. Opciones fijas, removibles y funcionales.',
-    icon: 'aligners',
+    id: 'periodoncia',
+    title: 'Periodoncia',
+    description: 'Tratamiento de enfermedades de las encías que afectan el soporte de tus dientes. Prevención y control de placa dental para lograr una boca sana con una base sólida.',
+    icon: 'shield',
   },
   {
     id: 'estetica',
@@ -55,28 +43,40 @@ export const SPECIALTIES = [
     icon: 'sparkle',
   },
   {
-    id: 'endodoncia',
-    title: 'Endodoncia',
-    description: 'Tratamiento de conducto radicular que salva dientes naturales eliminando la pulpa infectada. Procedimiento con anestesia local, seguro y con 90% de éxito.',
-    icon: 'microscope',
-  },
-  {
     id: 'odontopediatria',
     title: 'Odontopediatría',
     description: 'Cuidado dental especializado para niños y recién nacidos. Diagnóstico, selladores, tratamiento de caries, manejo de traumatismos y educación en higiene oral.',
     icon: 'baby',
   },
   {
-    id: 'periodoncia',
-    title: 'Periodoncia',
-    description: 'Tratamiento de enfermedades de las encías que afectan el soporte de tus dientes. Prevención y control de placa dental para mantener una base sólida y saludable.',
-    icon: 'shield',
+    id: 'implantologia',
+    title: 'Implantología',
+    description: 'Implantes de titanio biocompatibles que reemplazan las raíces naturales de los dientes perdidos, brindando una solución permanente con resultados estéticos superiores.',
+    icon: 'implant',
   },
   {
     id: 'bruxismo',
-    title: 'Tratamiento para Bruxismo',
-    description: 'Soluciones para el apretamiento y rechinamiento inconsciente de los dientes. Férulas de descarga nocturna y corrección oclusal para proteger tu estructura dental.',
+    title: 'Oclusión y Trastornos Temporomandibulares',
+    description: 'Diagnóstico y tratamiento del bruxismo y los trastornos de la articulación temporomandibular. Férulas de descarga nocturna y corrección oclusal para proteger tu estructura dental.',
     icon: 'lock',
+  },
+  {
+    id: 'rehabilitacion',
+    title: 'Rehabilitación Oral',
+    description: 'Restauramos la función, estética y armonía de tu sonrisa mediante prótesis dentales fijas, removibles y sobre implantes con las técnicas más modernas.',
+    icon: 'refresh',
+  },
+  {
+    id: 'endodoncia',
+    title: 'Endodoncia',
+    description: 'Tratamiento de conducto radicular que salva dientes naturales eliminando la pulpa infectada. Procedimiento con anestesia local, seguro y con 90% de éxito.',
+    icon: 'microscope',
+  },
+  {
+    id: 'ortodoncia',
+    title: 'Ortodoncia',
+    description: 'Movimientos suaves y precisos que corrigen la posición dental, mejorando la oclusión y alineación para una sonrisa perfecta. Opciones fijas, removibles y funcionales.',
+    icon: 'aligners',
   },
 ] as const;
 
@@ -129,6 +129,20 @@ export const TEAM = [
     specialty: 'Ortodoncia y Ortopedia Maxilar',
     bio: 'Magíster en Ortodoncia y Ortopedia Maxilar. Especialista en FLOW JAC SYSTEM, la única ortodoncia sin brackets disponible en Santiago.',
     image: 'https://nicoleloeff.cl/wp-content/uploads/2020/07/Lizbeth-Moreno-749x1024.jpg',
+  },
+  {
+    name: 'Dra. María del Pilar Román San Pedro',
+    role: 'Endodoncista',
+    specialty: 'Endodoncia',
+    bio: 'Cirujano Dentista, Universidad de Chile (1989). Especialista en Endodoncia, Universidad Mayor (2010). 18 años en el Servicio de Sanidad Dental de Carabineros de Chile, acogida a retiro con el grado de Coronel (2021). Desde 2010 ejerce en el Hospital Luis Calvo Mackenna. Miembro de la Sociedad de Endodoncia de Chile.',
+    image: '/images/team/pilar.jpg',
+  },
+  {
+    name: 'Dr. Álvaro Martínez',
+    role: 'Implantología y Rehabilitación Oral',
+    specialty: 'Implantología y Rehabilitación Oral',
+    bio: 'Descripción pendiente.',
+    image: '/images/team/alvaro.jpg',
   },
   {
     name: 'Catalina',

@@ -35,7 +35,7 @@ export function AboutPreview() {
                 <div className="flex items-center justify-center gap-3 sm:gap-4">
                   <div className="text-center">
                     <p className="font-display text-xl sm:text-2xl font-bold text-copper-400">
-                      <CountUp value={15} prefix="+" />
+                      <CountUp value={23} prefix="+" />
                     </p>
                     <p className="font-body text-[10px] sm:text-xs text-gray-500">Años</p>
                   </div>
@@ -71,6 +71,8 @@ export function AboutPreview() {
               <p className="font-body text-sm sm:text-base text-gray-600 leading-relaxed mb-6 sm:mb-8">
                 Ubicada en Las Condes, nuestra clínica cuenta con la más moderna tecnología
                 y un equipo de profesionales especializados en cada área de la odontología.
+                Un espacio no solo para atender tu salud dental: también un grato lugar
+                para estar tranquilo, en un ambiente agradable.
               </p>
 
               {/* Highlights */}
