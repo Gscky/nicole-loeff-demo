@@ -120,7 +120,7 @@ export const TEAM = [
     name: 'Dra. Nicole Loeff Mirelmann',
     role: 'Directora Clínica',
     specialty: 'Periodoncia e Implantología',
-    bio: 'Cirujano Dentista, Universidad de Chile (1996) con distinción máxima. Magíster en Periodoncia e Implantología, Universidad Andrés Bello (2005) con distinción Magna Cum Laude.',
+    bio: 'Cirujana Dentista, Universidad de Chile (1996), titulada con distinción máxima. Magíster en Periodoncia e Implantología, Universidad Andrés Bello (2005), titulada con distinción máxima. Especialista en Estética Dental.',
     image: 'https://nicoleloeff.cl/wp-content/uploads/2015/04/Z9A3778retocada-2-897x1024.jpg',
   },
   {
@@ -138,10 +138,10 @@ export const TEAM = [
     image: '/images/team/pilar.jpg',
   },
   {
-    name: 'Dr. Álvaro Martínez',
+    name: 'Dr. Álvaro Martínez Conget',
     role: 'Implantología y Rehabilitación Oral',
-    specialty: 'Implantología y Rehabilitación Oral',
-    bio: 'Descripción pendiente.',
+    specialty: 'Cirugía de Implantes y Rehabilitación',
+    bio: 'Cirujano Dentista, Universidad de Chile (1999). Perfeccionamiento en Cirugía Oral en el HUAP, ex Posta Central (2001), y en Cirugía de Implantes y Rehabilitación, Universidad Finis Terrae, con estadía en el Hospital de la FACH (2004). Atiende en inglés y alemán.',
     image: '/images/team/alvaro.jpg',
   },
   {
