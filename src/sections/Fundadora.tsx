@@ -64,7 +64,7 @@ export function Fundadora() {
                   </span>
                   <p className="font-body text-sm sm:text-base text-gray-600 leading-relaxed">
                     <span className="font-semibold text-gray-dark">Cirujana Dentista, Universidad de Chile (2001)</span>, titulada
-                    con distinción máxima. Bachiller en Ciencias Naturales y Exactas de la misma
+                    con distinción máxima. Bachiller en Ciencias Naturales Exactas de la misma
                     casa de estudios (1996).
                   </p>
                 </li>

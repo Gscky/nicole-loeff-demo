@@ -120,7 +120,7 @@ export const TEAM = [
     name: 'Dra. Nicole Loeff Mirelmann',
     role: 'Directora Clínica',
     specialty: 'Periodoncia e Implantología',
-    bio: 'Cirujana Dentista, Universidad de Chile (2001), titulada con distinción máxima. Bachiller en Ciencias Naturales y Exactas, Universidad de Chile (1996). Magíster en Periodoncia e Implantología, Universidad Andrés Bello (2005), titulada con distinción máxima. Especialista en Estética Dental.',
+    bio: 'Cirujana Dentista, Universidad de Chile (2001), titulada con distinción máxima. Bachiller en Ciencias Naturales Exactas, Universidad de Chile (1996). Magíster en Periodoncia e Implantología, Universidad Andrés Bello (2005), titulada con distinción máxima. Especialista en Estética Dental.',
     image: '/images/team/nicole.jpg',
   },
   {
