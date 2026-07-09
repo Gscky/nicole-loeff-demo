@@ -120,7 +120,7 @@ export const TEAM = [
     name: 'Dra. Nicole Loeff Mirelmann',
     role: 'Directora Clínica',
     specialty: 'Periodoncia e Implantología',
-    bio: 'Cirujana Dentista, Universidad de Chile (1996), titulada con distinción máxima. Magíster en Periodoncia e Implantología, Universidad Andrés Bello (2005), titulada con distinción máxima. Especialista en Estética Dental.',
+    bio: 'Cirujana Dentista, Universidad de Chile (2001), titulada con distinción máxima. Bachiller en Ciencias Naturales y Exactas, Universidad de Chile (1996). Magíster en Periodoncia e Implantología, Universidad Andrés Bello (2005), titulada con distinción máxima. Especialista en Estética Dental.',
     image: '/images/team/nicole.jpg',
   },
   {
@@ -145,25 +145,25 @@ export const TEAM = [
     image: '/images/team/alvaro.jpg',
   },
   {
-    name: 'Catalina',
+    name: 'Silvia Loyola',
+    role: 'Asistente',
+    specialty: 'Asistente',
+    bio: '',
+    image: '/images/team/silvia.jpg',
+  },
+  {
+    name: 'Catalina Pino',
     role: 'Asistente',
     specialty: 'Asistente',
     bio: '',
     image: '/images/team/cata.jpg',
   },
   {
-    name: 'Javi',
+    name: 'Javiera González',
     role: 'Asistente',
     specialty: 'Asistente',
     bio: '',
     image: '/images/team/javi.jpg',
-  },
-  {
-    name: 'Silvia',
-    role: 'Asistente',
-    specialty: 'Asistente',
-    bio: '',
-    image: '/images/team/silvia.jpg',
   },
 ] as const;
 
@@ -219,8 +219,8 @@ export const BEFORE_AFTER_CASES = [
   },
   {
     id: 8,
-    title: 'Implante Dental',
-    description: 'Reemplazo de pieza perdida con implante y cierre de espacios interdentales.',
+    title: 'Estética Dental de Alto Nivel',
+    description: 'Resinas directas de calidad avanzada, en una sola sesión.',
     image: '/images/cases/caso-8.jpeg',
   },
   {
