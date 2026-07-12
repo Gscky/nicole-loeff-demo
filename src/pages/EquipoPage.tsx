@@ -41,10 +41,11 @@ export function EquipoPage() {
                     <div className={`lg:col-span-2 ${isEven ? '' : 'lg:order-2'}`}>
                       <div className="relative group">
                         <div className="overflow-hidden rounded-2xl shadow-xl">
+                          {/* Sin alto fijo ni recorte: la foto completa, con su proporción */}
                           <img
                             src={member.image}
                             alt={member.name}
-                            className="w-full h-[280px] sm:h-[350px] lg:h-[500px] object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                            className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
                           />
                         </div>
                         {/* Overlay on hover */}

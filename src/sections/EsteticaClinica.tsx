@@ -1,7 +1,8 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   motion,
+  useInView,
   useScroll,
   useSpring,
   useTransform,
@@ -26,11 +27,17 @@ const sans = "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif";
   SECCIÓN "ESTÉTICA CLÍNICA DENTAL" — fondo blanco, animación scrubbeada al scroll.
 
   MAZO DE TARJETAS (deck): fotos REALES de casos de estética apiladas estilo
-  polaroid. Al scrollear, la tarjeta frontal se "despega" (sale con rotación
-  hacia la izquierda) y la siguiente toma su lugar. Todo va amarrado al scroll
-  vía framer-motion (useScroll + useSpring): sin re-renders por frame, los
-  MotionValues actualizan los transforms directamente. Mecánica de posición:
-  igual que antes, sticky de 100vh dentro de una sección de scrollLength·100vh.
+  polaroid. La tarjeta frontal se "despega" (sale con rotación hacia la
+  izquierda) y la siguiente toma su lugar, vía framer-motion: sin re-renders
+  por frame, los MotionValues actualizan los transforms directamente.
+
+  Quién conduce el mazo depende del layout:
+  - DESKTOP (≥1024): sticky de 100vh dentro de una sección de
+    scrollLength·100vh; el despegue va amarrado al scroll (useScroll+useSpring).
+  - MÓVIL/TABLET (<1024): no hay pin (el contenido fluye), así que amarrarlo
+    al scroll dejaba las tarjetas animando cuando ya habían salido del
+    viewport (desincronizado). Acá el mazo avanza SOLO cuando está a la vista
+    (autoplay con useInView) y también al tocarlo; el spring anima el cambio.
 */
 const CASES = [
   { src: "/images/cases/caso-9.jpeg", title: "Rehabilitación Completa" },
@@ -44,6 +51,9 @@ const CASES = [
 /* Rutas de los casos usados en el mazo: BeforeAfter (home) las excluye
    para no repetir las mismas fotos dentro de la misma página. */
 export const ESTETICA_CASE_SRCS: string[] = CASES.map((c) => c.src);
+
+/* Breakpoint móvil/tablet — debe calzar con el @media del <style> al final. */
+const MOBILE_MQ = "(max-width: 1023.98px)";
 
 /* Una tarjeta del mazo. `idx` = posición continua del scroll (0..count-1);
    rel = i - idx: 0 = al frente, >0 = apilada detrás, <0 = ya despegada. */
@@ -119,16 +129,51 @@ export default function EsteticaClinica({
   scrollLength?: number;
 }) {
   const sectionRef = useRef<HTMLElement>(null);
+  const deckRef = useRef<HTMLDivElement>(null);
   const count = CASES.length;
 
-  // progreso de scroll de la sección completa → posición continua en el mazo
+  // <1024 (mismo breakpoint del <style> de abajo): sin pin → mazo autónomo
+  const [isMobile, setIsMobile] = useState(
+    () => window.matchMedia(MOBILE_MQ).matches
+  );
+  useEffect(() => {
+    const mq = window.matchMedia(MOBILE_MQ);
+    const onChange = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  // DESKTOP: progreso de scroll de la sección completa → posición en el mazo
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
   });
   const smooth = useSpring(scrollYProgress, { stiffness: 90, damping: 22, mass: 0.6 });
-  const idx = useTransform(smooth, [0, 1], [0, count - 1]);
-  const barWidth = useTransform(smooth, [0, 1], ["0%", "100%"]);
+  const scrollIdx = useTransform(smooth, [0, 1], [0, count - 1]);
+
+  // MÓVIL/TABLET: índice objetivo (autoplay + tap) animado con spring
+  const [mobileTarget, setMobileTarget] = useState(0);
+  const mobileIdx = useSpring(0, { stiffness: 130, damping: 21 });
+  useEffect(() => {
+    mobileIdx.set(mobileTarget);
+  }, [mobileTarget, mobileIdx]);
+
+  // autoplay solo con el mazo a la vista; se reinicia tras cada avance (tap
+  // incluido) para mantener cadencia pareja. Respeta prefers-reduced-motion.
+  const deckInView = useInView(deckRef, { amount: 0.45 });
+  useEffect(() => {
+    if (!isMobile || !deckInView) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const t = setInterval(() => setMobileTarget((v) => (v + 1) % count), 3400);
+    return () => clearInterval(t);
+  }, [isMobile, deckInView, count, mobileTarget]);
+
+  const advance = () => {
+    if (isMobile) setMobileTarget((v) => (v + 1) % count);
+  };
+
+  const idx = isMobile ? mobileIdx : scrollIdx;
+  const barWidth = useTransform(idx, [0, count - 1], ["0%", "100%"]);
 
   // índice activo redondeado (solo re-renderiza al cambiar de tarjeta)
   const [active, setActive] = useState(0);
@@ -159,10 +204,23 @@ export default function EsteticaClinica({
           padding: "clamp(40px,6vw,72px) clamp(24px,5vw,48px)" }}
           className="estetica-grid">
 
-          {/* IZQUIERDA — mazo de casos reales que se despegan con el scroll */}
+          {/* IZQUIERDA — mazo de casos reales (scroll en desktop; autoplay/tap en móvil) */}
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 18 }}>
-            <div style={{ position: "relative", width: "min(100%, 440px, calc((100vh - 12rem) * 4 / 5))",
-              aspectRatio: "4 / 5" }}>
+            <div
+              ref={deckRef}
+              role={isMobile ? "button" : undefined}
+              tabIndex={isMobile ? 0 : undefined}
+              aria-label={isMobile ? "Ver el siguiente caso" : undefined}
+              onClick={advance}
+              onKeyDown={(e) => {
+                if (isMobile && (e.key === "Enter" || e.key === " ")) {
+                  e.preventDefault();
+                  advance();
+                }
+              }}
+              style={{ position: "relative", width: "min(100%, 440px, calc((100vh - 12rem) * 4 / 5))",
+                aspectRatio: "4 / 5", cursor: isMobile ? "pointer" : undefined,
+                WebkitTapHighlightColor: "transparent", touchAction: "manipulation" }}>
               {CASES.map((item, i) => (
                 <DeckCard key={item.src} item={item} i={i} count={count} idx={idx} />
               ))}
@@ -175,7 +233,7 @@ export default function EsteticaClinica({
                   borderRadius: 2 }} />
               </div>
               <span style={{ fontFamily: sans, fontSize: 12, color: C.muted, letterSpacing: ".06em" }}>
-                Sigue bajando para ver más casos · {String(active + 1).padStart(2, "0")} de {String(count).padStart(2, "0")}
+                {isMobile ? "Toca la tarjeta para ver más casos" : "Sigue bajando para ver más casos"} · {String(active + 1).padStart(2, "0")} de {String(count).padStart(2, "0")}
               </span>
             </div>
           </div>
