@@ -128,7 +128,7 @@ export const TEAM = [
     role: 'Ortodoncista',
     specialty: 'Ortodoncia y Ortopedia Maxilar',
     bio: 'Cirujano Dentista, Magíster en Ortodoncia y Ortopedia Maxilar. Titulada en Odontología General, Universidad Santo Tomás de Aquino, Colombia (2002). Especialidad en Ortodoncia y Ortopedia Maxilar, Universidad Militar de Colombia (2010); títulos validados en el Ministerio de Salud de Chile (2014). Se desempeña en ortodoncia metálica, ortopedia para niños y ortodoncia invisible (SPARK, INVISALIGN).',
-    image: 'https://nicoleloeff.cl/wp-content/uploads/2020/07/Lizbeth-Moreno-749x1024.jpg',
+    image: '/images/team/moreno.jpg',
   },
   {
     name: 'Dra. María del Pilar Román San Pedro',
