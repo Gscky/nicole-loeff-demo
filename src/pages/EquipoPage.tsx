@@ -72,14 +72,17 @@ export function EquipoPage() {
                       <p className="font-body text-sm sm:text-base text-gray-600 leading-relaxed mb-6 sm:mb-8">
                         {member.bio}
                       </p>
-                      <a
-                        href={CLINIC.whatsappLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-full bg-copper-400 px-6 sm:px-8 py-2.5 sm:py-3 font-body text-sm font-semibold text-white transition-all duration-300 hover:bg-copper-500 hover:shadow-lg"
-                      >
-                        Agendar con {member.name.split(' ')[0]} {member.name.split(' ')[1]}
-                      </a>
+                      {/* Las asistentes no atienden pacientes → sin botón de agendar */}
+                      {member.role !== 'Asistente' && (
+                        <a
+                          href={CLINIC.whatsappLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 rounded-full bg-copper-400 px-6 sm:px-8 py-2.5 sm:py-3 font-body text-sm font-semibold text-white transition-all duration-300 hover:bg-copper-500 hover:shadow-lg"
+                        >
+                          Agendar con {member.name.split(' ')[0]} {member.name.split(' ')[1]}
+                        </a>
+                      )}
                     </div>
                   </div>
                 </ScrollReveal>
