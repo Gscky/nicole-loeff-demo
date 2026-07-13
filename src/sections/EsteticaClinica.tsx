@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   motion,
-  useInView,
   useScroll,
   useSpring,
   useTransform,
@@ -27,17 +26,18 @@ const sans = "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif";
   SECCIÓN "ESTÉTICA CLÍNICA DENTAL" — fondo blanco, animación scrubbeada al scroll.
 
   MAZO DE TARJETAS (deck): fotos REALES de casos de estética apiladas estilo
-  polaroid. La tarjeta frontal se "despega" (sale con rotación hacia la
-  izquierda) y la siguiente toma su lugar, vía framer-motion: sin re-renders
-  por frame, los MotionValues actualizan los transforms directamente.
+  polaroid. Al scrollear, la tarjeta frontal se "despega" (sale con rotación
+  hacia la izquierda) y la siguiente toma su lugar, vía framer-motion
+  (useScroll + useSpring): sin re-renders por frame, los MotionValues
+  actualizan los transforms directamente.
 
-  Quién conduce el mazo depende del layout:
-  - DESKTOP (≥1024): sticky de 100vh dentro de una sección de
-    scrollLength·100vh; el despegue va amarrado al scroll (useScroll+useSpring).
-  - MÓVIL/TABLET (<1024): no hay pin (el contenido fluye), así que amarrarlo
-    al scroll dejaba las tarjetas animando cuando ya habían salido del
-    viewport (desincronizado). Acá el mazo avanza SOLO cuando está a la vista
-    (autoplay con useInView) y también al tocarlo; el spring anima el cambio.
+  Layout según pantalla (mismo scrub por scroll en ambos):
+  - DESKTOP (≥1024): 2 columnas (mazo | texto) pineadas 100vh dentro de una
+    sección de scrollLength·100vh.
+  - MÓVIL/TABLET (<1024): el texto fluye primero y luego SOLO el mazo queda
+    pineado (sticky 100svh) en su propio tramo de scroll. Antes el mazo iba
+    amarrado al scroll sin pin y las tarjetas se animaban cuando ya habían
+    salido del viewport (desincronizado); con el pin quedan siempre a la vista.
 */
 const CASES = [
   { src: "/images/cases/caso-9.jpeg", title: "Rehabilitación Completa" },
@@ -52,7 +52,7 @@ const CASES = [
    para no repetir las mismas fotos dentro de la misma página. */
 export const ESTETICA_CASE_SRCS: string[] = CASES.map((c) => c.src);
 
-/* Breakpoint móvil/tablet — debe calzar con el @media del <style> al final. */
+/* Breakpoint móvil/tablet — mismo corte que lg de Tailwind. */
 const MOBILE_MQ = "(max-width: 1023.98px)";
 
 /* Una tarjeta del mazo. `idx` = posición continua del scroll (0..count-1);
@@ -123,16 +123,15 @@ function DeckCard({
 }
 
 export default function EsteticaClinica({
-  // alto total de la sección como múltiplo del viewport (mayor = scrub más lento)
+  // alto del tramo de scroll como múltiplo del viewport (mayor = scrub más lento)
   scrollLength = 2.5,
 }: {
   scrollLength?: number;
 }) {
-  const sectionRef = useRef<HTMLElement>(null);
-  const deckRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null); // desktop: sección completa pineada
+  const trackRef = useRef<HTMLDivElement>(null); // móvil: tramo de scroll solo del mazo
   const count = CASES.length;
 
-  // <1024 (mismo breakpoint del <style> de abajo): sin pin → mazo autónomo
   const [isMobile, setIsMobile] = useState(
     () => window.matchMedia(MOBILE_MQ).matches
   );
@@ -143,37 +142,21 @@ export default function EsteticaClinica({
     return () => mq.removeEventListener("change", onChange);
   }, []);
 
-  // DESKTOP: progreso de scroll de la sección completa → posición en el mazo
-  const { scrollYProgress } = useScroll({
+  // progreso de scroll → posición continua en el mazo (cada layout usa su tramo)
+  const desktopScroll = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
   });
-  const smooth = useSpring(scrollYProgress, { stiffness: 90, damping: 22, mass: 0.6 });
-  const scrollIdx = useTransform(smooth, [0, 1], [0, count - 1]);
-
-  // MÓVIL/TABLET: índice objetivo (autoplay + tap) animado con spring
-  const [mobileTarget, setMobileTarget] = useState(0);
-  const mobileIdx = useSpring(0, { stiffness: 130, damping: 21 });
-  useEffect(() => {
-    mobileIdx.set(mobileTarget);
-  }, [mobileTarget, mobileIdx]);
-
-  // autoplay solo con el mazo a la vista; se reinicia tras cada avance (tap
-  // incluido) para mantener cadencia pareja. Respeta prefers-reduced-motion.
-  const deckInView = useInView(deckRef, { amount: 0.45 });
-  useEffect(() => {
-    if (!isMobile || !deckInView) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const t = setInterval(() => setMobileTarget((v) => (v + 1) % count), 3400);
-    return () => clearInterval(t);
-  }, [isMobile, deckInView, count, mobileTarget]);
-
-  const advance = () => {
-    if (isMobile) setMobileTarget((v) => (v + 1) % count);
-  };
-
-  const idx = isMobile ? mobileIdx : scrollIdx;
-  const barWidth = useTransform(idx, [0, count - 1], ["0%", "100%"]);
+  const mobileScroll = useScroll({
+    target: trackRef,
+    offset: ["start start", "end end"],
+  });
+  const progress = isMobile
+    ? mobileScroll.scrollYProgress
+    : desktopScroll.scrollYProgress;
+  const smooth = useSpring(progress, { stiffness: 90, damping: 22, mass: 0.6 });
+  const idx = useTransform(smooth, [0, 1], [0, count - 1]);
+  const barWidth = useTransform(smooth, [0, 1], ["0%", "100%"]);
 
   // índice activo redondeado (solo re-renderiza al cambiar de tarjeta)
   const [active, setActive] = useState(0);
@@ -189,6 +172,101 @@ export default function EsteticaClinica({
   // Blanqueamiento primero y destacado (pedido de Nicole: "súper a la vista")
   const chips = ["Blanqueamiento dental", "Diseño de sonrisa", "Carillas estéticas", "Alineadores invisibles"];
 
+  /* ---- Bloques compartidos entre ambos layouts ---- */
+
+  const deckEl = (
+    <div style={{ position: "relative",
+      width: "min(100%, 440px, calc((100svh - 12rem) * 4 / 5))",
+      aspectRatio: "4 / 5" }}>
+      {CASES.map((item, i) => (
+        <DeckCard key={item.src} item={item} i={i} count={count} idx={idx} />
+      ))}
+    </div>
+  );
+
+  const progressEl = (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+      <div style={{ width: 140, height: 3, background: C.line, borderRadius: 2,
+        overflow: "hidden" }}>
+        <motion.div style={{ width: barWidth, height: "100%", background: C.terra,
+          borderRadius: 2 }} />
+      </div>
+      <span style={{ fontFamily: sans, fontSize: 12, color: C.muted, letterSpacing: ".06em" }}>
+        Sigue bajando para ver más casos · {String(active + 1).padStart(2, "0")} de {String(count).padStart(2, "0")}
+      </span>
+    </div>
+  );
+
+  const textCol = (
+    <div style={{ position: "relative", zIndex: 2 }}>
+      <span style={eyebrow}>Servicio boutique · Especialidad de la Dra. Loeff</span>
+      <h2 style={{ fontFamily: serif, fontSize: "clamp(32px,4.4vw,52px)", lineHeight: 1.06,
+        color: C.ink, margin: "14px 0 0", fontWeight: 600 }}>
+        Estética<br />Clínica Dental
+      </h2>
+      <div style={{ width: 46, height: 3, background: C.terra, borderRadius: 2, margin: "20px 0 0" }} />
+
+      <p style={{ fontFamily: sans, fontSize: 16.5, lineHeight: 1.65, color: C.muted, margin: "24px 0 0" }}>
+        Diseñamos sonrisas con un enfoque artístico y personalizado. Cada tratamiento estético
+        se planifica milimétricamente para lograr resultados naturales, armónicos y duraderos.
+      </p>
+      <p style={{ fontFamily: sans, fontSize: 16.5, lineHeight: 1.65, color: C.muted, margin: "16px 0 0" }}>
+        Tratamientos de estética dental de alta tecnología realizados por la Dra. Nicole Loeff:
+        desde blanqueamiento profesional hasta diseño de sonrisa con carillas, con la atención
+        cercana y boutique que distingue a la clínica.
+      </p>
+
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 28 }}>
+        {chips.map((c, i) => (
+          <span key={c} style={{ fontFamily: sans, fontSize: 13.5, fontWeight: i === 0 ? 700 : 500,
+            color: i === 0 ? C.white : C.ink,
+            background: i === 0 ? C.terra : C.chipBg,
+            border: "1px solid " + (i === 0 ? C.terra : C.line), padding: "8px 15px",
+            borderRadius: 999 }}>{c}</span>
+        ))}
+      </div>
+
+      <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 16, marginTop: 32 }}>
+        <Link to="/casos" style={{ position: "relative", zIndex: 3, display: "inline-flex",
+          alignItems: "center", gap: 8, fontFamily: sans, fontSize: 15.5, fontWeight: 600,
+          color: C.white, background: C.terra, padding: "15px 30px", borderRadius: 999,
+          textDecoration: "none",
+          boxShadow: "0 10px 26px -12px rgba(201,126,62,.7)" }}>
+          Algunos de nuestros casos
+        </Link>
+        <a href="#contacto" style={{ position: "relative", zIndex: 3, display: "inline-flex",
+          alignItems: "center", gap: 8, fontFamily: sans, fontSize: 15.5, fontWeight: 600,
+          color: C.terra, background: "transparent", border: "1.5px solid " + C.terra,
+          padding: "13.5px 28px", borderRadius: 999, textDecoration: "none" }}>
+          Agendar evaluación estética →
+        </a>
+      </div>
+    </div>
+  );
+
+  /* ---- MÓVIL/TABLET: texto en flujo normal + mazo pineado en su tramo ---- */
+  if (isMobile) {
+    return (
+      <section ref={sectionRef} className="estetica-section"
+        style={{ background: C.white, width: "100%", position: "relative" }}>
+        <div style={{ maxWidth: 640, margin: "0 auto",
+          padding: "clamp(40px,6vw,72px) 24px 8px" }}>
+          {textCol}
+        </div>
+        {/* tramo de scroll: el mazo queda fijo a la vista mientras se scrubbean los casos */}
+        <div ref={trackRef} style={{ height: `${scrollLength * 100}vh`, position: "relative" }}>
+          <div style={{ position: "sticky", top: 0, height: "100svh", display: "flex",
+            flexDirection: "column", alignItems: "center", justifyContent: "center",
+            gap: 18, padding: "0 24px", background: C.white }}>
+            {deckEl}
+            {progressEl}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  /* ---- DESKTOP: sticky 100vh, 2 columnas (mazo | texto) ---- */
   return (
     <section
       ref={sectionRef}
@@ -204,99 +282,16 @@ export default function EsteticaClinica({
           padding: "clamp(40px,6vw,72px) clamp(24px,5vw,48px)" }}
           className="estetica-grid">
 
-          {/* IZQUIERDA — mazo de casos reales (scroll en desktop; autoplay/tap en móvil) */}
+          {/* IZQUIERDA — mazo de casos reales que se despegan con el scroll */}
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 18 }}>
-            <div
-              ref={deckRef}
-              role={isMobile ? "button" : undefined}
-              tabIndex={isMobile ? 0 : undefined}
-              aria-label={isMobile ? "Ver el siguiente caso" : undefined}
-              onClick={advance}
-              onKeyDown={(e) => {
-                if (isMobile && (e.key === "Enter" || e.key === " ")) {
-                  e.preventDefault();
-                  advance();
-                }
-              }}
-              style={{ position: "relative", width: "min(100%, 440px, calc((100vh - 12rem) * 4 / 5))",
-                aspectRatio: "4 / 5", cursor: isMobile ? "pointer" : undefined,
-                WebkitTapHighlightColor: "transparent", touchAction: "manipulation" }}>
-              {CASES.map((item, i) => (
-                <DeckCard key={item.src} item={item} i={i} count={count} idx={idx} />
-              ))}
-            </div>
-            {/* barra de progreso del mazo + hint */}
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
-              <div style={{ width: 140, height: 3, background: C.line, borderRadius: 2,
-                overflow: "hidden" }}>
-                <motion.div style={{ width: barWidth, height: "100%", background: C.terra,
-                  borderRadius: 2 }} />
-              </div>
-              <span style={{ fontFamily: sans, fontSize: 12, color: C.muted, letterSpacing: ".06em" }}>
-                {isMobile ? "Toca la tarjeta para ver más casos" : "Sigue bajando para ver más casos"} · {String(active + 1).padStart(2, "0")} de {String(count).padStart(2, "0")}
-              </span>
-            </div>
+            {deckEl}
+            {progressEl}
           </div>
 
           {/* DERECHA — descripción */}
-          <div style={{ position: "relative", zIndex: 2 }}>
-            <span style={eyebrow}>Servicio boutique · Especialidad de la Dra. Loeff</span>
-            <h2 style={{ fontFamily: serif, fontSize: "clamp(32px,4.4vw,52px)", lineHeight: 1.06,
-              color: C.ink, margin: "14px 0 0", fontWeight: 600 }}>
-              Estética<br />Clínica Dental
-            </h2>
-            <div style={{ width: 46, height: 3, background: C.terra, borderRadius: 2, margin: "20px 0 0" }} />
-
-            <p style={{ fontFamily: sans, fontSize: 16.5, lineHeight: 1.65, color: C.muted, margin: "24px 0 0" }}>
-              Diseñamos sonrisas con un enfoque artístico y personalizado. Cada tratamiento estético
-              se planifica milimétricamente para lograr resultados naturales, armónicos y duraderos.
-            </p>
-            <p style={{ fontFamily: sans, fontSize: 16.5, lineHeight: 1.65, color: C.muted, margin: "16px 0 0" }}>
-              Tratamientos de estética dental de alta tecnología realizados por la Dra. Nicole Loeff:
-              desde blanqueamiento profesional hasta diseño de sonrisa con carillas, con la atención
-              cercana y boutique que distingue a la clínica.
-            </p>
-
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 28 }}>
-              {chips.map((c, i) => (
-                <span key={c} style={{ fontFamily: sans, fontSize: 13.5, fontWeight: i === 0 ? 700 : 500,
-                  color: i === 0 ? C.white : C.ink,
-                  background: i === 0 ? C.terra : C.chipBg,
-                  border: "1px solid " + (i === 0 ? C.terra : C.line), padding: "8px 15px",
-                  borderRadius: 999 }}>{c}</span>
-              ))}
-            </div>
-
-            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 16, marginTop: 32 }}>
-              <Link to="/casos" style={{ position: "relative", zIndex: 3, display: "inline-flex",
-                alignItems: "center", gap: 8, fontFamily: sans, fontSize: 15.5, fontWeight: 600,
-                color: C.white, background: C.terra, padding: "15px 30px", borderRadius: 999,
-                textDecoration: "none",
-                boxShadow: "0 10px 26px -12px rgba(201,126,62,.7)" }}>
-                Algunos de nuestros casos
-              </Link>
-              <a href="#contacto" style={{ position: "relative", zIndex: 3, display: "inline-flex",
-                alignItems: "center", gap: 8, fontFamily: sans, fontSize: 15.5, fontWeight: 600,
-                color: C.terra, background: "transparent", border: "1.5px solid " + C.terra,
-                padding: "13.5px 28px", borderRadius: 999, textDecoration: "none" }}>
-                Agendar evaluación estética →
-              </a>
-            </div>
-          </div>
+          {textCol}
         </div>
       </div>
-
-      <style>{`
-        /* Breakpoint unificado a 1024 (lg de Tailwind): MOBILE+TABLET (≤1023.98) el
-           contenido fluye (sin pin de 100vh) para que NADA se recorte; el mazo sigue
-           scrubbeando con el scroll (useScroll cubre la sección completa). Desktop
-           (≥1024) mantiene el sticky 100vh y el layout de 2 columnas. */
-        @media (max-width: 1023.98px){
-          .estetica-section{ height:auto !important; }
-          .estetica-sticky{ position:static !important; height:auto !important; }
-          .estetica-grid{ grid-template-columns:1fr !important; }
-        }
-      `}</style>
     </section>
   );
 }
