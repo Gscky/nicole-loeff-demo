@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
 import { CLINIC } from '../lib/constants';
@@ -15,15 +15,40 @@ const STATS = [
 export function Hero() {
   // prefers-reduced-motion: mostramos el poster estático en vez del video
   // y neutralizamos las animaciones de entrada.
-  const [reduceMotion, setReduceMotion] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(
+    () => window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  );
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setReduceMotion(mq.matches);
     const onChange = (e: MediaQueryListEvent) => setReduceMotion(e.matches);
     mq.addEventListener('change', onChange);
     return () => mq.removeEventListener('change', onChange);
   }, []);
+
+  // Autoplay en móvil: los navegadores solo auto-reproducen videos SILENCIADOS,
+  // pero React no siempre escribe el atributo `muted` en el HTML (bug conocido),
+  // y iOS además bloquea autoplay en ahorro de batería/datos. Silenciamos
+  // imperativamente y reintentamos reproducir al primer toque y al volver a la pestaña.
+  const videoRef = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = true;
+    v.defaultMuted = true;
+    const tryPlay = () => {
+      if (v.paused) v.play().catch(() => {});
+    };
+    tryPlay();
+    v.addEventListener('canplay', tryPlay); // reintenta cuando el video ya tiene datos
+    window.addEventListener('touchstart', tryPlay, { passive: true });
+    document.addEventListener('visibilitychange', tryPlay);
+    return () => {
+      v.removeEventListener('canplay', tryPlay);
+      window.removeEventListener('touchstart', tryPlay);
+      document.removeEventListener('visibilitychange', tryPlay);
+    };
+  }, [reduceMotion]);
 
   // Entrada suave: si hay reduce-motion, sin desplazamiento.
   const fadeUp = (delay: number) =>
@@ -49,12 +74,13 @@ export function Hero() {
         />
       ) : (
         <video
+          ref={videoRef}
           className="absolute inset-0 h-full w-full object-cover"
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           poster={HERO_POSTER}
           aria-hidden
         >
