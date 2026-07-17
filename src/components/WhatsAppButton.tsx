@@ -23,6 +23,9 @@ export function WhatsAppButton() {
         aria-label="Ver el Instagram de la clínica"
       >
         <Instagram size={28} strokeWidth={2} />
+
+        {/* Pulse ring — mismo efecto que el botón de WhatsApp */}
+        <span className="absolute inset-0 rounded-full bg-[#d6249f] animate-pulse-ring" />
       </motion.a>
 
       {/* WhatsApp — agenda tu hora */}

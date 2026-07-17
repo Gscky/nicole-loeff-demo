@@ -169,9 +169,6 @@ export default function EsteticaClinica({
     fontFamily: sans, fontSize: 12, fontWeight: 700, letterSpacing: ".2em",
     textTransform: "uppercase", color: C.terra,
   };
-  // Blanqueamiento primero y destacado (pedido de Nicole: "súper a la vista")
-  const chips = ["Blanqueamiento dental", "Diseño de sonrisa", "Carillas estéticas", "Alineadores invisibles"];
-
   /* ---- Bloques compartidos entre ambos layouts ---- */
 
   const deckEl = (
@@ -215,16 +212,6 @@ export default function EsteticaClinica({
         desde blanqueamiento profesional hasta diseño de sonrisa con carillas, con la atención
         cercana y boutique que distingue a la clínica.
       </p>
-
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 28 }}>
-        {chips.map((c, i) => (
-          <span key={c} style={{ fontFamily: sans, fontSize: 13.5, fontWeight: i === 0 ? 700 : 500,
-            color: i === 0 ? C.white : C.ink,
-            background: i === 0 ? C.terra : C.chipBg,
-            border: "1px solid " + (i === 0 ? C.terra : C.line), padding: "8px 15px",
-            borderRadius: 999 }}>{c}</span>
-        ))}
-      </div>
 
       <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 16, marginTop: 32 }}>
         <Link to="/casos" style={{ position: "relative", zIndex: 3, display: "inline-flex",

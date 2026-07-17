@@ -9,6 +9,7 @@ import { Testimonials } from '../sections/Testimonials';
 import { Technology } from '../sections/Technology';
 import { CtaContact } from '../sections/CtaContact';
 import { Location } from '../sections/Location';
+import { VideoSection } from '../sections/VideoSection';
 
 export function HomePage() {
   return (
@@ -24,6 +25,7 @@ export function HomePage() {
       <Technology />
       <CtaContact />
       <Location />
+      <VideoSection />
     </>
   );
 }
