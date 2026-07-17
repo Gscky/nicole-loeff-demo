@@ -1,10 +1,29 @@
 import { motion } from 'framer-motion';
-import { Instagram } from 'lucide-react';
+import { Instagram, Facebook } from 'lucide-react';
 import { CLINIC } from '../lib/constants';
 
 export function WhatsAppButton() {
   return (
     <>
+      {/* Facebook — abre la página de la clínica */}
+      <motion.a
+        href={CLINIC.facebook}
+        target="_blank"
+        rel="noopener noreferrer"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 2.3, type: 'spring', stiffness: 200 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        className="fixed bottom-[10.25rem] right-5 sm:bottom-[11.75rem] sm:right-6 z-50 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#1877F2] text-white shadow-[0_4px_20px_rgba(24,119,242,0.4)] hover:shadow-[0_6px_30px_rgba(24,119,242,0.5)] transition-shadow"
+        aria-label="Ver el Facebook de la clínica"
+      >
+        <Facebook size={28} fill="currentColor" strokeWidth={0} />
+
+        {/* Pulse ring — mismo efecto que el botón de WhatsApp */}
+        <span className="absolute inset-0 rounded-full bg-[#1877F2] animate-pulse-ring" />
+      </motion.a>
+
       {/* Instagram — abre el perfil de la clínica de inmediato */}
       <motion.a
         href={CLINIC.instagram}
