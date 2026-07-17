@@ -80,7 +80,7 @@ export function EquipoPage() {
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-2 rounded-full bg-copper-400 px-6 sm:px-8 py-2.5 sm:py-3 font-body text-sm font-semibold text-white transition-all duration-300 hover:bg-copper-500 hover:shadow-lg"
                         >
-                          Agendar con {member.name.split(' ')[0]} {member.name.split(' ')[1]}
+                          Agendar con {member.shortName}
                         </a>
                       )}
                     </div>

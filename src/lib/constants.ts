@@ -118,13 +118,15 @@ export const GOOGLE_RATING = 5.0;
 export const TEAM = [
   {
     name: 'Dra. Nicole Loeff Mirelmann',
+    shortName: 'Dra. Nicole',
     role: 'Directora Clínica',
-    specialty: 'Periodoncia e Implantología',
-    bio: 'Cirujana Dentista, Universidad de Chile (2001), titulada con distinción máxima. Bachiller en Ciencias Naturales Exactas, Universidad de Chile (1996). Magíster en Periodoncia e Implantología, Universidad Andrés Bello (2005), titulada con distinción máxima. Especialista en Estética Dental.',
+    specialty: 'Periodoncia, Implantología y Estética Dental Avanzada',
+    bio: 'Cirujana Dentista, Universidad de Chile, titulada con distinción máxima el año 2001. Magíster en Periodoncia e Implantología, Universidad Andrés Bello, titulada con distinción máxima el año 2007. Especialista en Estética Dental.',
     image: '/images/team/nicole.jpg',
   },
   {
     name: 'Dra. Karina Moreno Reyes',
+    shortName: 'Dra. Karina',
     role: 'Ortodoncista',
     specialty: 'Ortodoncia y Ortopedia Maxilar',
     bio: 'Cirujano Dentista, Magíster en Ortodoncia y Ortopedia Maxilar. Titulada en Odontología General, Universidad Santo Tomás de Aquino, Colombia (2002). Especialidad en Ortodoncia y Ortopedia Maxilar, Universidad Militar de Colombia (2010); títulos validados en el Ministerio de Salud de Chile (2014). Se desempeña en ortodoncia metálica, ortopedia para niños y ortodoncia invisible (SPARK, INVISALIGN).',
@@ -132,6 +134,7 @@ export const TEAM = [
   },
   {
     name: 'Dra. María del Pilar Román San Pedro',
+    shortName: 'Dra. Pilar',
     role: 'Endodoncista',
     specialty: 'Endodoncia',
     bio: 'Cirujano Dentista, Universidad de Chile (1989). Especialista en Endodoncia, Universidad Mayor (2010). 18 años en el Servicio de Sanidad Dental de Carabineros de Chile, acogida a retiro con el grado de Coronel (2021). Desde 2010 ejerce en el Hospital Luis Calvo Mackenna. Miembro de la Sociedad de Endodoncia de Chile.',
@@ -139,6 +142,7 @@ export const TEAM = [
   },
   {
     name: 'Dr. Álvaro Martínez Conget',
+    shortName: 'Dr. Álvaro',
     role: 'Implantología y Rehabilitación Oral',
     specialty: 'Cirugía de Implantes y Rehabilitación',
     bio: 'Cirujano Dentista, Universidad de Chile (1999). Perfeccionamiento en Cirugía Oral en el HUAP, ex Posta Central (2001), y en Cirugía de Implantes y Rehabilitación, Universidad Finis Terrae (2004). Más de 27 años de atención odontológica y 22 años de experiencia en implantología y cirugía bucal, asegurando el alto estándar de atención que caracteriza a la clínica de la Dra. Nicole Loeff.',
@@ -146,6 +150,7 @@ export const TEAM = [
   },
   {
     name: 'Silvia Loyola',
+    shortName: 'Silvia',
     role: 'Asistente',
     specialty: 'Asistente',
     bio: '',
@@ -153,6 +158,7 @@ export const TEAM = [
   },
   {
     name: 'Catalina Pino',
+    shortName: 'Catalina',
     role: 'Asistente',
     specialty: 'Asistente',
     bio: '',
@@ -160,6 +166,7 @@ export const TEAM = [
   },
   {
     name: 'Javiera González',
+    shortName: 'Javiera',
     role: 'Asistente',
     specialty: 'Asistente',
     bio: '',

@@ -47,7 +47,7 @@ export function Fundadora() {
                 Dra. Nicole Loeff
               </h2>
               <p className="font-display text-lg sm:text-xl italic text-copper-500 mb-6">
-                Cirujana Dentista · Experta en Estética Dental
+                Cirujana Dentista, Magíster en Periodoncia e Implantología, Especialista en Estética Dental
               </p>
 
               <p className="font-body text-sm sm:text-base text-gray-600 leading-relaxed mb-8">
@@ -63,9 +63,8 @@ export function Fundadora() {
                     <GraduationCap size={20} className="text-emerald-500" />
                   </span>
                   <p className="font-body text-sm sm:text-base text-gray-600 leading-relaxed">
-                    <span className="font-semibold text-gray-dark">Cirujana Dentista, Universidad de Chile (2001)</span>, titulada
-                    con distinción máxima. Bachiller en Ciencias Naturales Exactas de la misma
-                    casa de estudios (1996).
+                    <span className="font-semibold text-gray-dark">Cirujana Dentista, Universidad de Chile</span>, titulada
+                    con distinción máxima el año 2001.
                   </p>
                 </li>
                 <li className="flex items-start gap-4">
@@ -74,7 +73,7 @@ export function Fundadora() {
                   </span>
                   <p className="font-body text-sm sm:text-base text-gray-600 leading-relaxed">
                     <span className="font-semibold text-gray-dark">Magíster en Periodoncia e Implantología</span>, Universidad
-                    Andrés Bello (2005), titulada con distinción máxima.
+                    Andrés Bello, titulada con distinción máxima el año 2007.
                   </p>
                 </li>
                 <li className="flex items-start gap-4">
