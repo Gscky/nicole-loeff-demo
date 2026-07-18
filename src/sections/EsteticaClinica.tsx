@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   motion,
-  AnimatePresence,
   useScroll,
   useSpring,
   useTransform,
@@ -159,9 +158,6 @@ export default function EsteticaClinica({
   const idx = useTransform(smooth, [0, 1], [0, count - 1]);
   const barWidth = useTransform(smooth, [0, 1], ["0%", "100%"]);
 
-  // "Saber más": despliega la descripción completa de la especialidad (texto de Nicole)
-  const [showMore, setShowMore] = useState(false);
-
   // índice activo redondeado (solo re-renderiza al cambiar de tarjeta)
   const [active, setActive] = useState(0);
   useMotionValueEvent(idx, "change", (v) => {
@@ -216,53 +212,6 @@ export default function EsteticaClinica({
         desde blanqueamiento profesional hasta diseño de sonrisa con carillas, con la atención
         cercana y boutique que distingue a la clínica.
       </p>
-
-      {/* Saber más: descripción completa de la especialidad (texto de Nicole) */}
-      <AnimatePresence initial={false}>
-        {showMore && (
-          <motion.div
-            key="estetica-more"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.35, ease: "easeInOut" }}
-            style={{ overflow: "hidden" }}
-          >
-            <p style={{ fontFamily: sans, fontSize: 16.5, lineHeight: 1.65, color: C.muted, margin: "16px 0 0" }}>
-              La Estética Dental es la especialidad de la odontología que busca realzar la belleza
-              natural de tu sonrisa, logrando resultados armónicos, saludables y acordes a cada persona.
-            </p>
-            <p style={{ fontFamily: sans, fontSize: 16.5, lineHeight: 1.65, color: C.muted, margin: "16px 0 0" }}>
-              A través de tratamientos como el blanqueamiento dental, carillas y restauraciones
-              estéticas, es posible mejorar el color, la forma y la apariencia de los dientes,
-              devolviendo confianza para sonreír con naturalidad, siempre cuidando la salud y la
-              función de tu sonrisa.
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <button
-        type="button"
-        onClick={() => setShowMore((v) => !v)}
-        aria-expanded={showMore}
-        style={{ marginTop: 16, background: "none", border: "none", padding: 0, cursor: "pointer",
-          fontFamily: sans, fontSize: 14.5, fontWeight: 600, color: C.terra,
-          display: "inline-flex", alignItems: "center", gap: 6 }}
-      >
-        {showMore ? "Ver menos" : "Saber más"}
-        <span style={{ display: "inline-block", transition: "transform .3s",
-          transform: showMore ? "rotate(180deg)" : "none" }}>↓</span>
-      </button>
-
-      {/* Chips (redacción de Nicole) */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 24 }}>
-        {["Diseño de sonrisa", "Carillas estéticas naturales", "Cierres de espacios", "Blanqueamiento dental"].map((c) => (
-          <span key={c} style={{ fontFamily: sans, fontSize: 13.5, fontWeight: 500,
-            color: C.ink, background: C.chipBg, border: "1px solid " + C.line,
-            padding: "8px 15px", borderRadius: 999 }}>{c}</span>
-        ))}
-      </div>
 
       <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 16, marginTop: 32 }}>
         <Link to="/casos" style={{ position: "relative", zIndex: 3, display: "inline-flex",

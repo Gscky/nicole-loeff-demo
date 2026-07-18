@@ -39,7 +39,7 @@ export const SPECIALTIES = [
   {
     id: 'estetica',
     title: 'Estética Dental',
-    description: 'Blanqueamiento profesional, carillas estéticas de resina y diseño de sonrisa. Procedimientos seguros y rápidos para una sonrisa luminosa y natural.',
+    description: 'La Estética Dental es la especialidad de la odontología que busca realzar la belleza natural de tu sonrisa, logrando resultados armónicos, saludables y acordes a cada persona. A través de tratamientos como el blanqueamiento dental, carillas y restauraciones estéticas, es posible mejorar el color, la forma y la apariencia de los dientes, devolviendo confianza para sonreír con naturalidad, siempre cuidando la salud y la función de tu sonrisa.',
     icon: 'sparkle',
   },
   {
