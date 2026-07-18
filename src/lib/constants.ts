@@ -220,14 +220,14 @@ export const BEFORE_AFTER_CASES = [
   },
   {
     id: 7,
-    title: 'Coronas de Porcelana',
-    description: 'Restauración de piezas laterales con coronas de porcelana de alta estética.',
+    title: 'Diseño de Sonrisa con Carillas',
+    description: 'Cierre de espacios y armonización de la sonrisa con carillas estéticas, para un resultado uniforme y natural.',
     image: '/images/cases/caso-7.jpeg',
   },
   {
     id: 8,
-    title: 'Estética Dental de Alto Nivel',
-    description: 'Resinas directas de calidad avanzada, en una sola sesión.',
+    title: 'Cierre de Diastema con Resina',
+    description: 'Cierre del espacio entre los dientes centrales con resina compuesta de alta estética, en una sola sesión.',
     image: '/images/cases/caso-8.jpeg',
   },
   {
