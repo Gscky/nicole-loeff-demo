@@ -40,7 +40,7 @@ const imgOf = (s: Service) => s.image || ph(s.color);
 */
 const DEFAULT_SERVICES: Service[] = [
   { name: "Periodoncia", color: "#6E8E5C", image: "/images/especialidades/periodoncia.jpg", short: "Encías sanas: la base de una boca sana.",
-    full: "Tratamiento de enfermedades de las encías que afectan el soporte de tus dientes. Prevención y control de placa dental para lograr una boca sana con una base sólida." },
+    full: "La Periodoncia es la especialidad de la odontología dedicada a la prevención, diagnóstico y tratamiento de las enfermedades que afectan las encías y los tejidos de soporte de los dientes, como el hueso y el ligamento periodontal. Las enfermedades más frecuentes son la gingivitis, que corresponde a la inflamación de las encías, y la periodontitis, una infección que, si no se trata a tiempo, puede provocar la pérdida del hueso que sostiene los dientes y comprometer su estabilidad. El objetivo de la periodoncia es mantener las encías y los tejidos de soporte sanos, permitiendo conservar los dientes naturales firmes y saludables durante toda la vida." },
   { name: "Estética Dental", color: "#B07A3E", image: "/images/especialidades/estetica-dental.jpg", short: "Diseño de sonrisa, carillas estéticas naturales, cierres de espacios y blanqueamientos dentales.",
     full: "La Estética Dental es la especialidad de la odontología que busca realzar la belleza natural de tu sonrisa, logrando resultados armónicos, saludables y acordes a cada persona. A través de tratamientos como el blanqueamiento dental, carillas y restauraciones estéticas, es posible mejorar el color, la forma y la apariencia de los dientes, devolviendo confianza para sonreír con naturalidad, siempre cuidando la salud y la función de tu sonrisa." },
   { name: "Odontopediatría", color: "#C9925A", image: "/images/especialidades/odontopediatria.jpg", short: "Cuidado dental cercano para niños y bebés.",
@@ -188,7 +188,7 @@ export default function EspecialidadesCarousel({
                     {isCenter && (
                       <>
                         <p style={{ fontFamily: sans, fontSize: 13, color: C.muted, margin: "6px 0 12px",
-                          lineHeight: 1.4, display: "-webkit-box", WebkitLineClamp: 2,
+                          lineHeight: 1.4, display: "-webkit-box", WebkitLineClamp: 3,
                           WebkitBoxOrient: "vertical", overflow: "hidden" }}>{s.short}</p>
                         <button onClick={() => setOpen(true)}
                           style={{ fontFamily: sans, fontSize: 13.5, fontWeight: 600, color: C.white,

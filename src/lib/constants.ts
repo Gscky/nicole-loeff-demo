@@ -33,7 +33,7 @@ export const SPECIALTIES = [
   {
     id: 'periodoncia',
     title: 'Periodoncia',
-    description: 'Tratamiento de enfermedades de las encías que afectan el soporte de tus dientes. Prevención y control de placa dental para lograr una boca sana con una base sólida.',
+    description: 'La Periodoncia es la especialidad de la odontología dedicada a la prevención, diagnóstico y tratamiento de las enfermedades que afectan las encías y los tejidos de soporte de los dientes, como el hueso y el ligamento periodontal. Las enfermedades más frecuentes son la gingivitis, que corresponde a la inflamación de las encías, y la periodontitis, una infección que, si no se trata a tiempo, puede provocar la pérdida del hueso que sostiene los dientes y comprometer su estabilidad. El objetivo de la periodoncia es mantener las encías y los tejidos de soporte sanos, permitiendo conservar los dientes naturales firmes y saludables durante toda la vida.',
     icon: 'shield',
   },
   {
