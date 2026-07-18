@@ -206,17 +206,20 @@ export default function EspecialidadesCarousel({
           {open && (
             <div role="dialog" aria-modal="true" aria-label={cur.name}
               onClick={(e) => { if (e.target === e.currentTarget) setOpen(false); }}
-              style={{ position: compact ? "fixed" : "absolute", inset: 0, zIndex: 40, display: "grid", placeItems: "center",
-                padding: compact ? 16 : 0,
+              style={{ position: "fixed", inset: 0, zIndex: 60, display: "grid", placeItems: "center",
+                padding: 16,
                 background: "rgba(245,243,236,.72)", backdropFilter: "blur(6px)", animation: "espFade .25s ease" }}>
-              <div style={{ width: "min(720px,94%)", background: C.white, borderRadius: 20,
+              <div style={{ width: "min(720px,94%)", maxHeight: "86vh", background: C.white, borderRadius: 20,
                 boxShadow: "0 30px 70px -30px rgba(0,0,0,.5)", border: `1px solid ${C.line}`,
-                display: "grid", gridTemplateColumns: "minmax(0,.9fr) minmax(0,1.1fr)",
-                overflow: compact ? "auto" : "hidden", maxHeight: compact ? "85vh" : undefined,
+                display: "grid", gridTemplateColumns: compact ? "1fr" : "minmax(0,.9fr) minmax(0,1.1fr)",
+                gridTemplateRows: compact ? "auto auto" : "1fr",
+                overflow: compact ? "auto" : "hidden",
                 textAlign: "left", animation: "espPop .3s cubic-bezier(.2,0,.2,1)" }} className="esp-ov">
                 <img src={imgOf(cur)} alt={cur.name}
-                  style={{ width: "100%", height: "100%", objectFit: "cover", minHeight: 240 }} />
-                <div style={{ padding: "28px 28px 30px", position: "relative" }}>
+                  style={{ width: "100%", height: compact ? 220 : "100%", objectFit: "cover",
+                    minHeight: compact ? undefined : 240 }} />
+                <div style={{ padding: "28px 28px 30px", position: "relative",
+                  minHeight: compact ? undefined : 0, overflowY: compact ? "visible" : "auto" }}>
                   <button ref={closeBtnRef} onClick={() => setOpen(false)} aria-label="Cerrar"
                     style={{ position: "absolute", top: 14, right: 14, width: 34, height: 34,
                       borderRadius: "50%", border: `1px solid ${C.line}`, background: C.white,
