@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 
 /* Paleta del sitio Dra. Nicole Loeff */
 const C = {
@@ -19,6 +20,7 @@ type Service = {
   full: string;           // descripción completa (overlay)
   image?: string;         // ruta de foto real; si falta, usa placeholder
   color?: string;         // color del placeholder
+  casesCta?: string;      // si está, el overlay suma un botón con ese texto hacia /casos
 };
 
 /* placeholder mientras no haya foto real: gradiente limpio, SIN texto
@@ -42,7 +44,8 @@ const DEFAULT_SERVICES: Service[] = [
   { name: "Periodoncia", color: "#6E8E5C", image: "/images/especialidades/periodoncia.jpg", short: "Encías sanas: la base de una boca sana.",
     full: "La Periodoncia es la especialidad de la odontología dedicada a la prevención, diagnóstico y tratamiento de las enfermedades que afectan las encías y los tejidos de soporte de los dientes, como el hueso y el ligamento periodontal. Las enfermedades más frecuentes son la gingivitis, que corresponde a la inflamación de las encías, y la periodontitis, una infección que, si no se trata a tiempo, puede provocar la pérdida del hueso que sostiene los dientes y comprometer su estabilidad. El objetivo de la periodoncia es mantener las encías y los tejidos de soporte sanos, permitiendo conservar los dientes naturales firmes y saludables durante toda la vida." },
   { name: "Estética Dental", color: "#B07A3E", image: "/images/especialidades/estetica-dental.jpg", short: "Diseño de sonrisa, carillas estéticas naturales, cierres de espacios y blanqueamientos dentales.",
-    full: "La Estética Dental es la especialidad de la odontología que busca realzar la belleza natural de tu sonrisa, logrando resultados armónicos, saludables y acordes a cada persona. A través de tratamientos como el blanqueamiento dental, carillas y restauraciones estéticas, es posible mejorar el color, la forma y la apariencia de los dientes, devolviendo confianza para sonreír con naturalidad, siempre cuidando la salud y la función de tu sonrisa." },
+    full: "La Estética Dental es la especialidad de la odontología que busca realzar la belleza natural de tu sonrisa, logrando resultados armónicos, saludables y acordes a cada persona. A través de tratamientos como el blanqueamiento dental, carillas y restauraciones estéticas, es posible mejorar el color, la forma y la apariencia de los dientes, devolviendo confianza para sonreír con naturalidad, siempre cuidando la salud y la función de tu sonrisa.",
+    casesCta: "Ver más casos clínicos" },
   { name: "Odontopediatría", color: "#C9925A", image: "/images/especialidades/odontopediatria.jpg", short: "Cuidado dental cercano para niños y bebés.",
     full: "La Odontopediatría es la especialidad de la odontología dedicada al cuidado de la salud bucal de bebés, niños y adolescentes, acompañando cada etapa de su crecimiento. Comprende los controles preventivos, la aplicación de sellantes y flúor, el tratamiento de caries y el manejo de traumatismos dentales, siempre en un ambiente de confianza donde el niño se sienta seguro y tranquilo. El objetivo de la odontopediatría es formar buenos hábitos de higiene desde temprana edad y lograr que los niños crezcan con una sonrisa sana y una relación positiva con la atención dental." },
   { name: "Implantología", color: "#6E8E5C", image: "/images/especialidades/implantologia.jpg", short: "Reemplazo permanente de dientes perdidos con implantes.",
@@ -66,6 +69,7 @@ export default function EspecialidadesCarousel({
   title?: string;
   eyebrow?: string;
 }) {
+  const navigate = useNavigate();
   const [active, setActive] = useState(0);
   const [open, setOpen] = useState(false);
   const [compact, setCompact] = useState(false);
@@ -262,6 +266,9 @@ export default function EspecialidadesCarousel({
                   <h3 style={{ fontFamily: serif, fontSize: 27, color: C.ink, margin: "8px 0 0" }}>{cur.name}</h3>
                   <div style={{ width: 40, height: 3, background: C.terra, borderRadius: 2, margin: "14px 0" }} />
                   <p style={{ fontFamily: sans, fontSize: 15, lineHeight: 1.65, color: C.muted, margin: 0 }}>{cur.full}</p>
+
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center",
+                    marginTop: 22 }}>
                   <a href="#contacto"
                     // con el body congelado el salto de ancla no funciona: cerramos primero
                     // (eso libera el scroll) y recién ahí bajamos a contacto.
@@ -271,9 +278,26 @@ export default function EspecialidadesCarousel({
                       requestAnimationFrame(() =>
                         document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth", block: "start" }));
                     }}
-                    style={{ display: "inline-block", marginTop: 22, fontFamily: sans,
+                    style={{ display: "inline-block", fontFamily: sans,
                     fontSize: 14.5, fontWeight: 600, color: C.white, background: C.terra,
                     padding: "12px 26px", borderRadius: 999, textDecoration: "none" }}>Agendar hora</a>
+
+                  {/* botón secundario opcional hacia la página de casos de éxito */}
+                  {cur.casesCta && (
+                    <a href="/casos"
+                      // primero cerramos (eso descongela el body y restaura el scroll del home)
+                      // y recién en el siguiente frame navegamos, para no llegar a /casos scrolleado.
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setOpen(false);
+                        requestAnimationFrame(() => navigate("/casos"));
+                      }}
+                      style={{ display: "inline-block", fontFamily: sans,
+                        fontSize: 14.5, fontWeight: 600, color: C.terra, background: C.white,
+                        border: `1px solid ${C.terra}`, padding: "11px 24px", borderRadius: 999,
+                        textDecoration: "none" }}>{cur.casesCta}</a>
+                  )}
+                  </div>
                 </div>
               </div>
             </div>

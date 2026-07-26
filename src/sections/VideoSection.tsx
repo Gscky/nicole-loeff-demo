@@ -2,9 +2,9 @@ import { ScrollReveal } from '../components/ScrollReveal';
 import { Play } from 'lucide-react';
 
 /* Sección informativa cerca del footer: video institucional de la clínica
-   + tarjeta que redirige a la entrevista/podcast en YouTube. */
-const YT_ID = 'l9Be8l6QQYM';
-const YT_URL = 'https://youtu.be/l9Be8l6QQYM';
+   + tarjeta que redirige al podcast de la Dra. Nicole Loeff en YouTube. */
+const YT_ID = '2306eBRo5kE';
+const YT_URL = 'https://youtu.be/2306eBRo5kE';
 
 export function VideoSection() {
   return (
@@ -58,12 +58,12 @@ export function VideoSection() {
               href={YT_URL}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Ver la entrevista de la Dra. Nicole Loeff en YouTube"
+              aria-label="Ver el podcast de la Dra. Nicole Loeff en YouTube"
               className="group relative flex h-full min-h-[240px] flex-col justify-end overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/10"
             >
               <img
                 src={`https://img.youtube.com/vi/${YT_ID}/hqdefault.jpg`}
-                alt="Entrevista a la Dra. Nicole Loeff en YouTube"
+                alt="Podcast de la Dra. Nicole Loeff en YouTube"
                 loading="lazy"
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -78,7 +78,7 @@ export function VideoSection() {
 
               <div className="relative z-10 p-6">
                 <p className="font-body text-[11px] uppercase tracking-[0.3em] text-copper-200 mb-2">
-                  Entrevista · YouTube
+                  Podcast · YouTube
                 </p>
                 <p className="font-display text-xl font-semibold leading-snug text-white">
                   Conversación con la Dra. Nicole Loeff
