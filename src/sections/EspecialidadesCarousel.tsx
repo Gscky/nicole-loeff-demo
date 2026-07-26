@@ -44,17 +44,17 @@ const DEFAULT_SERVICES: Service[] = [
   { name: "Estética Dental", color: "#B07A3E", image: "/images/especialidades/estetica-dental.jpg", short: "Diseño de sonrisa, carillas estéticas naturales, cierres de espacios y blanqueamientos dentales.",
     full: "La Estética Dental es la especialidad de la odontología que busca realzar la belleza natural de tu sonrisa, logrando resultados armónicos, saludables y acordes a cada persona. A través de tratamientos como el blanqueamiento dental, carillas y restauraciones estéticas, es posible mejorar el color, la forma y la apariencia de los dientes, devolviendo confianza para sonreír con naturalidad, siempre cuidando la salud y la función de tu sonrisa." },
   { name: "Odontopediatría", color: "#C9925A", image: "/images/especialidades/odontopediatria.jpg", short: "Cuidado dental cercano para niños y bebés.",
-    full: "Cuidado dental especializado para niños y recién nacidos. Diagnóstico, selladores, tratamiento de caries, manejo de traumatismos y educación en higiene oral." },
+    full: "La Odontopediatría es la especialidad de la odontología dedicada al cuidado de la salud bucal de bebés, niños y adolescentes, acompañando cada etapa de su crecimiento. Comprende los controles preventivos, la aplicación de sellantes y flúor, el tratamiento de caries y el manejo de traumatismos dentales, siempre en un ambiente de confianza donde el niño se sienta seguro y tranquilo. El objetivo de la odontopediatría es formar buenos hábitos de higiene desde temprana edad y lograr que los niños crezcan con una sonrisa sana y una relación positiva con la atención dental." },
   { name: "Implantología", color: "#6E8E5C", image: "/images/especialidades/implantologia.jpg", short: "Reemplazo permanente de dientes perdidos con implantes.",
-    full: "Implantes de titanio biocompatibles que reemplazan las raíces naturales de los dientes perdidos, brindando una solución permanente con resultados estéticos superiores." },
+    full: "La Implantología es la especialidad de la odontología dedicada a reemplazar los dientes perdidos mediante implantes dentales: pequeños pilares de titanio biocompatible que se integran al hueso y cumplen la función de la raíz natural del diente. Sobre ellos se instala una corona, un puente o una prótesis, devolviendo la capacidad de masticar, hablar y sonreír con total naturalidad. El objetivo de la implantología es entregar una solución fija y duradera que además preserva el hueso y mantiene la armonía de tu sonrisa en el tiempo." },
   { name: "Oclusión y Trastornos Temporomandibulares", color: "#A6794B", image: "/images/especialidades/bruxismo.jpg", short: "Férulas y cuidado de tu oclusión y articulación.",
-    full: "Diagnóstico y tratamiento del bruxismo y los trastornos de la articulación temporomandibular. Férulas de descarga nocturna y corrección oclusal para proteger tu estructura dental." },
+    full: "La Oclusión y los Trastornos Temporomandibulares corresponden al área de la odontología dedicada a estudiar cómo encajan tus dientes al morder y cómo funciona la articulación que une la mandíbula con el cráneo. Las molestias más frecuentes son el apriete dental o bruxismo, el desgaste de los dientes, los dolores musculares de la cara y el cuello, y los ruidos o la dificultad al abrir la boca. Su tratamiento combina el diagnóstico de la mordida, el uso de férulas de descarga y los ajustes oclusales, con el objetivo de proteger tus dientes, aliviar el dolor y devolver el equilibrio y la comodidad a tu mandíbula." },
   { name: "Rehabilitación Oral", color: "#C97E3E", image: "/images/especialidades/rehabilitacion-oral.jpg", short: "Recuperamos función y estética con prótesis modernas.",
-    full: "Restauramos la función, estética y armonía de tu sonrisa mediante prótesis dentales fijas, removibles y sobre implantes con las técnicas más modernas." },
+    full: "La Rehabilitación Oral es la especialidad de la odontología dedicada a devolver la función, la estética y la armonía de la boca cuando los dientes se han perdido, desgastado o dañado. A través de coronas, puentes, incrustaciones y prótesis fijas, removibles o sobre implantes, se restaura la forma de cada diente y el equilibrio de la mordida, considerando siempre el conjunto de la boca y no una pieza aislada. El objetivo de la rehabilitación oral es que puedas volver a masticar con comodidad y sonreír con seguridad, con un resultado natural y estable en el tiempo." },
   { name: "Endodoncia", color: "#8C6A4A", image: "/images/especialidades/endodoncia.jpg", short: "Tratamiento de conducto que salva tu diente natural.",
-    full: "Tratamiento de conducto radicular que salva dientes naturales eliminando la pulpa infectada. Procedimiento con anestesia local, seguro y con 90% de éxito." },
+    full: "La Endodoncia es la especialidad de la odontología dedicada al tratamiento del interior del diente, donde se encuentra la pulpa dental, el tejido que contiene los nervios y vasos sanguíneos. Cuando una caries profunda, una fractura o un golpe inflaman o infectan la pulpa aparece el dolor, y se hace necesario el tratamiento de conducto, que consiste en retirar el tejido dañado, desinfectar y sellar los conductos del diente. El objetivo de la endodoncia es eliminar el dolor y la infección conservando el diente natural, evitando su extracción y permitiendo restaurarlo para que siga cumpliendo su función." },
   { name: "Ortodoncia", color: "#A6794B", image: "/images/especialidades/ortodoncia.jpg", short: "Alineación y mordida con técnicas fijas o invisibles.",
-    full: "Movimientos suaves y precisos que corrigen la posición dental, mejorando la oclusión y alineación para una sonrisa perfecta. Opciones fijas, removibles y funcionales." },
+    full: "La Ortodoncia es la especialidad de la odontología dedicada a corregir la posición de los dientes y la forma en que encajan al morder, mediante fuerzas suaves y controladas que los llevan de manera gradual a su lugar ideal. Existen distintas alternativas según cada caso, como los brackets fijos, los aparatos removibles y los alineadores transparentes, prácticamente invisibles. El objetivo de la ortodoncia va más allá de lo estético: una buena alineación facilita la higiene, distribuye mejor las fuerzas al masticar y ayuda a mantener sanos los dientes y las encías a lo largo del tiempo." },
 ];
 
 export default function EspecialidadesCarousel({
@@ -102,6 +102,39 @@ export default function EspecialidadesCarousel({
     } else {
       lastFocus.current?.focus?.();
     }
+  }, [open]);
+
+  // El overlay es position:fixed, así que si el fondo sigue scrolleando el panel queda
+  // "pegado" al viewport y se superpone a las secciones siguientes. Con el modal abierto
+  // congelamos el body (position:fixed + top negativo, que también funciona en iOS, donde
+  // overflow:hidden no basta) y al cerrar devolvemos la página a donde estaba.
+  useEffect(() => {
+    if (!open) return;
+    const html = document.documentElement;
+    const body = document.body;
+    const scrollY = window.scrollY;
+    const scrollbar = window.innerWidth - html.clientWidth;
+    const prev = {
+      position: body.style.position, top: body.style.top, left: body.style.left,
+      right: body.style.right, width: body.style.width,
+      paddingRight: body.style.paddingRight, scrollBehavior: html.style.scrollBehavior,
+    };
+    body.classList.add("modal-open"); // esconde los botones flotantes (ver .social-fab en index.css)
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.left = "0";
+    body.style.right = "0";
+    body.style.width = "100%";
+    if (scrollbar > 0) body.style.paddingRight = `${scrollbar}px`; // evita el salto al ocultar la barra
+    return () => {
+      body.classList.remove("modal-open");
+      body.style.position = prev.position; body.style.top = prev.top;
+      body.style.left = prev.left; body.style.right = prev.right;
+      body.style.width = prev.width; body.style.paddingRight = prev.paddingRight;
+      html.style.scrollBehavior = "auto"; // sin esto, scroll-behavior:smooth anima el regreso
+      window.scrollTo(0, scrollY);
+      html.style.scrollBehavior = prev.scrollBehavior;
+    };
   }, [open]);
 
   const offsetOf = (i: number) => {
@@ -229,7 +262,16 @@ export default function EspecialidadesCarousel({
                   <h3 style={{ fontFamily: serif, fontSize: 27, color: C.ink, margin: "8px 0 0" }}>{cur.name}</h3>
                   <div style={{ width: 40, height: 3, background: C.terra, borderRadius: 2, margin: "14px 0" }} />
                   <p style={{ fontFamily: sans, fontSize: 15, lineHeight: 1.65, color: C.muted, margin: 0 }}>{cur.full}</p>
-                  <a href="#contacto" style={{ display: "inline-block", marginTop: 22, fontFamily: sans,
+                  <a href="#contacto"
+                    // con el body congelado el salto de ancla no funciona: cerramos primero
+                    // (eso libera el scroll) y recién ahí bajamos a contacto.
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setOpen(false);
+                      requestAnimationFrame(() =>
+                        document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth", block: "start" }));
+                    }}
+                    style={{ display: "inline-block", marginTop: 22, fontFamily: sans,
                     fontSize: 14.5, fontWeight: 600, color: C.white, background: C.terra,
                     padding: "12px 26px", borderRadius: 999, textDecoration: "none" }}>Agendar hora</a>
                 </div>

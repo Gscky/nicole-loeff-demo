@@ -45,37 +45,37 @@ export const SPECIALTIES = [
   {
     id: 'odontopediatria',
     title: 'Odontopediatría',
-    description: 'Cuidado dental especializado para niños y recién nacidos. Diagnóstico, selladores, tratamiento de caries, manejo de traumatismos y educación en higiene oral.',
+    description: 'La Odontopediatría es la especialidad de la odontología dedicada al cuidado de la salud bucal de bebés, niños y adolescentes, acompañando cada etapa de su crecimiento. Comprende los controles preventivos, la aplicación de sellantes y flúor, el tratamiento de caries y el manejo de traumatismos dentales, siempre en un ambiente de confianza donde el niño se sienta seguro y tranquilo. El objetivo de la odontopediatría es formar buenos hábitos de higiene desde temprana edad y lograr que los niños crezcan con una sonrisa sana y una relación positiva con la atención dental.',
     icon: 'baby',
   },
   {
     id: 'implantologia',
     title: 'Implantología',
-    description: 'Implantes de titanio biocompatibles que reemplazan las raíces naturales de los dientes perdidos, brindando una solución permanente con resultados estéticos superiores.',
+    description: 'La Implantología es la especialidad de la odontología dedicada a reemplazar los dientes perdidos mediante implantes dentales: pequeños pilares de titanio biocompatible que se integran al hueso y cumplen la función de la raíz natural del diente. Sobre ellos se instala una corona, un puente o una prótesis, devolviendo la capacidad de masticar, hablar y sonreír con total naturalidad. El objetivo de la implantología es entregar una solución fija y duradera que además preserva el hueso y mantiene la armonía de tu sonrisa en el tiempo.',
     icon: 'implant',
   },
   {
     id: 'bruxismo',
     title: 'Oclusión y Trastornos Temporomandibulares',
-    description: 'Diagnóstico y tratamiento del bruxismo y los trastornos de la articulación temporomandibular. Férulas de descarga nocturna y corrección oclusal para proteger tu estructura dental.',
+    description: 'La Oclusión y los Trastornos Temporomandibulares corresponden al área de la odontología dedicada a estudiar cómo encajan tus dientes al morder y cómo funciona la articulación que une la mandíbula con el cráneo. Las molestias más frecuentes son el apriete dental o bruxismo, el desgaste de los dientes, los dolores musculares de la cara y el cuello, y los ruidos o la dificultad al abrir la boca. Su tratamiento combina el diagnóstico de la mordida, el uso de férulas de descarga y los ajustes oclusales, con el objetivo de proteger tus dientes, aliviar el dolor y devolver el equilibrio y la comodidad a tu mandíbula.',
     icon: 'lock',
   },
   {
     id: 'rehabilitacion',
     title: 'Rehabilitación Oral',
-    description: 'Restauramos la función, estética y armonía de tu sonrisa mediante prótesis dentales fijas, removibles y sobre implantes con las técnicas más modernas.',
+    description: 'La Rehabilitación Oral es la especialidad de la odontología dedicada a devolver la función, la estética y la armonía de la boca cuando los dientes se han perdido, desgastado o dañado. A través de coronas, puentes, incrustaciones y prótesis fijas, removibles o sobre implantes, se restaura la forma de cada diente y el equilibrio de la mordida, considerando siempre el conjunto de la boca y no una pieza aislada. El objetivo de la rehabilitación oral es que puedas volver a masticar con comodidad y sonreír con seguridad, con un resultado natural y estable en el tiempo.',
     icon: 'refresh',
   },
   {
     id: 'endodoncia',
     title: 'Endodoncia',
-    description: 'Tratamiento de conducto radicular que salva dientes naturales eliminando la pulpa infectada. Procedimiento con anestesia local, seguro y con 90% de éxito.',
+    description: 'La Endodoncia es la especialidad de la odontología dedicada al tratamiento del interior del diente, donde se encuentra la pulpa dental, el tejido que contiene los nervios y vasos sanguíneos. Cuando una caries profunda, una fractura o un golpe inflaman o infectan la pulpa aparece el dolor, y se hace necesario el tratamiento de conducto, que consiste en retirar el tejido dañado, desinfectar y sellar los conductos del diente. El objetivo de la endodoncia es eliminar el dolor y la infección conservando el diente natural, evitando su extracción y permitiendo restaurarlo para que siga cumpliendo su función.',
     icon: 'microscope',
   },
   {
     id: 'ortodoncia',
     title: 'Ortodoncia',
-    description: 'Movimientos suaves y precisos que corrigen la posición dental, mejorando la oclusión y alineación para una sonrisa perfecta. Opciones fijas, removibles y funcionales.',
+    description: 'La Ortodoncia es la especialidad de la odontología dedicada a corregir la posición de los dientes y la forma en que encajan al morder, mediante fuerzas suaves y controladas que los llevan de manera gradual a su lugar ideal. Existen distintas alternativas según cada caso, como los brackets fijos, los aparatos removibles y los alineadores transparentes, prácticamente invisibles. El objetivo de la ortodoncia va más allá de lo estético: una buena alineación facilita la higiene, distribuye mejor las fuerzas al masticar y ayuda a mantener sanos los dientes y las encías a lo largo del tiempo.',
     icon: 'aligners',
   },
 ] as const;

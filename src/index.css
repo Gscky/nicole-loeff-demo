@@ -116,3 +116,15 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--color-copper-400);
   border-radius: 2px;
 }
+
+/* Botones flotantes (WhatsApp/Instagram/Facebook): se esconden mientras hay un modal
+   abierto para que no queden pintados encima del overlay, y vuelven al cerrarlo. */
+.social-fab {
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* !important porque framer-motion escribe opacity inline en estos botones */
+body.modal-open .social-fab {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

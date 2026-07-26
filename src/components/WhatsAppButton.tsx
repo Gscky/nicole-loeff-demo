@@ -15,7 +15,7 @@ export function WhatsAppButton() {
         transition={{ delay: 2.3, type: 'spring', stiffness: 200 }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        className="fixed bottom-[10.25rem] right-5 sm:bottom-[11.75rem] sm:right-6 z-50 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#1877F2] text-white shadow-[0_4px_20px_rgba(24,119,242,0.4)] hover:shadow-[0_6px_30px_rgba(24,119,242,0.5)] transition-shadow"
+        className="social-fab fixed bottom-[10.25rem] right-5 sm:bottom-[11.75rem] sm:right-6 z-50 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#1877F2] text-white shadow-[0_4px_20px_rgba(24,119,242,0.4)] hover:shadow-[0_6px_30px_rgba(24,119,242,0.5)] transition-shadow"
         aria-label="Ver el Facebook de la clínica"
       >
         <Facebook size={28} fill="currentColor" strokeWidth={0} />
@@ -34,7 +34,7 @@ export function WhatsAppButton() {
         transition={{ delay: 2.15, type: 'spring', stiffness: 200 }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        className="fixed bottom-[5.75rem] right-5 sm:bottom-[6.75rem] sm:right-6 z-50 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full text-white shadow-[0_4px_20px_rgba(193,53,132,0.4)] hover:shadow-[0_6px_30px_rgba(193,53,132,0.5)] transition-shadow"
+        className="social-fab fixed bottom-[5.75rem] right-5 sm:bottom-[6.75rem] sm:right-6 z-50 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full text-white shadow-[0_4px_20px_rgba(193,53,132,0.4)] hover:shadow-[0_6px_30px_rgba(193,53,132,0.5)] transition-shadow"
         style={{
           background:
             'radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)',
@@ -57,7 +57,7 @@ export function WhatsAppButton() {
         transition={{ delay: 2, type: 'spring', stiffness: 200 }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#25D366] text-white shadow-[0_4px_20px_rgba(37,211,102,0.4)] hover:shadow-[0_6px_30px_rgba(37,211,102,0.5)] transition-shadow"
+        className="social-fab fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#25D366] text-white shadow-[0_4px_20px_rgba(37,211,102,0.4)] hover:shadow-[0_6px_30px_rgba(37,211,102,0.5)] transition-shadow"
         aria-label="Agendar hora por WhatsApp"
       >
         {/* WhatsApp SVG Icon */}
