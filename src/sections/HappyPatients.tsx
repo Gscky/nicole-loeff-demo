@@ -4,6 +4,7 @@ const PATIENT_PHOTOS = [
   { src: '/images/patients/paciente-5-web.jpg', alt: 'Dra. Nicole Loeff con una paciente niña feliz tras su control' },
   { src: '/images/patients/paciente-2.jpeg', alt: 'Dra. Nicole con pacientes jóvenes sonriendo' },
   { src: '/images/patients/paciente-3.jpeg', alt: 'Dra. Nicole con paciente niño feliz' },
+  { src: '/images/patients/paciente-pediatria.jpg', alt: 'Paciente de odontopediatría mostrando el diente que se le cayó' },
 ];
 
 export function HappyPatients() {
@@ -48,11 +49,21 @@ export function HappyPatients() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
 
-            {/* Bottom right */}
-            <div className="col-span-2 row-span-1 group rounded-xl overflow-hidden relative">
+            {/* Bottom right: dos celdas cuadradas lado a lado */}
+            <div className="col-span-1 row-span-1 group rounded-xl overflow-hidden relative">
               <img
                 src={PATIENT_PHOTOS[2].src}
                 alt={PATIENT_PHOTOS[2].alt}
+                loading="lazy"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
+
+            <div className="col-span-1 row-span-1 group rounded-xl overflow-hidden relative">
+              <img
+                src={PATIENT_PHOTOS[3].src}
+                alt={PATIENT_PHOTOS[3].alt}
                 loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />

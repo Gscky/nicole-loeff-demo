@@ -24,7 +24,7 @@ export function AboutPreview() {
                 <div className="overflow-hidden rounded-2xl shadow-lg mt-6 sm:mt-8">
                   <img
                     src="/images/excelencia/excelencia-2.jpg"
-                    alt="Paciente feliz mostrando su sonrisa tras el tratamiento dental"
+                    alt="Dra. Nicole Loeff realizando un tratamiento estético a una paciente"
                     loading="lazy"
                     className="w-full h-64 sm:h-56 lg:h-72 object-cover transition-transform duration-700 hover:scale-105"
                   />

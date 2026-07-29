@@ -55,6 +55,12 @@ export const SPECIALTIES = [
     icon: 'implant',
   },
   {
+    id: 'cirugia-bucal',
+    title: 'Cirugía Bucal',
+    description: 'La Cirugía Bucal es la especialidad de la odontología dedicada a resolver, mediante procedimientos quirúrgicos, aquellas situaciones que no pueden tratarse de otra forma dentro de la boca. La intervención más frecuente es la extracción de las muelas del juicio, que muchas veces quedan retenidas o mal posicionadas y terminan provocando dolor, inflamación o daño en los dientes vecinos. También comprende la extracción de dientes con daño irreparable, la remoción de restos de raíces y la preparación del hueso antes de instalar un implante. El objetivo de la cirugía bucal es eliminar el origen del problema de manera segura y controlada, acompañándote en la recuperación para devolver la salud y la tranquilidad a tu boca.',
+    icon: 'scan',
+  },
+  {
     id: 'bruxismo',
     title: 'Oclusión y Trastornos Temporomandibulares',
     description: 'La Oclusión y los Trastornos Temporomandibulares corresponden al área de la odontología dedicada a estudiar cómo encajan tus dientes al morder y cómo funciona la articulación que une la mandíbula con el cráneo. Las molestias más frecuentes son el apriete dental o bruxismo, el desgaste de los dientes, los dolores musculares de la cara y el cuello, y los ruidos o la dificultad al abrir la boca. Su tratamiento combina el diagnóstico de la mordida, el uso de férulas de descarga y los ajustes oclusales, con el objetivo de proteger tus dientes, aliviar el dolor y devolver el equilibrio y la comodidad a tu mandíbula.',
@@ -295,6 +301,42 @@ export const BEFORE_AFTER_CASES = [
     title: 'Blanqueamiento Integral',
     description: 'Transformación completa con blanqueamiento profesional y carillas estéticas.',
     image: '/images/cases/caso-19.jpeg',
+  },
+  {
+    id: 20,
+    title: 'Restauración de Dientes Inferiores',
+    description: 'Recuperación de la forma y el color de los dientes inferiores desgastados, con un resultado parejo y natural.',
+    image: '/images/cases/caso-20.jpg',
+  },
+  {
+    id: 21,
+    title: 'Blanqueamiento y Restauraciones Estéticas',
+    description: 'Aclaramiento del color y armonización de los bordes dentarios para una sonrisa más luminosa y uniforme.',
+    image: '/images/cases/caso-21.jpg',
+  },
+  {
+    id: 22,
+    title: 'Cierre de Espacios con Carillas',
+    description: 'Cierre del espacio entre los dientes anteriores y armonización de la sonrisa con carillas estéticas.',
+    image: '/images/cases/caso-22.jpg',
+  },
+  {
+    id: 23,
+    title: 'Rehabilitación Estética en una Sesión',
+    description: 'Dientes inferiores desgastados devueltos a su forma y color en una sola sesión de trabajo.',
+    image: '/images/cases/caso-23.jpg',
+  },
+  {
+    id: 24,
+    title: 'Reconstrucción de Bordes Fracturados',
+    description: 'Reconstrucción de bordes desgastados y fracturados en dientes inferiores, recuperando su forma original.',
+    image: '/images/cases/caso-24.jpg',
+  },
+  {
+    id: 25,
+    title: 'Diseño de Sonrisa Integral',
+    description: 'Transformación completa de la sonrisa, devolviendo proporción, alineación y color natural a los dientes.',
+    image: '/images/cases/caso-25.jpg',
   },
 ] as const;
 

@@ -31,6 +31,10 @@ export function CasosPage() {
       {/* All Cases */}
       <section className="py-12 sm:py-16 lg:py-24 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          {/* Las fotos de casos son pares apilados (antes arriba / después abajo) y todas
+              vienen normalizadas a 800x800. El marco va cuadrado a propósito: con el
+              aspect-[4/3] anterior, object-cover recortaba ~25% del alto y se comía los
+              dientes inferiores del "después". */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {BEFORE_AFTER_CASES.map((item) => (
               <ScrollReveal key={item.id}>
@@ -41,7 +45,7 @@ export function CasosPage() {
                       alt={`${item.title} - Antes y Después`}
                       loading="lazy"
                       decoding="async"
-                      className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute top-3 left-3 flex gap-1.5 sm:gap-2">
                       <span className="bg-gray-dark/70 backdrop-blur-sm text-white text-[10px] sm:text-xs font-body font-medium px-2 sm:px-3 py-1 sm:py-1.5 rounded-full">

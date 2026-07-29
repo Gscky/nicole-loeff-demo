@@ -9,6 +9,7 @@ import {
   Baby,
   ShieldCheck,
   Lock,
+  Scan,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
@@ -21,6 +22,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   baby: Baby,
   shield: ShieldCheck,
   lock: Lock,
+  scan: Scan,
 };
 
 /* Mismas fotos que el carrusel de especialidades de la home
@@ -34,6 +36,7 @@ const SPECIALTY_IMAGES: Record<string, string> = {
   odontopediatria: '/images/especialidades/odontopediatria.jpg',
   periodoncia: '/images/especialidades/periodoncia.jpg',
   bruxismo: '/images/especialidades/bruxismo.jpg',
+  'cirugia-bucal': '/images/especialidades/cirugia-bucal.jpg',
 };
 
 export function ServiciosPage() {

@@ -21,6 +21,8 @@ type Service = {
   image?: string;         // ruta de foto real; si falta, usa placeholder
   color?: string;         // color del placeholder
   casesCta?: string;      // si está, el overlay suma un botón con ese texto hacia /casos
+  video?: string;         // clip corto del tratamiento; se muestra en el overlay, SIN audio
+  videoPoster?: string;   // primer frame del clip, para que no parpadee al cargar
 };
 
 /* placeholder mientras no haya foto real: gradiente limpio, SIN texto
@@ -45,11 +47,14 @@ const DEFAULT_SERVICES: Service[] = [
     full: "La Periodoncia es la especialidad de la odontología dedicada a la prevención, diagnóstico y tratamiento de las enfermedades que afectan las encías y los tejidos de soporte de los dientes, como el hueso y el ligamento periodontal. Las enfermedades más frecuentes son la gingivitis, que corresponde a la inflamación de las encías, y la periodontitis, una infección que, si no se trata a tiempo, puede provocar la pérdida del hueso que sostiene los dientes y comprometer su estabilidad. El objetivo de la periodoncia es mantener las encías y los tejidos de soporte sanos, permitiendo conservar los dientes naturales firmes y saludables durante toda la vida." },
   { name: "Estética Dental", color: "#B07A3E", image: "/images/especialidades/estetica-dental.jpg", short: "Diseño de sonrisa, carillas estéticas naturales, cierres de espacios y blanqueamientos dentales.",
     full: "La Estética Dental es la especialidad de la odontología que busca realzar la belleza natural de tu sonrisa, logrando resultados armónicos, saludables y acordes a cada persona. A través de tratamientos como el blanqueamiento dental, carillas y restauraciones estéticas, es posible mejorar el color, la forma y la apariencia de los dientes, devolviendo confianza para sonreír con naturalidad, siempre cuidando la salud y la función de tu sonrisa.",
-    casesCta: "Ver más casos clínicos" },
+    casesCta: "Ver más casos clínicos",
+    video: "/videos/caso-estetica.mp4", videoPoster: "/videos/caso-estetica-poster.jpg" },
   { name: "Odontopediatría", color: "#C9925A", image: "/images/especialidades/odontopediatria.jpg", short: "Cuidado dental cercano para niños y bebés.",
     full: "La Odontopediatría es la especialidad de la odontología dedicada al cuidado de la salud bucal de bebés, niños y adolescentes, acompañando cada etapa de su crecimiento. Comprende los controles preventivos, la aplicación de sellantes y flúor, el tratamiento de caries y el manejo de traumatismos dentales, siempre en un ambiente de confianza donde el niño se sienta seguro y tranquilo. El objetivo de la odontopediatría es formar buenos hábitos de higiene desde temprana edad y lograr que los niños crezcan con una sonrisa sana y una relación positiva con la atención dental." },
   { name: "Implantología", color: "#6E8E5C", image: "/images/especialidades/implantologia.jpg", short: "Reemplazo permanente de dientes perdidos con implantes.",
     full: "La Implantología es la especialidad de la odontología dedicada a reemplazar los dientes perdidos mediante implantes dentales: pequeños pilares de titanio biocompatible que se integran al hueso y cumplen la función de la raíz natural del diente. Sobre ellos se instala una corona, un puente o una prótesis, devolviendo la capacidad de masticar, hablar y sonreír con total naturalidad. El objetivo de la implantología es entregar una solución fija y duradera que además preserva el hueso y mantiene la armonía de tu sonrisa en el tiempo." },
+  { name: "Cirugía Bucal", color: "#6E8E5C", image: "/images/especialidades/cirugia-bucal.jpg", short: "Extracción de muelas del juicio y todo tipo de cirugías de la boca.",
+    full: "La Cirugía Bucal es la especialidad de la odontología dedicada a resolver, mediante procedimientos quirúrgicos, aquellas situaciones que no pueden tratarse de otra forma dentro de la boca. La intervención más frecuente es la extracción de las muelas del juicio, que muchas veces quedan retenidas o mal posicionadas y terminan provocando dolor, inflamación o daño en los dientes vecinos. También comprende la extracción de dientes con daño irreparable, la remoción de restos de raíces y la preparación del hueso antes de instalar un implante. El objetivo de la cirugía bucal es eliminar el origen del problema de manera segura y controlada, acompañándote en la recuperación para devolver la salud y la tranquilidad a tu boca." },
   { name: "Oclusión y Trastornos Temporomandibulares", color: "#A6794B", image: "/images/especialidades/bruxismo.jpg", short: "Férulas y cuidado de tu oclusión y articulación.",
     full: "La Oclusión y los Trastornos Temporomandibulares corresponden al área de la odontología dedicada a estudiar cómo encajan tus dientes al morder y cómo funciona la articulación que une la mandíbula con el cráneo. Las molestias más frecuentes son el apriete dental o bruxismo, el desgaste de los dientes, los dolores musculares de la cara y el cuello, y los ruidos o la dificultad al abrir la boca. Su tratamiento combina el diagnóstico de la mordida, el uso de férulas de descarga y los ajustes oclusales, con el objetivo de proteger tus dientes, aliviar el dolor y devolver el equilibrio y la comodidad a tu mandíbula." },
   { name: "Rehabilitación Oral", color: "#C97E3E", image: "/images/especialidades/rehabilitacion-oral.jpg", short: "Recuperamos función y estética con prótesis modernas.",
@@ -266,6 +271,25 @@ export default function EspecialidadesCarousel({
                   <h3 style={{ fontFamily: serif, fontSize: 27, color: C.ink, margin: "8px 0 0" }}>{cur.name}</h3>
                   <div style={{ width: 40, height: 3, background: C.terra, borderRadius: 2, margin: "14px 0" }} />
                   <p style={{ fontFamily: sans, fontSize: 15, lineHeight: 1.65, color: C.muted, margin: 0 }}>{cur.full}</p>
+
+                  {/* Clip del tratamiento. Va SIN audio (la pista se eliminó del archivo, no
+                      solo silenciada) por indicación de Nicole. Autoplay en loop porque dura
+                      pocos segundos; si el navegador lo bloquea quedan los controles y el póster. */}
+                  {cur.video && (
+                    <video
+                      src={cur.video}
+                      poster={cur.videoPoster}
+                      controls
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      aria-label={`Video de un tratamiento de ${cur.name}`}
+                      style={{ display: "block", width: "100%", maxWidth: 240, marginTop: 20,
+                        borderRadius: 14, border: `1px solid ${C.line}`, background: C.cream }}
+                    />
+                  )}
 
                   <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center",
                     marginTop: 22 }}>
