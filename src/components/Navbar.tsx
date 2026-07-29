@@ -48,7 +48,7 @@ export function Navbar() {
               <img
                 src="/images/brand/logo.png"
                 alt={CLINIC.fullName}
-                className="h-12 w-12 object-contain p-[2px] transition-transform duration-300 group-hover:scale-105"
+                className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
               <div className="hidden sm:block">
                 <p className={`font-display text-lg font-semibold tracking-wide transition-colors duration-500 ${
