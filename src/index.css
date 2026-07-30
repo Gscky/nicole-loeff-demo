@@ -109,6 +109,46 @@ h1, h2, h3, h4, h5, h6 {
   animation: pulse-ring 2s ease-out infinite;
 }
 
+/* Carrusel de pacientes: corre solo, siempre, en escritorio y en celular.
+   La lista se renderiza DOS veces y el track se mueve -50%: al llegar al final
+   está exactamente donde empezó, así el loop no tiene costura ni salto.
+   A propósito NO se apaga con prefers-reduced-motion: la idea es que no pare nunca. */
+@keyframes patients-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.patients-marquee {
+  overflow: hidden;
+  /* difumina los bordes para que las fotos entren y salgan sin cortarse en seco */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+
+.patients-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: patients-marquee 60s linear infinite;
+  will-change: transform;
+}
+
+/* en pantallas chicas hay menos ancho visible: se acelera para que no se sienta detenido */
+@media (max-width: 640px) {
+  .patients-marquee-track { animation-duration: 38s; }
+}
+
+/* No para NUNCA: ni al pasar el mouse por encima, ni cuando el sistema del visitante
+   pide reducir movimiento. Esta regla existe para blindarlo si alguna vez se agrega
+   un "prefers-reduced-motion" global al proyecto. */
+@media (prefers-reduced-motion: reduce) {
+  .patients-marquee-track {
+    animation: patients-marquee 60s linear infinite !important;
+  }
+  @media (max-width: 640px) {
+    .patients-marquee-track { animation-duration: 38s !important; }
+  }
+}
+
 /* Accent divider */
 .accent-divider {
   width: 60px;
