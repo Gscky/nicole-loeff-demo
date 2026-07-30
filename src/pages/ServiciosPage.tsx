@@ -1,5 +1,7 @@
+import { useNavigate } from 'react-router-dom';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { SPECIALTIES, CLINIC } from '../lib/constants';
+import { SPECIALTY_EXTRAS } from '../sections/EspecialidadesCarousel';
 import {
   RefreshCw,
   CircleDot,
@@ -40,6 +42,17 @@ const SPECIALTY_IMAGES: Record<string, string> = {
 };
 
 export function ServiciosPage() {
+  const navigate = useNavigate();
+
+  /* Las secciones que enlazan estos botones viven en el home, no acá: hay que
+     navegar primero y recién después bajar, cuando la sección ya está montada. */
+  const irASeccionDelHome = (id: string) => {
+    navigate('/');
+    requestAnimationFrame(() =>
+      setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80)
+    );
+  };
+
   return (
     <>
       {/* Hero */}
@@ -74,6 +87,7 @@ export function ServiciosPage() {
               const Icon = ICON_MAP[spec.icon];
               const isEven = i % 2 === 0;
               const image = SPECIALTY_IMAGES[spec.id];
+              const extras = SPECIALTY_EXTRAS[spec.title];
 
               return (
                 <ScrollReveal key={spec.id}>
@@ -100,14 +114,53 @@ export function ServiciosPage() {
                       <p className="font-body text-base text-gray-600 leading-relaxed mb-6">
                         {spec.description}
                       </p>
-                      <a
-                        href={CLINIC.whatsappLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-full bg-copper-400 px-8 py-3 font-body text-sm font-semibold text-white transition-all duration-300 hover:bg-copper-500 hover:shadow-lg"
-                      >
-                        Consultar por este servicio
-                      </a>
+
+                      {/* Mismo clip que muestra la tarjeta del carrusel, sin audio */}
+                      {extras?.video && (
+                        <video
+                          src={extras.video}
+                          poster={extras.videoPoster}
+                          controls
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          preload="metadata"
+                          aria-label={`Video de un tratamiento de ${spec.title}`}
+                          className="mb-6 block w-full max-w-[240px] rounded-xl border border-gray-100 bg-gray-light"
+                        />
+                      )}
+
+                      <div className="flex flex-wrap items-center gap-3">
+                        <a
+                          href={CLINIC.whatsappLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 rounded-full bg-copper-400 px-8 py-3 font-body text-sm font-semibold text-white transition-all duration-300 hover:bg-copper-500 hover:shadow-lg"
+                        >
+                          Consultar por este servicio
+                        </a>
+
+                        {/* Los mismos botones secundarios que la tarjeta del carrusel */}
+                        {extras?.casesCta && (
+                          <button
+                            type="button"
+                            onClick={() => navigate('/casos')}
+                            className="inline-flex items-center gap-2 rounded-full border border-copper-400 px-7 py-3 font-body text-sm font-semibold text-copper-400 transition-all duration-300 hover:bg-copper-400/5"
+                          >
+                            {extras.casesCta}
+                          </button>
+                        )}
+                        {extras?.sectionCta && (
+                          <button
+                            type="button"
+                            onClick={() => irASeccionDelHome(extras.sectionCta!.id)}
+                            className="inline-flex items-center gap-2 rounded-full border border-copper-400 px-7 py-3 font-body text-sm font-semibold text-copper-400 transition-all duration-300 hover:bg-copper-400/5"
+                          >
+                            {extras.sectionCta.label}
+                          </button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </ScrollReveal>

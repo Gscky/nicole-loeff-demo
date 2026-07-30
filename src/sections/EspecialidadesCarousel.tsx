@@ -23,6 +23,7 @@ type Service = {
   casesCta?: string;      // si está, el overlay suma un botón con ese texto hacia /casos
   video?: string;         // clip corto del tratamiento; se muestra en el overlay, SIN audio
   videoPoster?: string;   // primer frame del clip, para que no parpadee al cargar
+  sectionCta?: { label: string; id: string }; // botón hacia una sección del home
 };
 
 /* placeholder mientras no haya foto real: gradiente limpio, SIN texto
@@ -50,10 +51,12 @@ const DEFAULT_SERVICES: Service[] = [
     casesCta: "Ver más casos clínicos",
     video: "/videos/caso-estetica.mp4", videoPoster: "/videos/caso-estetica-poster.jpg" },
   { name: "Odontopediatría", color: "#C9925A", image: "/images/especialidades/odontopediatria.jpg", short: "Cuidado dental cercano para niños y bebés.",
+    sectionCta: { label: "Ver nuestros pacientes", id: "pacientes" },
     full: "La Odontopediatría es la especialidad de la odontología dedicada al cuidado de la salud bucal de bebés, niños y adolescentes, acompañando cada etapa de su crecimiento. Comprende los controles preventivos, la aplicación de sellantes y flúor, el tratamiento de caries y el manejo de traumatismos dentales, siempre en un ambiente de confianza donde el niño se sienta seguro y tranquilo. El objetivo de la odontopediatría es formar buenos hábitos de higiene desde temprana edad y lograr que los niños crezcan con una sonrisa sana y una relación positiva con la atención dental." },
   { name: "Implantología", color: "#6E8E5C", image: "/images/especialidades/implantologia.jpg", short: "Reemplazo permanente de dientes perdidos con implantes.",
     full: "La Implantología es la especialidad de la odontología dedicada a reemplazar los dientes perdidos mediante implantes dentales: pequeños pilares de titanio biocompatible que se integran al hueso y cumplen la función de la raíz natural del diente. Sobre ellos se instala una corona, un puente o una prótesis, devolviendo la capacidad de masticar, hablar y sonreír con total naturalidad. El objetivo de la implantología es entregar una solución fija y duradera que además preserva el hueso y mantiene la armonía de tu sonrisa en el tiempo." },
   { name: "Cirugía Bucal", color: "#6E8E5C", image: "/images/especialidades/cirugia-bucal.jpg", short: "Extracción de muelas del juicio y todo tipo de cirugías de la boca.",
+    video: "/videos/caso-cirugia-bucal.mp4", videoPoster: "/videos/caso-cirugia-bucal-poster.jpg",
     full: "La Cirugía Bucal es la especialidad de la odontología dedicada a resolver, mediante procedimientos quirúrgicos, aquellas situaciones que no pueden tratarse de otra forma dentro de la boca. La intervención más frecuente es la extracción de las muelas del juicio, que muchas veces quedan retenidas o mal posicionadas y terminan provocando dolor, inflamación o daño en los dientes vecinos. También comprende la extracción de dientes con daño irreparable, la remoción de restos de raíces y la preparación del hueso antes de instalar un implante. El objetivo de la cirugía bucal es eliminar el origen del problema de manera segura y controlada, acompañándote en la recuperación para devolver la salud y la tranquilidad a tu boca." },
   { name: "Oclusión y Trastornos Temporomandibulares", color: "#A6794B", image: "/images/especialidades/bruxismo.jpg", short: "Férulas y cuidado de tu oclusión y articulación.",
     full: "La Oclusión y los Trastornos Temporomandibulares corresponden al área de la odontología dedicada a estudiar cómo encajan tus dientes al morder y cómo funciona la articulación que une la mandíbula con el cráneo. Las molestias más frecuentes son el apriete dental o bruxismo, el desgaste de los dientes, los dolores musculares de la cara y el cuello, y los ruidos o la dificultad al abrir la boca. Su tratamiento combina el diagnóstico de la mordida, el uso de férulas de descarga y los ajustes oclusales, con el objetivo de proteger tus dientes, aliviar el dolor y devolver el equilibrio y la comodidad a tu mandíbula." },
@@ -64,6 +67,21 @@ const DEFAULT_SERVICES: Service[] = [
   { name: "Ortodoncia", color: "#A6794B", image: "/images/especialidades/ortodoncia.jpg", short: "Alineación y mordida con técnicas fijas o invisibles.",
     full: "La Ortodoncia es la especialidad de la odontología dedicada a corregir la posición de los dientes y la forma en que encajan al morder, mediante fuerzas suaves y controladas que los llevan de manera gradual a su lugar ideal. Existen distintas alternativas según cada caso, como los brackets fijos, los aparatos removibles y los alineadores transparentes, prácticamente invisibles. El objetivo de la ortodoncia va más allá de lo estético: una buena alineación facilita la higiene, distribuye mejor las fuerzas al masticar y ayuda a mantener sanos los dientes y las encías a lo largo del tiempo." },
 ];
+
+/* La página /servicios muestra las MISMAS especialidades que este carrusel, así que
+   lo que se agrega acá (video, botones) tiene que verse allá también. En vez de
+   copiar los datos, ServiciosPage lee este mapa y busca por el título de la
+   especialidad — los títulos son idénticos a los de SPECIALTIES en constants.ts. */
+export type SpecialtyExtras = Pick<Service, 'video' | 'videoPoster' | 'casesCta' | 'sectionCta'>;
+
+export const SPECIALTY_EXTRAS: Record<string, SpecialtyExtras> = Object.fromEntries(
+  DEFAULT_SERVICES
+    .filter((s) => s.video || s.casesCta || s.sectionCta)
+    .map((s) => [
+      s.name,
+      { video: s.video, videoPoster: s.videoPoster, casesCta: s.casesCta, sectionCta: s.sectionCta },
+    ])
+);
 
 export default function EspecialidadesCarousel({
   services = DEFAULT_SERVICES,
@@ -251,17 +269,25 @@ export default function EspecialidadesCarousel({
               style={{ position: "fixed", inset: 0, zIndex: 60, display: "grid", placeItems: "center",
                 padding: 16,
                 background: "rgba(245,243,236,.72)", backdropFilter: "blur(6px)", animation: "espFade .25s ease" }}>
-              <div style={{ width: "min(720px,94%)", maxHeight: "86vh", background: C.white, borderRadius: 20,
+              {/* UNA sola columna en celular y en computador: la foto de banner arriba y
+                  el contenido abajo. Antes el computador partía en dos columnas y la foto
+                  quedaba en una franja angosta y altísima (el alto lo manda el texto), así
+                  que de una foto apaisada se veía un pedacito recortado. De banner 16/9 se
+                  ve entera, grande, y las dos pantallas quedan iguales. */}
+              <div style={{ width: compact ? "min(560px,94%)" : "min(720px,94%)", maxHeight: "86vh",
+                background: C.white, borderRadius: 20,
                 boxShadow: "0 30px 70px -30px rgba(0,0,0,.5)", border: `1px solid ${C.line}`,
-                display: "grid", gridTemplateColumns: compact ? "1fr" : "minmax(0,.9fr) minmax(0,1.1fr)",
-                gridTemplateRows: compact ? "auto auto" : "1fr",
-                overflow: compact ? "auto" : "hidden",
+                display: "flex", flexDirection: "column", overflow: "auto",
                 textAlign: "left", animation: "espPop .3s cubic-bezier(.2,0,.2,1)" }} className="esp-ov">
+                {/* 3/2 y no 16/9: las fotos de especialidades van de 1.33 a 1.64, así que
+                    con 3/2 el recorte máximo baja de 33% a ~13% y no se pierde nada
+                    reconocible. Si algún día entra una foto muy distinta, conviene
+                    normalizarla a 3/2 antes de subirla. */}
                 <img src={imgOf(cur)} alt={cur.name}
-                  style={{ width: "100%", height: compact ? 220 : "100%", objectFit: "cover",
-                    minHeight: compact ? undefined : 240 }} />
-                <div style={{ padding: "28px 28px 30px", position: "relative",
-                  minHeight: compact ? undefined : 0, overflowY: compact ? "visible" : "auto" }}>
+                  style={{ width: "100%", aspectRatio: "3 / 2", objectFit: "cover",
+                    flexShrink: 0, background: C.cream }} />
+                <div style={{ padding: compact ? "24px 22px 26px" : "28px 28px 30px",
+                  position: "relative" }}>
                   <button ref={closeBtnRef} onClick={() => setOpen(false)} aria-label="Cerrar"
                     style={{ position: "absolute", top: 14, right: 14, width: 34, height: 34,
                       borderRadius: "50%", border: `1px solid ${C.line}`, background: C.white,
@@ -320,6 +346,25 @@ export default function EspecialidadesCarousel({
                         fontSize: 14.5, fontWeight: 600, color: C.terra, background: C.white,
                         border: `1px solid ${C.terra}`, padding: "11px 24px", borderRadius: 999,
                         textDecoration: "none" }}>{cur.casesCta}</a>
+                  )}
+
+                  {/* botón secundario opcional hacia una sección del home (mismo estilo
+                      que el de casos clínicos, pero sin cambiar de página) */}
+                  {cur.sectionCta && (
+                    <a href={`#${cur.sectionCta.id}`}
+                      // igual que "Agendar hora": cerrar primero descongela el body,
+                      // recién ahí el scroll a la sección funciona.
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const id = cur.sectionCta!.id;
+                        setOpen(false);
+                        requestAnimationFrame(() =>
+                          document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" }));
+                      }}
+                      style={{ display: "inline-block", fontFamily: sans,
+                        fontSize: 14.5, fontWeight: 600, color: C.terra, background: C.white,
+                        border: `1px solid ${C.terra}`, padding: "11px 24px", borderRadius: 999,
+                        textDecoration: "none" }}>{cur.sectionCta.label}</a>
                   )}
                   </div>
                 </div>

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   motion,
-  useScroll,
+  useMotionValue,
   useSpring,
   useTransform,
   useMotionValueEvent,
@@ -142,18 +142,54 @@ export default function EsteticaClinica({
     return () => mq.removeEventListener("change", onChange);
   }, []);
 
-  // progreso de scroll → posición continua en el mazo (cada layout usa su tramo)
-  const desktopScroll = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
-  });
-  const mobileScroll = useScroll({
-    target: trackRef,
-    offset: ["start start", "end end"],
-  });
-  const progress = isMobile
-    ? mobileScroll.scrollYProgress
-    : desktopScroll.scrollYProgress;
+  /*
+    PROGRESO DEL SCRUB — medido a mano, a propósito.
+
+    Antes esto usaba `useScroll({ target, offset })` de framer-motion, y el mazo no
+    enganchaba en la primera visita: se quedaba clavado en la tarjeta 1 y recién al
+    refrescar andaba. La razón es que ese hook mide dónde empieza y termina la sección
+    UNA vez y guarda el número; si después de esa medición algo cambia el alto de la
+    página (las imágenes de arriba, las tipografías de Google que en la primera visita
+    no están en caché, un cambio de layout), el número queda viejo y el scrub apunta a
+    un tramo que ya no existe. Al refrescar todo viene de caché, mide bien, y por eso
+    "funcionaba al refrescar".
+
+    Acá se lee la posición REAL de la sección en cada frame de scroll con
+    getBoundingClientRect. Es una sola medición por frame, no se guarda nada, así que
+    no hay forma de que quede desactualizada: da igual qué cargue tarde o cuánto se
+    mueva la página.
+
+    La fórmula replica el offset ["start start", "end end"] que usaba antes:
+      progreso 0  cuando el inicio de la sección toca el borde superior  (rect.top = 0)
+      progreso 1  cuando el final toca el borde inferior  (rect.bottom = alto de ventana)
+  */
+  const progress = useMotionValue(0);
+
+  useEffect(() => {
+    const el = isMobile ? trackRef.current : sectionRef.current;
+    if (!el) return;
+
+    let raf = 0;
+    const medir = () => {
+      const r = el.getBoundingClientRect();
+      const recorrido = r.height - window.innerHeight;
+      const p = recorrido > 0 ? -r.top / recorrido : 0;
+      progress.set(p < 0 ? 0 : p > 1 ? 1 : p);
+    };
+    const alScrollear = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(medir);
+    };
+
+    medir();
+    window.addEventListener("scroll", alScrollear, { passive: true });
+    window.addEventListener("resize", alScrollear);
+    return () => {
+      window.removeEventListener("scroll", alScrollear);
+      window.removeEventListener("resize", alScrollear);
+      cancelAnimationFrame(raf);
+    };
+  }, [isMobile, progress]);
   const smooth = useSpring(progress, { stiffness: 90, damping: 22, mass: 0.6 });
   const idx = useTransform(smooth, [0, 1], [0, count - 1]);
   const barWidth = useTransform(smooth, [0, 1], ["0%", "100%"]);
